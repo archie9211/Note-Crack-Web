@@ -15,9 +15,10 @@ import BaseLayout from "./BaseLayout.astro";
 
                   <!-- Main Content -->
                   <div class="min-w-0">
-                        <!-- Mobile Top Bar with Toggles -->
+                        <!-- ** NEW: Mobile Secondary Bar with scroll behavior ** -->
                         <div
-                              class="sticky top-[65px] bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm z-20 py-2 border-b border-gray-200 dark:border-gray-800 lg:hidden -mx-4 sm:-mx-6 px-4 sm:px-6"
+                              id="mobile-toggle-bar"
+                              class="sticky top-16 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm z-20 py-2 border-b border-gray-200 dark:border-gray-800 lg:hidden -mx-4 sm:-mx-6 px-4 sm:px-6 transition-transform duration-300"
                         >
                               <slot name="mobile-toggles" />
                         </div>
@@ -35,9 +36,24 @@ import BaseLayout from "./BaseLayout.astro";
             </div>
       </div>
 
-      <!-- Mobile Nav Menu is now part of Header.astro -->
+      <!-- ** NEW: Backdrop for mobile nav drawer ** -->
+      <div
+            id="mobile-nav-backdrop"
+            class="fixed inset-0 bg-black/30 z-40 hidden lg:hidden"
+      >
+      </div>
 
-      <!-- Mobile TOC Drawer -->
+      <!-- ** NEW: Contextual Mobile Nav Drawer (for left sidebar content) ** -->
+      <div
+            id="mobile-nav-drawer"
+            class="fixed top-0 left-0 h-full w-72 max-w-[80vw] bg-white dark:bg-gray-900 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden"
+      >
+            <div class="p-4 overflow-y-auto h-full">
+                  <slot name="mobile-nav-drawer" />
+            </div>
+      </div>
+
+      <!-- Mobile TOC Drawer (bottom) -->
       <div
             id="mobile-toc-drawer"
             class="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-900 z-40 p-6 border-t border-gray-200 dark:border-gray-700 transform translate-y-full transition-transform duration-300 ease-in-out lg:hidden"
@@ -46,4 +62,29 @@ import BaseLayout from "./BaseLayout.astro";
                   <slot name="mobile-toc" />
             </div>
       </div>
+
+      <script is:inline>
+            // --- Hide Header & Mobile Bar on Scroll ---
+            const header = document.getElementById("main-header");
+            const mobileBar = document.getElementById("mobile-toggle-bar");
+            if (header) {
+                  let lastScrollY = window.scrollY;
+                  window.addEventListener("scroll", () => {
+                        const currentScrollY = window.scrollY;
+                        if (
+                              currentScrollY > lastScrollY &&
+                              currentScrollY > header.offsetHeight
+                        ) {
+                              // Scrolling down
+                              header.classList.add("-translate-y-full");
+                              mobileBar?.classList.add("-translate-y-full");
+                        } else {
+                              // Scrolling up
+                              header.classList.remove("-translate-y-full");
+                              mobileBar?.classList.remove("-translate-y-full");
+                        }
+                        lastScrollY = currentScrollY;
+                  });
+            }
+      </script>
 </BaseLayout>

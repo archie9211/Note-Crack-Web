@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import { collections } from "../content/config.mjs";
 import ArticleLayout from "../layouts/ArticleLayout.astro";
 import ArticleNav from "../components/ArticleNav.astro";
+import MobileToggles from "../components/MobileToggles.astro";
 
 export async function getStaticPaths() {
       const subjects = Object.keys(collections);
@@ -13,17 +14,24 @@ const { subject } = Astro.params;
 
 const allSubjects = Object.keys(collections);
 const topicsInCurrentSubject = await getCollection(subject);
+
+const navProps = {
+      allSubjects: allSubjects,
+      currentSubject: subject,
+      topicsInCurrentSubject: topicsInCurrentSubject,
+      currentTopicSlug: "",
+};
 ---
 
 <ArticleLayout>
-      <!-- Slot: Left Sidebar (Desktop) -->
+      <!-- Left Sidebar (Desktop) -->
       <div slot="left-sidebar">
-            <ArticleNav
-                  allSubjects={allSubjects}
-                  currentSubject={subject}
-                  topicsInCurrentSubject={topicsInCurrentSubject}
-                  currentTopicSlug=""
-            />
+            <ArticleNav {...navProps} />
+      </div>
+
+      <!-- ** NEW: Content for the slide-out mobile nav drawer ** -->
+      <div slot="mobile-nav-drawer">
+            <ArticleNav {...navProps} />
       </div>
 
       <!-- Main Content Area -->
@@ -52,5 +60,10 @@ const topicsInCurrentSubject = await getCollection(subject);
                         ))
                   }
             </ul>
+      </div>
+
+      <!-- Mobile Toggle Buttons: Show ONLY the "Menu" button -->
+      <div slot="mobile-toggles">
+            <MobileToggles showMenuToggle={true} />
       </div>
 </ArticleLayout>

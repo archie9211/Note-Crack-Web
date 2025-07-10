@@ -32,17 +32,24 @@ const { Content, headings } = await entry.render();
 const allSubjects = Object.keys(collections);
 const topicsInCurrentSubject = await getCollection(subjectSlug);
 const hasHeadings = headings.length > 0;
+
+const navProps = {
+      allSubjects: allSubjects,
+      currentSubject: subjectSlug,
+      topicsInCurrentSubject: topicsInCurrentSubject,
+      currentTopicSlug: topicSlug,
+};
 ---
 
 <ArticleLayout>
       <!-- Left Sidebar (Desktop) -->
       <div slot="left-sidebar">
-            <ArticleNav
-                  allSubjects={allSubjects}
-                  currentSubject={subjectSlug}
-                  topicsInCurrentSubject={topicsInCurrentSubject}
-                  currentTopicSlug={topicSlug}
-            />
+            <ArticleNav {...navProps} />
+      </div>
+
+      <!-- ** NEW: Content for the slide-out mobile nav drawer ** -->
+      <div slot="mobile-nav-drawer">
+            <ArticleNav {...navProps} />
       </div>
 
       <!-- Main Content Area -->
@@ -76,9 +83,8 @@ const hasHeadings = headings.length > 0;
             {hasHeadings && <TableOfContents headings={headings} />}
       </div>
 
-      <!-- Mobile Toggle Buttons -->
+      <!-- Mobile Toggle Buttons: Show BOTH buttons -->
       <div slot="mobile-toggles">
-            <!-- Only show the TOC toggle button if there is a TOC to show -->
-            {hasHeadings && <MobileToggles />}
+            <MobileToggles showMenuToggle={true} showTocToggle={hasHeadings} />
       </div>
 </ArticleLayout>

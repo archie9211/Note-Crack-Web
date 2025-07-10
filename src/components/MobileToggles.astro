@@ -1,44 +1,93 @@
 ---
-// This is an island, so it will be hydrated on the client.
+export interface Props {
+      showMenuToggle?: boolean;
+      showTocToggle?: boolean;
+}
+const { showMenuToggle = false, showTocToggle = false } = Astro.props;
 ---
 
-<div class="flex items-center gap-2" client:load>
-      <!-- TOC toggle is only needed on pages with a table of contents -->
-      <button
-            id="mobile-toc-toggle"
-            class="flex items-center gap-2 px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80"
-      >
-            <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  ><path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                  ></path></svg
-            >
-            <span class="text-sm font-medium">On this page</span>
-      </button>
+<div class="flex items-center gap-2 justify-end w-full" client:load>
+      {
+            showMenuToggle && (
+                  <button
+                        id="mobile-nav-toggle"
+                        class="flex items-center gap-2 px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80"
+                  >
+                        <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="h-5 w-5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                        >
+                              <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M4 6h16M4 12h16m-7 6h7"
+                              />
+                        </svg>
+                        <span class="text-sm font-medium">Menu</span>
+                  </button>
+            )
+      }
+
+      {
+            showTocToggle && (
+                  <button
+                        id="mobile-toc-toggle"
+                        class="flex items-center gap-2 px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80"
+                  >
+                        <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="h-5 w-5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                        >
+                              <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                              />
+                        </svg>
+                        <span class="text-sm font-medium">On this page</span>
+                  </button>
+            )
+      }
 </div>
 
 <script>
-      // Script to toggle mobile TOC
-      const tocToggle = document.getElementById("mobile-toc-toggle");
-      const mobileTocDrawer = document.getElementById("mobile-toc-drawer");
+      // --- Script for contextual "Menu" toggle (left sidebar content) ---
+      const navToggle = document.getElementById("mobile-nav-toggle");
+      const navDrawer = document.getElementById("mobile-nav-drawer");
+      const navBackdrop = document.getElementById("mobile-nav-backdrop");
 
-      if (tocToggle && mobileTocDrawer) {
-            tocToggle.addEventListener("click", () => {
-                  mobileTocDrawer.classList.toggle("translate-y-full");
+      function toggleNavDrawer() {
+            navDrawer?.classList.toggle("-translate-x-full");
+            navBackdrop?.classList.toggle("hidden");
+      }
+
+      if (navToggle && navDrawer && navBackdrop) {
+            navToggle.addEventListener("click", toggleNavDrawer);
+            navBackdrop.addEventListener("click", toggleNavDrawer);
+            navDrawer.querySelectorAll("a").forEach((link) => {
+                  link.addEventListener("click", toggleNavDrawer);
             });
+      }
 
-            // Close drawer when a link inside it is clicked
-            mobileTocDrawer.querySelectorAll("a").forEach((link) => {
+      // --- Script for mobile TOC toggle (right sidebar content) ---
+      const tocToggle = document.getElementById("mobile-toc-toggle");
+      const tocDrawer = document.getElementById("mobile-toc-drawer");
+
+      if (tocToggle && tocDrawer) {
+            tocToggle.addEventListener("click", () => {
+                  tocDrawer.classList.toggle("translate-y-full");
+            });
+            tocDrawer.querySelectorAll("a").forEach((link) => {
                   link.addEventListener("click", () => {
-                        mobileTocDrawer.classList.add("translate-y-full");
+                        tocDrawer.classList.add("translate-y-full");
                   });
             });
       }
