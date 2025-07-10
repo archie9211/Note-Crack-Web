@@ -1,60 +1,97 @@
 ---
 import { getCollection, getEntry } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
 import { collections } from "../../content/config.mjs";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import ArticleNav from "../../components/ArticleNav.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
+import MobileToggles from "../../components/MobileToggles.astro";
 
 export async function getStaticPaths() {
       const paths = [];
       const subjects = Object.keys(collections);
-
       for (const subject of subjects) {
             const entries = await getCollection(subject);
             for (const entry of entries) {
-                  paths.push({
-                        params: { slug: `${subject}/${entry.slug}` },
-                  });
+                  paths.push({ params: { slug: `${subject}/${entry.slug}` } });
             }
       }
       return paths;
 }
 
+// --- DATA FETCHING ---
 const { slug } = Astro.params;
-
-if (!slug) {
-      return new Response("Slug not provided", { status: 404 });
-}
+if (!slug) return new Response("Not Found", { status: 404 });
 
 const slugParts = slug.split("/");
-const subject = slugParts[0];
+const subjectSlug = slugParts[0];
 const topicSlug = slugParts.slice(1).join("/");
 
-const entry = await getEntry(subject, topicSlug);
+// 1. Get current entry, content, and headings
+const entry = await getEntry(subjectSlug, topicSlug);
+if (!entry) return new Response("Article not found", { status: 404 });
+const { Content, headings } = await entry.render();
 
-if (!entry) {
-      return new Response("Article not found", { status: 404 });
-}
+// 2. Get all subjects for nav
+const allSubjects = Object.keys(collections);
 
-// ==================================================================
-// THE CORRECT FIX
-// 1. Get `data` directly from the `entry` object.
-// 2. Call `render()` only to get the `Content` component.
-// ==================================================================
-const { data } = entry;
-const { Content } = await entry.render();
+// 3. Get all topics in the current subject for nav
+const topicsInCurrentSubject = await getCollection(subjectSlug);
 ---
 
-<BaseLayout>
-      <div class="mb-8 text-center">
-            <p
-                  class="text-sm font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 capitalize"
-            >
-                  {subject}
-            </p>
-            {/* This will now work perfectly */}
-            <h1 class="text-4xl font-extrabold my-2">{data.title}</h1>
-            <p class="text-lg text-gray-500 dark:text-gray-400">
-                  {data.description}
-            </p>
+<ArticleLayout>
+      <!-- Slot: Left Sidebar (Desktop) -->
+      <div slot="left-sidebar">
+            <ArticleNav
+                  allSubjects={allSubjects}
+                  currentSubject={subjectSlug}
+                  topicsInCurrentSubject={topicsInCurrentSubject}
+                  currentTopicSlug={topicSlug}
+            />
       </div>
-      <Content />
-</BaseLayout>
+
+      <!-- Slot: Mobile Navigation (from left sidebar) -->
+      <div slot="mobile-nav">
+            <ArticleNav
+                  allSubjects={allSubjects}
+                  currentSubject={subjectSlug}
+                  topicsInCurrentSubject={topicsInCurrentSubject}
+                  currentTopicSlug={topicSlug}
+            />
+      </div>
+
+      <!-- Slot: Main Content Area -->
+      <div slot="main-content">
+            <article class="prose prose-neutral dark:prose-invert max-w-none">
+                  <div class="mb-8 text-center">
+                        <p
+                              class="text-sm font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 capitalize"
+                        >
+                              {subjectSlug.replace("-", " ")}
+                        </p>
+                        <h1 class="text-4xl font-extrabold my-2">
+                              {entry.data.title}
+                        </h1>
+                        <p class="text-lg text-gray-500 dark:text-gray-400">
+                              {entry.data.description}
+                        </p>
+                  </div>
+                  <hr class="my-8" />
+                  <Content />
+            </article>
+      </div>
+
+      <!-- Slot: Right Sidebar (Desktop) -->
+      <div slot="right-sidebar">
+            {headings.length > 0 && <TableOfContents headings={headings} />}
+      </div>
+
+      <!-- Slot: Mobile Table of Contents (from right sidebar) -->
+      <div slot="mobile-toc">
+            {headings.length > 0 && <TableOfContents headings={headings} />}
+      </div>
+
+      <!-- Slot: Mobile Toggle Buttons -->
+      <div slot="mobile-toggles">
+            <MobileToggles />
+      </div>
+</ArticleLayout>

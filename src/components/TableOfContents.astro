@@ -1,0 +1,96 @@
+---
+import type { MarkdownHeading } from "astro";
+
+export interface Props {
+      headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+const tocHeadings = headings.filter((h) => h.depth <= 3); // Only show h1, h2, h3
+---
+
+<nav class="toc" aria-label="Table of contents" client:visible>
+      <h3
+            class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3"
+      >
+            On this page
+      </h3>
+      <ul class="space-y-2">
+            {
+                  tocHeadings.map((heading) => (
+                        <li class:list={["toc-item", `depth-${heading.depth}`]}>
+                              <a
+                                    href={`#${heading.slug}`}
+                                    class="block text-sm transition-colors text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+                              >
+                                    {heading.text}
+                              </a>
+                        </li>
+                  ))
+            }
+      </ul>
+</nav>
+
+<style>
+      .toc-item.depth-3 {
+            padding-left: 1rem;
+      }
+      .toc-item a.active {
+            color: var(--theme-accent);
+            font-weight: 600;
+      }
+</style>
+
+<script>
+      const observer = new IntersectionObserver(
+            (entries) => {
+                  // Find the entry that is currently intersecting
+                  const intersectingEntry = entries.find(
+                        (e) => e.isIntersecting
+                  );
+
+                  // If no entry is intersecting, it might be because the user has scrolled past all headings.
+                  // In this case, we don't want to change the active state.
+                  if (!intersectingEntry) return;
+
+                  const id = intersectingEntry.target.id;
+
+                  // Remove active class from all links
+                  document.querySelectorAll(".toc-item a").forEach((link) => {
+                        link.classList.remove(
+                              "active",
+                              "text-blue-600",
+                              "dark:text-blue-400"
+                        );
+                  });
+
+                  // Add active class to the link that corresponds to the intersecting heading
+                  const activeLink = document.querySelector(
+                        `.toc-item a[href="#${id}"]`
+                  );
+                  if (activeLink) {
+                        activeLink.classList.add(
+                              "active",
+                              "text-blue-600",
+                              "dark:text-blue-400"
+                        );
+                  }
+            },
+            {
+                  // This offset ensures the heading is highlighted when it's well into the viewport,
+                  // not just at the very top edge, which is often obscured by a sticky header.
+                  // Adjust "-80px" to be slightly more than your header's height.
+                  rootMargin: "-80px 0px -50% 0px",
+                  threshold: 1.0,
+            }
+      );
+
+      // Observe all the headings in the main content area
+      document
+            .querySelectorAll(
+                  "main article h1[id], main article h2[id], main article h3[id]"
+            )
+            .forEach((heading) => {
+                  observer.observe(heading);
+            });
+</script>

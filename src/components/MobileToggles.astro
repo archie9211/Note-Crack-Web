@@ -1,0 +1,72 @@
+---
+// This is an island, so it will be hydrated on the client.
+---
+
+<div class="flex items-center gap-2" client:load>
+      <button
+            id="mobile-nav-toggle"
+            class="md:hidden flex items-center gap-2 px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80"
+      >
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16m-7 6h7"></path></svg
+            >
+            <span class="text-sm font-medium">Menu</span>
+      </button>
+
+      <button
+            id="mobile-toc-toggle"
+            class="lg:hidden flex items-center gap-2 px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80"
+      >
+            <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                  ></path></svg
+            >
+            <span class="text-sm font-medium">On this page</span>
+      </button>
+</div>
+
+<script>
+      // Script to toggle mobile navigation
+      const navToggle = document.getElementById("mobile-nav-toggle");
+      const mobileNav = document.getElementById("mobile-nav-menu");
+
+      navToggle.addEventListener("click", () => {
+            mobileNav.classList.toggle("hidden");
+      });
+
+      // Script to toggle mobile TOC
+      const tocToggle = document.getElementById("mobile-toc-toggle");
+      const mobileToc = document.getElementById("mobile-toc-drawer");
+
+      tocToggle.addEventListener("click", () => {
+            mobileToc.classList.toggle("translate-y-full");
+      });
+
+      // Close menus when a link inside them is clicked
+      document
+            .querySelectorAll("#mobile-nav-menu a, #mobile-toc-drawer a")
+            .forEach((link) => {
+                  link.addEventListener("click", () => {
+                        mobileNav.classList.add("hidden");
+                        mobileToc.classList.add("translate-y-full");
+                  });
+            });
+</script>
