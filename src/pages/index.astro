@@ -1,11 +1,240 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout>
+      <!-- Hero Section -->
+      <section class="text-center py-20 lg:py-32">
+            <h1
+                  class="text-4xl lg:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+            >
+                  Your Final Revision, Simplified.
+            </h1>
+            <p
+                  class="mt-6 max-w-2xl mx-auto text-lg lg:text-xl text-gray-600 dark:text-gray-300"
+            >
+                  Forget dense textbooks and scattered notes. Get
+                  straight-to-the-point revision material designed for clarity,
+                  speed, and focus — right when you need it most.
+            </p>
+            <div class="mt-8 flex justify-center">
+                  <a
+                        href="#features"
+                        class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-colors"
+                  >
+                        See How It Works
+                  </a>
+            </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="py-16 bg-gray-50 dark:bg-gray-800/50 rounded-xl">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                  <h2 class="text-3xl font-bold text-gray-900 dark:text-white">
+                        Built for the Final Hour
+                  </h2>
+                  <p
+                        class="mt-4 max-w-3xl mx-auto text-gray-700 dark:text-gray-300"
+                  >
+                        We've all been there: exams are looming, your notes are
+                        a mess, and panic is setting in. NoteCrack was built to
+                        be the friend you wish you had at 2 AM — delivering
+                        clear, reliable, and super-fast notes without any
+                        distractions. No sign-ups, no fees, no nonsense. Just
+                        pure, focused revision.
+                  </p>
+            </div>
+      </section>
+
+      <!-- How It Helps / Features Section -->
+      <section id="features" class="py-20 lg:py-24">
+            <div class="max-w-5xl mx-auto px-6">
+                  <div class="text-center mb-12">
+                        <h2
+                              class="text-3xl font-bold text-gray-900 dark:text-white"
+                        >
+                              Everything You Need, Nothing You Don't
+                        </h2>
+                        <p class="mt-4 text-gray-600 dark:text-gray-300">
+                              Here's how we help you revise smarter, not harder.
+                        </p>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                        <!-- Feature 1: Focus -->
+                        <div class="flex items-start space-x-4">
+                              <div
+                                    class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center"
+                              >
+                                    <svg
+                                          class="w-6 h-6"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          viewBox="0 0 24 24"
+                                          ><path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M13 10V3L4 14h7v7l9-11h-7z"
+                                          ></path></svg
+                                    >
+                              </div>
+                              <div>
+                                    <h3
+                                          class="text-xl font-semibold text-gray-900 dark:text-white"
+                                    >
+                                          Focus on What Matters
+                                    </h3>
+                                    <p
+                                          class="mt-1 text-gray-600 dark:text-gray-400"
+                                    >
+                                          Our notes are laser-focused on core
+                                          concepts and high-yield topics, so
+                                          you're not wasting precious time on
+                                          fluff.
+                                    </p>
+                              </div>
+                        </div>
+
+                        <!-- Feature 2: Distraction-Free -->
+                        <div class="flex items-start space-x-4">
+                              <div
+                                    class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center"
+                              >
+                                    <svg
+                                          class="w-6 h-6"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          viewBox="0 0 24 24"
+                                          ><path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                          ></path></svg
+                                    >
+                              </div>
+                              <div>
+                                    <h3
+                                          class="text-xl font-semibold text-gray-900 dark:text-white"
+                                    >
+                                          Zero Distractions
+                                    </h3>
+                                    <p
+                                          class="mt-1 text-gray-600 dark:text-gray-400"
+                                    >
+                                          A clean, quiet reading space helps you
+                                          concentrate. Toggle between light and
+                                          dark modes for eye comfort during
+                                          late-night sessions.
+                                    </p>
+                              </div>
+                        </div>
+
+                        <!-- Feature 3: Instant Access -->
+                        <div class="flex items-start space-x-4">
+                              <div
+                                    class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center"
+                              >
+                                    <svg
+                                          class="w-6 h-6"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          viewBox="0 0 24 24"
+                                          ><path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9m-9 9a9 9 0 00-9-9"
+                                          ></path></svg
+                                    >
+                              </div>
+                              <div>
+                                    <h3
+                                          class="text-xl font-semibold text-gray-900 dark:text-white"
+                                    >
+                                          Find Notes Instantly
+                                    </h3>
+                                    <p
+                                          class="mt-1 text-gray-600 dark:text-gray-400"
+                                    >
+                                          No more frantic searching through
+                                          PDFs. Navigate directly to the subject
+                                          and topic you need to revise from the
+                                          header.
+                                    </p>
+                              </div>
+                        </div>
+
+                        <!-- Feature 4: Mobile First -->
+                        <div class="flex items-start space-x-4">
+                              <div
+                                    class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center"
+                              >
+                                    <svg
+                                          class="w-6 h-6"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          viewBox="0 0 24 24"
+                                          ><path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+                                          ></path></svg
+                                    >
+                              </div>
+                              <div>
+                                    <h3
+                                          class="text-xl font-semibold text-gray-900 dark:text-white"
+                                    >
+                                          Revise Anywhere
+                                    </h3>
+                                    <p
+                                          class="mt-1 text-gray-600 dark:text-gray-400"
+                                    >
+                                          Stuck on a bus or waiting in line? Our
+                                          site works perfectly on your phone, so
+                                          you can squeeze in a quick revision
+                                          session anytime.
+                                    </p>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </section>
+
+      <!-- Testimonial / Quote Section -->
+      <section class="py-16">
+            <div class="max-w-3xl mx-auto px-6 text-center">
+                  <blockquote
+                        class="p-8 bg-gray-50 dark:bg-gray-800/50 border-l-4 border-blue-500 rounded-r-lg"
+                  >
+                        <p
+                              class="text-lg italic text-gray-800 dark:text-gray-200"
+                        >
+                              "The Biology notes saved me during my TGT prep.
+                              It's like having the perfect class summary without
+                              the effort of making it yourself. A total
+                              lifesaver."
+                        </p>
+                        <cite
+                              class="block mt-4 not-italic font-medium text-gray-600 dark:text-gray-400"
+                        >
+                              — A grateful student
+                        </cite>
+                  </blockquote>
+            </div>
+      </section>
+
+      <!-- Final Call to Action -->
+      <section class="text-center py-20">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white">
+                  Ready to Crack Your Notes?
+            </h2>
+            <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+                  You've got this. Pick a subject from the menu above and dive
+                  in.
+            </p>
+      </section>
+</BaseLayout>

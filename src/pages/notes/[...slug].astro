@@ -1,0 +1,60 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { collections } from "../../content/config.mjs";
+
+export async function getStaticPaths() {
+      const paths = [];
+      const subjects = Object.keys(collections);
+
+      for (const subject of subjects) {
+            const entries = await getCollection(subject);
+            for (const entry of entries) {
+                  paths.push({
+                        params: { slug: `${subject}/${entry.slug}` },
+                  });
+            }
+      }
+      return paths;
+}
+
+const { slug } = Astro.params;
+
+if (!slug) {
+      return new Response("Slug not provided", { status: 404 });
+}
+
+const slugParts = slug.split("/");
+const subject = slugParts[0];
+const topicSlug = slugParts.slice(1).join("/");
+
+const entry = await getEntry(subject, topicSlug);
+
+if (!entry) {
+      return new Response("Article not found", { status: 404 });
+}
+
+// ==================================================================
+// THE CORRECT FIX
+// 1. Get `data` directly from the `entry` object.
+// 2. Call `render()` only to get the `Content` component.
+// ==================================================================
+const { data } = entry;
+const { Content } = await entry.render();
+---
+
+<BaseLayout>
+      <div class="mb-8 text-center">
+            <p
+                  class="text-sm font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 capitalize"
+            >
+                  {subject}
+            </p>
+            {/* This will now work perfectly */}
+            <h1 class="text-4xl font-extrabold my-2">{data.title}</h1>
+            <p class="text-lg text-gray-500 dark:text-gray-400">
+                  {data.description}
+            </p>
+      </div>
+      <Content />
+</BaseLayout>

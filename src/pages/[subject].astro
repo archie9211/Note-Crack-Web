@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { collections } from "../content/config.mjs";
+
+export async function getStaticPaths() {
+      const subjects = Object.keys(collections);
+      return subjects.map((subject) => ({
+            params: { subject },
+      }));
+}
+
+const { subject } = Astro.params;
+const entries = await getCollection(subject);
+
+// Helper function to format titles
+const formatTitle = (title) =>
+      title
+            .split("-")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+---
+
+<BaseLayout>
+      <h1 class="text-3xl font-bold mb-6 capitalize border-b pb-2">
+            {subject} Notes
+      </h1>
+      <ul class="space-y-4">
+            {
+                  entries.map((entry) => (
+                        <li class="list-none">
+                              <a
+                                    href={`/notes/${subject}/${entry.slug}`}
+                                    class="block p-4 border rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition group"
+                              >
+                                    <h2 class="text-xl font-semibold text-blue-600 dark:text-blue-400 group-hover:underline">
+                                          {entry.data.title}
+                                    </h2>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-1">
+                                          {entry.data.description}
+                                    </p>
+                              </a>
+                        </li>
+                  ))
+            }
+      </ul>
+</BaseLayout>
