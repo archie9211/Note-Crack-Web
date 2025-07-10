@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 import { collections } from "../content/config.mjs";
 import ArticleLayout from "../layouts/ArticleLayout.astro";
 import ArticleNav from "../components/ArticleNav.astro";
-import MobileToggles from "../components/MobileToggles.astro";
 
 export async function getStaticPaths() {
       const subjects = Object.keys(collections);
@@ -12,7 +11,6 @@ export async function getStaticPaths() {
 
 const { subject } = Astro.params;
 
-// Fetch all data needed for the layout and components
 const allSubjects = Object.keys(collections);
 const topicsInCurrentSubject = await getCollection(subject);
 ---
@@ -28,17 +26,7 @@ const topicsInCurrentSubject = await getCollection(subject);
             />
       </div>
 
-      <!-- Slot: Mobile Navigation (pulled from left sidebar) -->
-      <div slot="mobile-nav">
-            <ArticleNav
-                  allSubjects={allSubjects}
-                  currentSubject={subject}
-                  topicsInCurrentSubject={topicsInCurrentSubject}
-                  currentTopicSlug=""
-            />
-      </div>
-
-      <!-- Slot: Main Content Area -->
+      <!-- Main Content Area -->
       <div slot="main-content">
             <h1
                   class="text-3xl lg:text-4xl font-bold mb-6 capitalize border-b border-gray-200 dark:border-gray-700 pb-3"
@@ -65,11 +53,4 @@ const topicsInCurrentSubject = await getCollection(subject);
                   }
             </ul>
       </div>
-
-      <!-- Slot: Mobile Toggle Buttons -->
-      <div slot="mobile-toggles">
-            <MobileToggles />
-      </div>
-
-      <!-- No right sidebar or mobile TOC on this page -->
 </ArticleLayout>

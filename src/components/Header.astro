@@ -1,6 +1,6 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro";
-import SearchBar from "./SearchBar.astro"; // Assuming you will create this
+import SearchBar from "./SearchBar.astro";
 import "../styles/global.css";
 
 export interface Props {
@@ -10,14 +10,17 @@ const { subjects = [] } = Astro.props as Props;
 ---
 
 <header
-      class="w-full border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur sticky top-0 z-30"
+      id="main-header"
+      class="w-full border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur sticky top-0 z-30 transition-transform duration-300"
 >
       <nav
-            class="max-w-4xl mx-auto flex items-center justify-between px-4 py-3"
+            class="max-w-8xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3"
       >
+            <!-- Logo and Site Title -->
             <a
                   href="/"
-                  class="font-bold text-lg tracking-tight flex items-center gap-2"
+                  id="logo-link"
+                  class="font-bold text-lg tracking-tight flex items-center gap-2 transition-all"
             >
                   <svg
                         class="w-6 h-6 text-blue-600 dark:text-blue-400"
@@ -29,29 +32,33 @@ const { subjects = [] } = Astro.props as Props;
                   >
                   Note Crack
             </a>
-            <div class="flex items-center gap-3">
-                  <!-- Subjects Dropdown -->
 
+            <!-- Desktop Menu Content (visible on large screens) -->
+            <div class="hidden lg:flex items-center gap-4">
+                  <!-- Subjects Dropdown for Desktop -->
                   <div class="relative" id="subjects-dropdown-wrapper">
                         <button
                               id="subjects-button"
-                              class="px-3 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition font-medium"
+                              class="px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition font-medium text-sm"
                         >
                               Subjects
                         </button>
                         <div
                               id="subjects-menu"
-                              class="absolute left-0 mt-2 w-40 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded shadow-lg opacity-0 pointer-events-none transition-opacity z-40"
+                              class="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg opacity-0 pointer-events-none transition-opacity z-40"
                         >
-                              <ul>
+                              <ul class="py-1">
                                     {
                                           subjects.map((subject) => (
                                                 <li>
                                                       <a
                                                             href={`/${subject}`}
-                                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 capitalize"
+                                                            class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800 capitalize"
                                                       >
-                                                            {subject}
+                                                            {subject.replace(
+                                                                  "-",
+                                                                  " "
+                                                            )}
                                                       </a>
                                                 </li>
                                           ))
@@ -59,29 +66,187 @@ const { subjects = [] } = Astro.props as Props;
                               </ul>
                         </div>
                   </div>
-                  {(<SearchBar />)}
-                  <!-- THIS IS THE CHANGE -->
+                  <SearchBar />
+            </div>
+
+            <!-- Right-side controls (visible on all screens) -->
+            <div class="flex items-center gap-2">
+                  <!-- Search Bar for mobile/tablet (initially hidden) -->
+                  <div
+                        id="mobile-search-wrapper"
+                        class="absolute lg:hidden top-0 left-0 w-full h-full bg-white dark:bg-gray-900 px-4 flex items-center justify-center opacity-0 pointer-events-none transition-opacity"
+                  >
+                        <SearchBar />
+                  </div>
+
+                  <!-- Search Icon (Mobile/Tablet Toggle) -->
+                  <button
+                        id="search-toggle-btn"
+                        class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 lg:hidden"
+                        aria-label="Toggle search"
+                  >
+                        <svg
+                              class="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              viewBox="0 0 24 24"
+                              ><circle cx="11" cy="11" r="8"></circle><path
+                                    d="M21 21l-4.35-4.35"></path></svg
+                        >
+                  </button>
+
                   <ThemeToggle />
+
+                  <!-- Hamburger Menu Button -->
+                  <button
+                        id="mobile-menu-toggle"
+                        class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 lg:hidden"
+                        aria-label="Toggle menu"
+                  >
+                        <svg
+                              id="menu-open-icon"
+                              class="w-6 h-6"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16"></path></svg
+                        >
+                        <svg
+                              id="menu-close-icon"
+                              class="w-6 h-6 hidden"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path></svg
+                        >
+                  </button>
             </div>
       </nav>
+
+      <!-- Mobile Menu Flyout (hidden by default) -->
+      <div
+            id="mobile-menu"
+            class="hidden lg:hidden absolute w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-800"
+      >
+            <div class="p-4 space-y-4">
+                  <h3
+                        class="font-semibold text-gray-500 dark:text-gray-400 px-4"
+                  >
+                        Subjects
+                  </h3>
+                  <ul>
+                        {
+                              subjects.map((subject) => (
+                                    <li>
+                                          <a
+                                                href={`/${subject}`}
+                                                class="block px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 capitalize"
+                                          >
+                                                {subject.replace("-", " ")}
+                                          </a>
+                                    </li>
+                              ))
+                        }
+                  </ul>
+            </div>
+      </div>
 </header>
 
 <script>
+      // --- Desktop Subjects Dropdown ---
       const wrapper = document.getElementById("subjects-dropdown-wrapper");
       const button = document.getElementById("subjects-button");
       const menu = document.getElementById("subjects-menu");
 
-      button.addEventListener("click", (event) => {
-            event.stopPropagation(); // Prevent click from bubbling up to the document
-            menu.classList.toggle("opacity-0");
-            menu.classList.toggle("pointer-events-none");
-      });
+      if (wrapper && button && menu) {
+            button.addEventListener("click", (event) => {
+                  event.stopPropagation();
+                  menu.classList.toggle("opacity-0");
+                  menu.classList.toggle("pointer-events-none");
+            });
+            document.addEventListener("click", (event) => {
+                  if (!wrapper.contains(event.target as Node)) {
+                        menu.classList.add("opacity-0", "pointer-events-none");
+                  }
+            });
+      }
 
-      // Close dropdown if clicked outside
-      document.addEventListener("click", () => {
-            if (!menu.classList.contains("opacity-0")) {
-                  menu.classList.add("opacity-0");
-                  menu.classList.add("pointer-events-none");
-            }
-      });
+      // --- Mobile Menu (Hamburger) ---
+      const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const openIcon = document.getElementById("menu-open-icon");
+      const closeIcon = document.getElementById("menu-close-icon");
+
+      if (mobileMenuToggle && mobileMenu && openIcon && closeIcon) {
+            mobileMenuToggle.addEventListener("click", () => {
+                  const isHidden = mobileMenu.classList.toggle("hidden");
+                  openIcon.classList.toggle("hidden", !isHidden);
+                  closeIcon.classList.toggle("hidden", isHidden);
+            });
+      }
+
+      // --- Mobile Search Toggle ---
+      const searchToggleBtn = document.getElementById("search-toggle-btn");
+      const mobileSearchWrapper = document.getElementById(
+            "mobile-search-wrapper"
+      );
+      const logoLink = document.getElementById("logo-link");
+
+      if (searchToggleBtn && mobileSearchWrapper && logoLink) {
+            searchToggleBtn.addEventListener("click", () => {
+                  mobileSearchWrapper.classList.remove(
+                        "opacity-0",
+                        "pointer-events-none"
+                  );
+                  logoLink.classList.add("opacity-0", "pointer-events-none");
+                  // Auto-focus the input
+                  const searchInput =
+                        mobileSearchWrapper.querySelector("input");
+                  if (searchInput) searchInput.focus();
+            });
+
+            // Close search when clicking outside or pressing escape
+            mobileSearchWrapper
+                  .querySelector("input")
+                  ?.addEventListener("blur", () => {
+                        mobileSearchWrapper.classList.add(
+                              "opacity-0",
+                              "pointer-events-none"
+                        );
+                        logoLink.classList.remove(
+                              "opacity-0",
+                              "pointer-events-none"
+                        );
+                  });
+      }
+
+      // --- Hide Header on Scroll ---
+      const header = document.getElementById("main-header");
+      if (header) {
+            let lastScrollY = window.scrollY;
+
+            window.addEventListener("scroll", () => {
+                  const currentScrollY = window.scrollY;
+                  if (
+                        currentScrollY > lastScrollY &&
+                        currentScrollY > header.offsetHeight
+                  ) {
+                        // Scrolling down
+                        header.classList.add("-translate-y-full");
+                  } else {
+                        // Scrolling up
+                        header.classList.remove("-translate-y-full");
+                  }
+                  lastScrollY = currentScrollY;
+            });
+      }
 </script>

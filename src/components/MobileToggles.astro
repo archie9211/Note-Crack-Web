@@ -3,28 +3,10 @@
 ---
 
 <div class="flex items-center gap-2" client:load>
-      <button
-            id="mobile-nav-toggle"
-            class="md:hidden flex items-center gap-2 px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80"
-      >
-            <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  ><path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M4 6h16M4 12h16m-7 6h7"></path></svg
-            >
-            <span class="text-sm font-medium">Menu</span>
-      </button>
-
+      <!-- TOC toggle is only needed on pages with a table of contents -->
       <button
             id="mobile-toc-toggle"
-            class="lg:hidden flex items-center gap-2 px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80"
       >
             <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -44,29 +26,20 @@
 </div>
 
 <script>
-      // Script to toggle mobile navigation
-      const navToggle = document.getElementById("mobile-nav-toggle");
-      const mobileNav = document.getElementById("mobile-nav-menu");
-
-      navToggle.addEventListener("click", () => {
-            mobileNav.classList.toggle("hidden");
-      });
-
       // Script to toggle mobile TOC
       const tocToggle = document.getElementById("mobile-toc-toggle");
-      const mobileToc = document.getElementById("mobile-toc-drawer");
+      const mobileTocDrawer = document.getElementById("mobile-toc-drawer");
 
-      tocToggle.addEventListener("click", () => {
-            mobileToc.classList.toggle("translate-y-full");
-      });
+      if (tocToggle && mobileTocDrawer) {
+            tocToggle.addEventListener("click", () => {
+                  mobileTocDrawer.classList.toggle("translate-y-full");
+            });
 
-      // Close menus when a link inside them is clicked
-      document
-            .querySelectorAll("#mobile-nav-menu a, #mobile-toc-drawer a")
-            .forEach((link) => {
+            // Close drawer when a link inside it is clicked
+            mobileTocDrawer.querySelectorAll("a").forEach((link) => {
                   link.addEventListener("click", () => {
-                        mobileNav.classList.add("hidden");
-                        mobileToc.classList.add("translate-y-full");
+                        mobileTocDrawer.classList.add("translate-y-full");
                   });
             });
+      }
 </script>

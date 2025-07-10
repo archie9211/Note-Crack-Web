@@ -18,7 +18,6 @@ export async function getStaticPaths() {
       return paths;
 }
 
-// --- DATA FETCHING ---
 const { slug } = Astro.params;
 if (!slug) return new Response("Not Found", { status: 404 });
 
@@ -26,20 +25,17 @@ const slugParts = slug.split("/");
 const subjectSlug = slugParts[0];
 const topicSlug = slugParts.slice(1).join("/");
 
-// 1. Get current entry, content, and headings
 const entry = await getEntry(subjectSlug, topicSlug);
 if (!entry) return new Response("Article not found", { status: 404 });
 const { Content, headings } = await entry.render();
 
-// 2. Get all subjects for nav
 const allSubjects = Object.keys(collections);
-
-// 3. Get all topics in the current subject for nav
 const topicsInCurrentSubject = await getCollection(subjectSlug);
+const hasHeadings = headings.length > 0;
 ---
 
 <ArticleLayout>
-      <!-- Slot: Left Sidebar (Desktop) -->
+      <!-- Left Sidebar (Desktop) -->
       <div slot="left-sidebar">
             <ArticleNav
                   allSubjects={allSubjects}
@@ -49,17 +45,7 @@ const topicsInCurrentSubject = await getCollection(subjectSlug);
             />
       </div>
 
-      <!-- Slot: Mobile Navigation (from left sidebar) -->
-      <div slot="mobile-nav">
-            <ArticleNav
-                  allSubjects={allSubjects}
-                  currentSubject={subjectSlug}
-                  topicsInCurrentSubject={topicsInCurrentSubject}
-                  currentTopicSlug={topicSlug}
-            />
-      </div>
-
-      <!-- Slot: Main Content Area -->
+      <!-- Main Content Area -->
       <div slot="main-content">
             <article class="prose prose-neutral dark:prose-invert max-w-none">
                   <div class="mb-8 text-center">
@@ -80,18 +66,19 @@ const topicsInCurrentSubject = await getCollection(subjectSlug);
             </article>
       </div>
 
-      <!-- Slot: Right Sidebar (Desktop) -->
+      <!-- Right Sidebar (Desktop) -->
       <div slot="right-sidebar">
-            {headings.length > 0 && <TableOfContents headings={headings} />}
+            {hasHeadings && <TableOfContents headings={headings} />}
       </div>
 
-      <!-- Slot: Mobile Table of Contents (from right sidebar) -->
+      <!-- Mobile Table of Contents (Drawer) -->
       <div slot="mobile-toc">
-            {headings.length > 0 && <TableOfContents headings={headings} />}
+            {hasHeadings && <TableOfContents headings={headings} />}
       </div>
 
-      <!-- Slot: Mobile Toggle Buttons -->
+      <!-- Mobile Toggle Buttons -->
       <div slot="mobile-toggles">
-            <MobileToggles />
+            <!-- Only show the TOC toggle button if there is a TOC to show -->
+            {hasHeadings && <MobileToggles />}
       </div>
 </ArticleLayout>

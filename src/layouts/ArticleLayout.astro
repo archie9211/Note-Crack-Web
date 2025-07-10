@@ -3,37 +3,30 @@ import BaseLayout from "./BaseLayout.astro";
 ---
 
 <BaseLayout>
-      <!-- Main Grid Layout for Desktop -->
-      <div class="max-w-8xl mx-auto w-full relative">
+      <!-- Main Grid Layout for Desktop with responsive padding -->
+      <div class="max-w-8xl mx-auto w-full relative px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-[260px_1fr_260px] lg:gap-x-8">
-                  <!-- ================== -->
-                  <!-- LEFT SIDEBAR (Desktop) -->
-                  <!-- ================== -->
+                  <!-- Left Sidebar (Desktop) -->
                   <aside
                         class="hidden lg:block sticky top-20 self-start h-[calc(100vh-5rem)] overflow-y-auto pb-8 pr-4"
                   >
                         <slot name="left-sidebar" />
                   </aside>
 
-                  <!-- ================== -->
-                  <!-- MAIN CONTENT -->
-                  <!-- ================== -->
-                  <div class="min-w-0 px-4">
+                  <!-- Main Content -->
+                  <div class="min-w-0">
                         <!-- Mobile Top Bar with Toggles -->
                         <div
-                              class="sticky top-[65px] bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm z-20 py-2 border-b border-gray-200 dark:border-gray-800 lg:hidden -mx-4 px-4"
+                              class="sticky top-[65px] bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm z-20 py-2 border-b border-gray-200 dark:border-gray-800 lg:hidden -mx-4 sm:-mx-6 px-4 sm:px-6"
                         >
                               <slot name="mobile-toggles" />
                         </div>
-
                         <main class="py-8">
                               <slot name="main-content" />
                         </main>
                   </div>
 
-                  <!-- ================== -->
-                  <!-- RIGHT SIDEBAR (Desktop) -->
-                  <!-- ================== -->
+                  <!-- Right Sidebar (Desktop) -->
                   <aside
                         class="hidden lg:block sticky top-20 self-start h-[calc(100vh-5rem)] overflow-y-auto pb-8 pl-4"
                   >
@@ -42,22 +35,12 @@ import BaseLayout from "./BaseLayout.astro";
             </div>
       </div>
 
-      <!-- =============================== -->
-      <!-- MOBILE-ONLY ELEMENTS (Placed outside the grid) -->
-      <!-- =============================== -->
+      <!-- Mobile Nav Menu is now part of Header.astro -->
 
-      <!-- Mobile Navigation Menu (collapsible) -->
-      <div
-            id="mobile-nav-menu"
-            class="hidden lg:hidden fixed top-[118px] left-0 w-full h-[calc(100%-118px)] bg-white dark:bg-gray-900 z-10 p-4 overflow-y-auto"
-      >
-            <slot name="mobile-nav" />
-      </div>
-
-      <!-- Mobile TOC Drawer (slides from bottom) -->
+      <!-- Mobile TOC Drawer -->
       <div
             id="mobile-toc-drawer"
-            class="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-900 z-20 p-6 border-t border-gray-200 dark:border-gray-700 transform translate-y-full transition-transform duration-300 ease-in-out lg:hidden"
+            class="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-900 z-40 p-6 border-t border-gray-200 dark:border-gray-700 transform translate-y-full transition-transform duration-300 ease-in-out lg:hidden"
       >
             <div class="max-h-[50vh] overflow-y-auto">
                   <slot name="mobile-toc" />
