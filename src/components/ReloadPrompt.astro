@@ -1,0 +1,36 @@
+{/* src/components/ReloadPrompt.astro */}
+<div
+      id="pwa-toast"
+      role="alert"
+      aria-labelledby="toast-message"
+      class="fixed right-4 bottom-4 m-0 p-3 border border-gray-300 dark:border-gray-700 rounded-lg z-50 text-left shadow-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 opacity-0 translate-y-4 transition-all duration-300"
+>
+      <div class="message mb-2" id="toast-message"></div>
+      <div class="flex gap-2">
+            <button
+                  id="pwa-refresh"
+                  type="button"
+                  class="hidden px-3 py-1 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
+            >
+                  Reload
+            </button>
+            <button
+                  id="pwa-close"
+                  type="button"
+                  class="px-3 py-1 rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            >
+                  Close
+            </button>
+      </div>
+</div>
+
+<style>
+      /* These classes are toggled by the PWA script */
+      #pwa-toast.pwa-ready {
+            opacity: 1;
+            transform: translateY(0);
+      }
+      #pwa-toast.pwa-need-refresh #pwa-refresh {
+            display: inline-block;
+      }
+</style>
