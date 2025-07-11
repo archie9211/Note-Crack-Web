@@ -23,7 +23,15 @@ export default defineConfig({
                   injectRegister: false, // We will handle the registration script manually
 
                   workbox: {
-                        globPatterns: ["**/*.{js,css,html,svg,png,ico,txt}"],
+                        globPatterns: [
+                              "**/*.{js,css,html,svg,png,ico,txt,woff2}",
+                        ],
+                        //
+                        // --- THIS IS THE KEY FIX ---
+                        // Explicitly define the fallback for navigation requests.
+                        // This tells the service worker to serve /index.html when a user
+                        // navigates to a page like `/` or `/chemistry` while offline.
+                        navigateFallback: "/index.html",
                   },
             }),
       ],
