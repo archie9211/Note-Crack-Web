@@ -114,3 +114,38 @@ const { subjects = [] } = Astro.props as Props;
       <!-- ... mobile menu flyout ... -->
 </header>
 <!-- ... header script ... -->
+
+<script>
+      // --- Desktop Subjects Dropdown Logic ---
+      const wrapper = document.getElementById("subjects-dropdown-wrapper");
+      const button = document.getElementById("subjects-button");
+      const menu = document.getElementById("subjects-menu");
+
+      if (wrapper && button && menu) {
+            button.addEventListener("click", (event) => {
+                  event.stopPropagation();
+                  menu.classList.toggle("opacity-0");
+                  menu.classList.toggle("pointer-events-none");
+            });
+            // Close dropdown if clicked outside
+            document.addEventListener("click", (event) => {
+                  if (!wrapper.contains(event.target as Node)) {
+                        menu.classList.add("opacity-0", "pointer-events-none");
+                  }
+            });
+      }
+
+      // --- Mobile Hamburger Menu Logic ---
+      const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const openIcon = document.getElementById("menu-open-icon");
+      const closeIcon = document.getElementById("menu-close-icon");
+
+      if (mobileMenuToggle && mobileMenu && openIcon && closeIcon) {
+            mobileMenuToggle.addEventListener("click", () => {
+                  const isHidden = mobileMenu.classList.toggle("hidden");
+                  openIcon.classList.toggle("hidden", !isHidden);
+                  closeIcon.classList.toggle("hidden", isHidden);
+            });
+      }
+</script>
