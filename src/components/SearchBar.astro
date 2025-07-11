@@ -1,8 +1,8 @@
 ---
-
+import Search from "astro-pagefind/components/Search";
 ---
 
-<form
+<!-- <form
       class="relative"
       role="search"
       aria-label="Site search"
@@ -26,4 +26,5 @@
                   <path d="M21 21l-4.35-4.35"></path>
             </svg>
       </span>
-</form>
+</form> -->
+<Search id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
