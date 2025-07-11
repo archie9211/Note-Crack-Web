@@ -1,0 +1,105 @@
+{/* src/components/CustomSearch.astro */}
+<div>
+      <!-- This is the container for the input field. We hide it on mobile. -->
+      <div class="hidden lg:block relative w-full md:w-56">
+            <input
+                  type="search"
+                  id="search-input"
+                  placeholder="Search notes…"
+                  autocomplete="off"
+                  class="w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            />
+            <span
+                  class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+            >
+                  <svg
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        ><circle cx="11" cy="11" r="8"></circle><path
+                              d="M21 21l-4.35-4.35"></path></svg
+                  >
+            </span>
+      </div>
+
+      <!-- This is the trigger button that ONLY appears on mobile. -->
+      <button
+            id="search-trigger-btn"
+            class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 lg:hidden"
+            aria-label="Open search"
+      >
+            <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  ><circle cx="11" cy="11" r="8"></circle><path
+                        d="M21 21l-4.35-4.35"></path></svg
+            >
+      </button>
+
+      <!-- The Search Modal -->
+      <div
+            id="search-modal"
+            class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm"
+            aria-modal="true"
+            role="dialog"
+      >
+            <!-- ** NEW: Responsive modal dialog ** -->
+            <div
+                  class="fixed top-4 sm:top-20 left-1/2 w-[95vw] max-w-2xl -translate-x-1/2 rounded-lg bg-white dark:bg-gray-900 shadow-xl flex flex-col"
+            >
+                  <!-- ** NEW: Modal Header with Search and Close button ** -->
+                  <div
+                        class="flex items-center gap-2 border-b border-gray-200 dark:border-gray-700 p-3"
+                  >
+                        <span class="text-gray-400">
+                              <svg
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    viewBox="0 0 24 24"
+                                    ><circle cx="11" cy="11" r="8"
+                                    ></circle><path d="M21 21l-4.35-4.35"
+                                    ></path></svg
+                              >
+                        </span>
+                        <input
+                              type="search"
+                              id="modal-search-input"
+                              placeholder="Search notes…"
+                              autocomplete="off"
+                              class="w-full bg-transparent text-lg focus:outline-none"
+                        />
+                        <button
+                              id="search-close-btn"
+                              class="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500"
+                              aria-label="Close search"
+                        >
+                              <svg
+                                    class="w-6 h-6"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    viewBox="0 0 24 24"
+                                    ><path d="M6 18L18 6M6 6l12 12"></path></svg
+                              >
+                        </button>
+                  </div>
+
+                  <!-- Search results container -->
+                  <div
+                        id="search-results-container"
+                        class="max-h-[70vh] sm:max-h-[60vh] overflow-y-auto p-4"
+                  >
+                        <p class="text-center text-gray-500 py-8">
+                              Start typing to see results.
+                        </p>
+                  </div>
+            </div>
+      </div>
+</div>

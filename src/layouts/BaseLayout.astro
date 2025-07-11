@@ -15,9 +15,6 @@ const subjects = Object.keys(collections);
             <meta name="viewport" content="width=device-width" />
             <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
             <title>Note Crack</title>
-            <!-- ...existing meta and links... -->
-            <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-            <script is:inline src="/pagefind/pagefind-ui.js"></script>
 
             <script is:inline>
                   // FOUC prevention script
@@ -35,11 +32,165 @@ const subjects = Object.keys(collections);
       <body class="flex flex-col min-h-screen font-sans antialiased">
             <Header subjects={subjects} />
 
-            <!-- The <main> tag is now just a flexible container -->
             <main class="flex-1 w-full">
                   <slot />
             </main>
 
             <Footer />
+
+            <script is:inline>
+                  function initializeCustomSearch() {
+                        // Inputs and buttons from the CustomSearch.astro component
+                        const desktopInput =
+                              document.getElementById("search-input");
+                        const modalInput =
+                              document.getElementById("modal-search-input");
+                        const triggerBtn =
+                              document.getElementById("search-trigger-btn");
+                        const closeBtn =
+                              document.getElementById("search-close-btn");
+
+                        // The modal and its container
+                        const modal = document.getElementById("search-modal");
+                        const resultsContainer = document.getElementById(
+                              "search-results-container"
+                        );
+
+                        // If any of the essential modal elements don't exist, exit.
+                        if (
+                              !modal ||
+                              !resultsContainer ||
+                              !modalInput ||
+                              !closeBtn
+                        ) {
+                              return;
+                        }
+
+                        // --- 1. Load the Pagefind API script (bundler-proof) ---
+                        async function getPagefind() {
+                              if (window.pagefind) return window.pagefind;
+
+                              return new Promise((resolve, reject) => {
+                                    const script =
+                                          document.createElement("script");
+                                    script.src = "/pagefind/pagefind.js";
+                                    script.onload = async () => {
+                                          try {
+                                                // @ts-ignore
+                                                window.pagefind = await import(
+                                                      "/pagefind/pagefind.js"
+                                                );
+                                                resolve(window.pagefind);
+                                          } catch (e) {
+                                                reject(e);
+                                          }
+                                    };
+                                    script.onerror = reject;
+                                    document.body.appendChild(script);
+                              });
+                        }
+
+                        // Pre-load Pagefind on interaction for better perceived speed
+                        desktopInput?.addEventListener("focus", getPagefind, {
+                              once: true,
+                        });
+                        triggerBtn?.addEventListener("click", getPagefind, {
+                              once: true,
+                        });
+
+                        // --- 2. Search Logic ---
+                        let debounceTimer;
+                        function debounce(func, delay) {
+                              clearTimeout(debounceTimer);
+                              debounceTimer = setTimeout(func, delay);
+                        }
+
+                        async function performSearch() {
+                              const pagefind = await getPagefind();
+                              if (!pagefind) return;
+
+                              // ** Always read from the modal's input **
+                              const query = modalInput.value;
+                              if (query.length < 2) {
+                                    resultsContainer.innerHTML = `<p class="text-center text-gray-500 py-8">Start typing to see results.</p>`;
+                                    return;
+                              }
+
+                              resultsContainer.innerHTML = `<p class="text-center text-gray-500 py-8">Searching...</p>`;
+                              const search = await pagefind.search(query);
+
+                              if (search.results.length === 0) {
+                                    resultsContainer.innerHTML = `<p class="text-center text-gray-500 py-8">No results found for "<strong>${query}</strong>"</p>`;
+                                    return;
+                              }
+
+                              let html =
+                                    '<ul class="space-y-4 list-none pl-0">';
+                              for (const result of search.results) {
+                                    const data = await result.data();
+                                    // Use template literals and sanitize output to be safe
+                                    html += `
+            <li>
+              <a href="${data.url}" class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all group hover:border-blue-500 dark:hover:border-blue-500">
+                <h2 class="text-xl font-semibold text-blue-600 dark:text-blue-400 group-hover:underline">${data.meta.title}</h2>
+                <p class="text-gray-600 dark:text-gray-400 mt-1">${data.excerpt}</p>
+              </a>
+            </li>
+          `;
+                              }
+                              html += "</ul>";
+                              resultsContainer.innerHTML = html;
+                        }
+
+                        // --- 3. Event Listeners ---
+                        function openModal() {
+                              modal.classList.remove("hidden");
+                              document.body.style.overflow = "hidden"; // Prevent background scroll
+                              // Auto-focus the input inside the modal for immediate typing
+                              modalInput.focus();
+                        }
+
+                        function closeModal() {
+                              modal.classList.add("hidden");
+                              document.body.style.overflow = "";
+                        }
+
+                        // Desktop input opens the modal
+                        if (desktopInput) {
+                              desktopInput.addEventListener("focus", openModal);
+                        }
+                        // Mobile trigger button opens the modal
+                        if (triggerBtn) {
+                              triggerBtn.addEventListener("click", openModal);
+                        }
+
+                        // Close button inside the modal closes it
+                        closeBtn.addEventListener("click", closeModal);
+
+                        // Input inside the modal performs the search
+                        modalInput.addEventListener("input", () =>
+                              debounce(performSearch, 300)
+                        );
+
+                        // Clicking backdrop or pressing Escape closes it
+                        modal.addEventListener("click", (event) => {
+                              if (event.target === modal) closeModal();
+                        });
+                        document.addEventListener("keydown", (event) => {
+                              if (
+                                    event.key === "Escape" &&
+                                    !modal.classList.contains("hidden")
+                              ) {
+                                    closeModal();
+                              }
+                        });
+                  }
+
+                  // Run the initializer once the document is fully loaded.
+                  document.addEventListener(
+                        "DOMContentLoaded",
+                        initializeCustomSearch
+                  );
+            </script>
       </body>
 </html>
