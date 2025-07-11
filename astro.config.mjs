@@ -5,7 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 import cloudflare from "@astrojs/cloudflare";
 import pagefind from "astro-pagefind";
 
-import pwa from "@vite-pwa/astro";
+import AstroPWA from "@vite-pwa/astro";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,21 +17,52 @@ export default defineConfig({
       adapter: cloudflare(),
       integrations: [
             pagefind(),
-            pwa({
+            AstroPWA({
                   // THIS IS THE KEY CHANGE
+                  injectRegister: "auto",
+                  strategies: "injectManifest",
+                  srcDir: "src", // or 'public', wherever your custom service worker is
+                  filename: "sw.js",
                   registerType: "prompt", // Use 'prompt' instead of 'autoUpdate'
-                  injectRegister: false, // We will handle the registration script manually
 
-                  workbox: {
+                  injectManifest: {
+                        // Only include these patterns – safe, avoids _worker.js
                         globPatterns: [
-                              "**/*.{js,css,html,svg,png,ico,txt,woff2}",
+                              "**/*.{js,css,html,ico,png,svg,woff2}",
+                              "_astro/**/*.{js,css}",
+                              "icons/**/*.{png,svg}",
                         ],
-                        //
-                        // --- THIS IS THE KEY FIX ---
-                        // Explicitly define the fallback for navigation requests.
-                        // This tells the service worker to serve /index.html when a user
-                        // navigates to a page like `/` or `/chemistry` while offline.
-                        navigateFallback: "/index.html",
+
+                        globIgnores: ["_worker.js/**"],
+                  },
+                  manifest: {
+                        name: "Note Crack: Revision Notes",
+                        short_name: "NoteCrack",
+                        description:
+                              "Last-minute revision notes for students. Fast, focused, and available offline.",
+                        theme_color: "#ffffff",
+                        background_color: "#ffffff",
+                        display: "standalone",
+                        scope: "/",
+                        start_url: "/",
+                        icons: [
+                              {
+                                    src: "/icons/icon-192x192.png",
+                                    sizes: "192x192",
+                                    type: "image/png",
+                              },
+                              {
+                                    src: "/icons/icon-512x512.png",
+                                    sizes: "512x512",
+                                    type: "image/png",
+                              },
+                              {
+                                    src: "/icons/icon-512x512-maskable.png",
+                                    sizes: "512x512",
+                                    type: "image/png",
+                                    purpose: "maskable",
+                              },
+                        ],
                   },
             }),
       ],
