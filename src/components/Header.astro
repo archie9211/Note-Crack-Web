@@ -42,8 +42,9 @@ const { subjects = [] } = Astro.props as Props;
                               <button
                                     id="subjects-button"
                                     class="px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition font-medium text-sm"
-                                    >Subjects</button
                               >
+                                    Subjects
+                              </button>
                               <div
                                     id="subjects-menu"
                                     class="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg opacity-0 pointer-events-none transition-opacity z-40"
@@ -70,10 +71,9 @@ const { subjects = [] } = Astro.props as Props;
                   </div>
             </div>
 
-            <!-- Right group. All items are here, but we re-order them on desktop. -->
+            <!-- Right group. We render CustomSearch once and use flexbox ordering. -->
             <div class="flex items-center gap-2">
-                  <!-- Search Component (rendered ONCE) -->
-                  <!-- On lg screens, it's pushed to the left of the ThemeToggle -->
+                  <!-- Search Component is pushed to the left of ThemeToggle on desktop -->
                   <div class="lg:order-first">
                         <CustomSearch />
                   </div>
@@ -111,41 +111,76 @@ const { subjects = [] } = Astro.props as Props;
                   </button>
             </div>
       </nav>
-      <!-- ... mobile menu flyout ... -->
+
+      <!-- Mobile Menu Flyout -->
+      <div
+            id="mobile-menu"
+            class="hidden lg:hidden absolute w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-800"
+      >
+            <div class="p-4 space-y-4">
+                  <h3
+                        class="font-semibold text-gray-500 dark:text-gray-400 px-4"
+                  >
+                        Subjects
+                  </h3>
+                  <ul>
+                        {
+                              subjects.map((subject) => (
+                                    <li>
+                                          <a
+                                                href={`/${subject}`}
+                                                class="block px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 capitalize"
+                                          >
+                                                {subject.replace("-", " ")}
+                                          </a>
+                                    </li>
+                              ))
+                        }
+                  </ul>
+            </div>
+      </div>
 </header>
-<!-- ... header script ... -->
 
 <script>
-      // --- Desktop Subjects Dropdown Logic ---
-      const wrapper = document.getElementById("subjects-dropdown-wrapper");
-      const button = document.getElementById("subjects-button");
-      const menu = document.getElementById("subjects-menu");
+      // ** WRAP EVERYTHING IN DOMContentLoaded **
+      document.addEventListener("DOMContentLoaded", () => {
+            // --- Desktop Subjects Dropdown Logic ---
+            const wrapper = document.getElementById(
+                  "subjects-dropdown-wrapper"
+            );
+            const button = document.getElementById("subjects-button");
+            const menu = document.getElementById("subjects-menu");
 
-      if (wrapper && button && menu) {
-            button.addEventListener("click", (event) => {
-                  event.stopPropagation();
-                  menu.classList.toggle("opacity-0");
-                  menu.classList.toggle("pointer-events-none");
-            });
-            // Close dropdown if clicked outside
-            document.addEventListener("click", (event) => {
-                  if (!wrapper.contains(event.target as Node)) {
-                        menu.classList.add("opacity-0", "pointer-events-none");
-                  }
-            });
-      }
+            if (wrapper && button && menu) {
+                  button.addEventListener("click", (event) => {
+                        event.stopPropagation();
+                        menu.classList.toggle("opacity-0");
+                        menu.classList.toggle("pointer-events-none");
+                  });
+                  // Close dropdown if clicked outside
+                  document.addEventListener("click", (event) => {
+                        if (!wrapper.contains(event.target as Node)) {
+                              menu.classList.add(
+                                    "opacity-0",
+                                    "pointer-events-none"
+                              );
+                        }
+                  });
+            }
 
-      // --- Mobile Hamburger Menu Logic ---
-      const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
-      const mobileMenu = document.getElementById("mobile-menu");
-      const openIcon = document.getElementById("menu-open-icon");
-      const closeIcon = document.getElementById("menu-close-icon");
+            // --- Mobile Hamburger Menu Logic ---
+            const mobileMenuToggle =
+                  document.getElementById("mobile-menu-toggle");
+            const mobileMenu = document.getElementById("mobile-menu");
+            const openIcon = document.getElementById("menu-open-icon");
+            const closeIcon = document.getElementById("menu-close-icon");
 
-      if (mobileMenuToggle && mobileMenu && openIcon && closeIcon) {
-            mobileMenuToggle.addEventListener("click", () => {
-                  const isHidden = mobileMenu.classList.toggle("hidden");
-                  openIcon.classList.toggle("hidden", !isHidden);
-                  closeIcon.classList.toggle("hidden", isHidden);
-            });
-      }
+            if (mobileMenuToggle && mobileMenu && openIcon && closeIcon) {
+                  mobileMenuToggle.addEventListener("click", () => {
+                        const isHidden = mobileMenu.classList.toggle("hidden");
+                        openIcon.classList.toggle("hidden", !isHidden);
+                        closeIcon.classList.toggle("hidden", isHidden);
+                  });
+            }
+      });
 </script>
