@@ -47,6 +47,15 @@ self.addEventListener("fetch", (event) => {
             return;
       }
 
+      if (!url.protocol.startsWith("http")) {
+            console.log("[SW] Ignored non-http request:", url.href);
+            return;
+      }
+
+      // Also ignore non-GET requests
+      if (request.method !== "GET") {
+            return;
+      }
       const isHtml = request.headers.get("accept")?.includes("text/html");
 
       // --- THIS IS THE ONLY CHANGE ---
@@ -113,7 +122,7 @@ self.addEventListener("fetch", (event) => {
                                     );
 
                                     cache.put(request, resToCache);
-                                    console.log("[SW] Cached:", url.pathname);
+                                    // console.log("[SW] Cached:", url.pathname);
                               }
 
                               return response;
