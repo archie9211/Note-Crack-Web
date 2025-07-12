@@ -2,7 +2,8 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { collections } from "../content/config.mjs";
-import ReloadPrompt from "../components/ReloadPrompt.astro"; // <-- Import the prompt UI
+import ReloadPrompt from "../components/ReloadPrompt.astro";
+
 const subjects = Object.keys(collections);
 ---
 
@@ -14,9 +15,7 @@ const subjects = Object.keys(collections);
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width" />
             <link rel="icon" type="image/png" href="/favicon.png" />
-            {/* Inject the webmanifest link tag */}
             <link rel="manifest" href="/manifest.webmanifest" />
-            {/* PWA Icons and Theme */}
             <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
             <link rel="mask-icon" href="/favicon.svg" color="#FFFFFF" />
             <meta name="msapplication-TileColor" content="#ffffff" />
@@ -24,7 +23,7 @@ const subjects = Object.keys(collections);
             <title>Note Crack</title>
 
             <script is:inline>
-                  // FOUC prevention script
+                  // FOUC prevention script (unchanged)
                   document.documentElement.classList.toggle(
                         "dark",
                         localStorage.theme === "dark" ||
@@ -38,17 +37,16 @@ const subjects = Object.keys(collections);
 
       <body class="flex flex-col min-h-screen font-sans antialiased">
             <Header subjects={subjects} />
-
-            <main class="flex-1 w-full">
-                  <slot />
-            </main>
-
+            <main class="flex-1 w-full"><slot /></main>
             <Footer />
-
             <ReloadPrompt />
+
+            {/* ======================================================= */}
+            {/*   NEW FUSE.JS CLIENT-SIDE SEARCH SCRIPT                 */}
+            {/* ======================================================= */}
             <script is:inline>
                   function initializeCustomSearch() {
-                        // Inputs and buttons from the CustomSearch.astro component
+                        // --- Get all necessary HTML elements ---
                         const desktopInput =
                               document.getElementById("search-input");
                         const modalInput =
@@ -57,91 +55,106 @@ const subjects = Object.keys(collections);
                               document.getElementById("search-trigger-btn");
                         const closeBtn =
                               document.getElementById("search-close-btn");
-
-                        // The modal and its container
                         const modal = document.getElementById("search-modal");
                         const resultsContainer = document.getElementById(
                               "search-results-container"
                         );
 
-                        // If any of the essential modal elements don't exist, exit.
                         if (
                               !modal ||
                               !resultsContainer ||
                               !modalInput ||
                               !closeBtn
-                        ) {
+                        )
                               return;
+
+                        // --- 1. State for Fuse.js ---
+                        let fuse = null;
+                        let isLoading = false;
+
+                        // --- 2. Function to load search data and initialize Fuse.js ---
+                        async function loadSearchData() {
+                              if (fuse || isLoading) return; // Don't load if already loaded or in progress
+                              isLoading = true;
+
+                              try {
+                                    const response =
+                                          await fetch("/search-index.json");
+                                    const searchData = await response.json();
+
+                                    // Load Fuse.js from a CDN - simple and reliable
+                                    const Fuse = (
+                                          await import(
+                                                "https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.mjs"
+                                          )
+                                    ).default;
+
+                                    // Configure Fuse.js to search title and description
+                                    fuse = new Fuse(searchData, {
+                                          keys: [
+                                                { name: "title", weight: 0.7 }, // Title is more important
+                                                {
+                                                      name: "description",
+                                                      weight: 0.3,
+                                                }, // Description is less important
+                                          ],
+                                          includeScore: true,
+                                          threshold: 0.4, // Adjust for more/less fuzzy results
+                                    });
+                              } catch (e) {
+                                    console.error(
+                                          "Failed to load search index or Fuse.js:",
+                                          e
+                                    );
+                                    resultsContainer.innerHTML = `<p class="text-center text-red-500 py-8">Search failed to load.</p>`;
+                              } finally {
+                                    isLoading = false;
+                              }
                         }
 
-                        // --- 1. Load the Pagefind API script (bundler-proof) ---
-                        async function getPagefind() {
-                              if (window.pagefind) return window.pagefind;
-
-                              return new Promise((resolve, reject) => {
-                                    const script =
-                                          document.createElement("script");
-                                    script.src = "/pagefind/pagefind.js";
-                                    script.onload = async () => {
-                                          try {
-                                                // @ts-ignore
-                                                window.pagefind = await import(
-                                                      "/pagefind/pagefind.js"
-                                                );
-                                                resolve(window.pagefind);
-                                          } catch (e) {
-                                                reject(e);
-                                          }
-                                    };
-                                    script.onerror = reject;
-                                    document.body.appendChild(script);
-                              });
-                        }
-
-                        // Pre-load Pagefind on interaction for better perceived speed
-                        desktopInput?.addEventListener("focus", getPagefind, {
-                              once: true,
-                        });
-                        triggerBtn?.addEventListener("click", getPagefind, {
+                        // Pre-load search data on interaction
+                        desktopInput?.addEventListener(
+                              "focus",
+                              loadSearchData,
+                              { once: true }
+                        );
+                        triggerBtn?.addEventListener("click", loadSearchData, {
                               once: true,
                         });
 
-                        // --- 2. Search Logic ---
+                        // --- 3. Function to perform the search and render results ---
                         let debounceTimer;
-                        function debounce(func, delay) {
-                              clearTimeout(debounceTimer);
-                              debounceTimer = setTimeout(func, delay);
-                        }
+                        function performSearch() {
+                              if (!fuse) {
+                                    resultsContainer.innerHTML = `<p class="text-center text-gray-500 py-8">Loading search index...</p>`;
+                                    loadSearchData(); // Try loading data if not available
+                                    return;
+                              }
 
-                        async function performSearch() {
-                              const pagefind = await getPagefind();
-                              if (!pagefind) return;
-
-                              // ** Always read from the modal's input **
                               const query = modalInput.value;
                               if (query.length < 2) {
                                     resultsContainer.innerHTML = `<p class="text-center text-gray-500 py-8">Start typing to see results.</p>`;
                                     return;
                               }
 
-                              resultsContainer.innerHTML = `<p class="text-center text-gray-500 py-8">Searching...</p>`;
-                              const search = await pagefind.search(query);
+                              const results = fuse.search(query);
 
-                              if (search.results.length === 0) {
+                              if (results.length === 0) {
                                     resultsContainer.innerHTML = `<p class="text-center text-gray-500 py-8">No results found for "<strong>${query}</strong>"</p>`;
                                     return;
                               }
 
+                              // The original note object is in the 'item' property
                               let html =
                                     '<ul class="space-y-4 list-none pl-0">';
-                              for (const result of search.results) {
-                                    const data = await result.data();
-                                    // Use template literals and sanitize output to be safe
+                              for (const result of results.slice(0, 20)) {
+                                    // Show top 20 results
+                                    const note = result.item;
                                     html += `
             <li>
-              <a href="${data.url}" class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all group hover:border-blue-500 dark:hover:border-blue-500">
-                <h2 class="text-xl font-semibold text-blue-600 dark:text-blue-400 group-hover:underline">${data.meta.title}</h2>
-                <p class="text-gray-600 dark:text-gray-400 mt-1">${data.excerpt}</p>
+              <a href="${note.url}" class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all group hover:border-blue-500 dark:hover:border-blue-500">
+                <h2 class="text-xl font-semibold text-blue-600 dark:text-blue-400 group-hover:underline">${note.title}</h2>
+                <p class="text-gray-600 dark:text-gray-400 mt-1">${note.description}</p>
               </a>
             </li>
           `;
@@ -150,12 +163,14 @@ const subjects = Object.keys(collections);
                               resultsContainer.innerHTML = html;
                         }
 
-                        // --- 3. Event Listeners ---
+                        // --- 4. Modal handling and Event Listeners ---
                         function openModal() {
                               modal.classList.remove("hidden");
-                              document.body.style.overflow = "hidden"; // Prevent background scroll
-                              // Auto-focus the input inside the modal for immediate typing
+                              document.body.style.overflow = "hidden";
                               modalInput.focus();
+                              if (modalInput.value.length > 1) {
+                                    performSearch();
+                              }
                         }
 
                         function closeModal() {
@@ -163,43 +178,30 @@ const subjects = Object.keys(collections);
                               document.body.style.overflow = "";
                         }
 
-                        // Desktop input opens the modal
-                        if (desktopInput) {
-                              desktopInput.addEventListener("focus", openModal);
-                        }
-                        // Mobile trigger button opens the modal
-                        if (triggerBtn) {
-                              triggerBtn.addEventListener("click", openModal);
-                        }
-
-                        // Close button inside the modal closes it
+                        desktopInput?.addEventListener("focus", openModal);
+                        triggerBtn?.addEventListener("click", openModal);
                         closeBtn.addEventListener("click", closeModal);
 
-                        // Input inside the modal performs the search
-                        modalInput.addEventListener("input", () =>
-                              debounce(performSearch, 300)
-                        );
+                        modalInput.addEventListener("input", () => {
+                              clearTimeout(debounceTimer);
+                              debounceTimer = setTimeout(performSearch, 200);
+                        });
 
-                        // Clicking backdrop or pressing Escape closes it
                         modal.addEventListener("click", (event) => {
                               if (event.target === modal) closeModal();
                         });
                         document.addEventListener("keydown", (event) => {
-                              if (
-                                    event.key === "Escape" &&
-                                    !modal.classList.contains("hidden")
-                              ) {
-                                    closeModal();
-                              }
+                              if (event.key === "Escape") closeModal();
                         });
                   }
 
-                  // Run the initializer once the document is fully loaded.
                   document.addEventListener(
                         "DOMContentLoaded",
                         initializeCustomSearch
                   );
             </script>
+
+            {/* Your PWA script remains untouched and correct */}
             <script>
                   import "../scripts/pwa.ts";
             </script>
