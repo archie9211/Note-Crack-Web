@@ -1,99 +1,113 @@
 console.log("[SW] Service worker loaded");
 
 import { precacheAndRoute } from "workbox-precaching";
-
-console.log("[SW] Injecting precache manifest...");
 precacheAndRoute(self.__WB_MANIFEST);
 
-self.addEventListener("install", (event) => {
-      console.log("[SW] Install event");
+const TTL_SECONDS = 7 * 24 * 60 * 60; // 7 days
+const FALLBACK_HTML = "/offline.html";
 
-      event.waitUntil(
-            caches.open("fallbacks").then((cache) => {
-                  console.log("[SW] Caching offline.html");
-                  return cache.add("/offline.html");
-            })
-      );
+// Apply to HTML, CSS, JS, Images
+const STATIC_CACHE_NAME = "static-assets-v1";
+
+// On install: cache fallback
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open("fallbacks").then((cache) => cache.add(FALLBACK_HTML))
+  );
 });
 
+// Cleanup expired cache entries
+async function cleanUpCacheEntry(cacheName, request) {
+  const cache = await caches.open(cacheName);
+  const response = await cache.match(request);
+  if (!response) return null;
+
+  const dateHeader = response.headers.get("sw-cache-time");
+  if (!dateHeader) return null;
+
+  const cacheTime = parseInt(dateHeader, 10);
+  const now = Date.now() / 1000;
+
+  if (now - cacheTime > TTL_SECONDS) {
+    await cache.delete(request);
+    console.log("[SW] Expired cache removed:", request.url);
+    return null;
+  }
+
+  return response;
+}
+
 self.addEventListener("fetch", (event) => {
-      const { request } = event;
-      const url = new URL(request.url);
+  const { request } = event;
+  const url = new URL(request.url);
 
-      const isHtmlRequest =
-            request.method === "GET" &&
-            request.headers.get("accept")?.includes("text/html");
+  const isHtml = request.headers.get("accept")?.includes("text/html");
+  const isStatic =
+    /\.(js|css|png|jpg|jpeg|svg|webp|woff2?)$/.test(url.pathname);
 
-      if (!isHtmlRequest) {
-            console.log("[SW] Ignored non-HTML request:", url.pathname);
-            return;
+  const shouldIgnore = [
+    /^\/_worker\.js.*/,
+    /^\/admin/,
+    /^\/api\//,
+    /^\/preview/,
+    /^\/login/,
+    /^\/pagefind\//,
+  ].some((pattern) => pattern.test(url.pathname));
+
+  if (shouldIgnore) return;
+
+  // Determine which cache to use
+  let cacheName = STATIC_CACHE_NAME;
+  if (isHtml) {
+    if (/^\/biology/.test(url.pathname)) {
+      cacheName = "astro-biology";
+    } else if (/^\/chemistry/.test(url.pathname)) {
+      cacheName = "astro-chemistry";
+    } else if (/^\/physics/.test(url.pathname)) {
+      cacheName = "astro-physics";
+    } else {
+      cacheName = "astro-pages";
+    }
+  }
+
+  // Apply Cache-First Strategy
+  event.respondWith(
+    caches.open(cacheName).then(async (cache) => {
+      const cached = await cleanUpCacheEntry(cacheName, request);
+      if (cached) {
+        console.log("[SW] Serving from cache:", url.pathname);
+        return cached;
       }
 
-      const shouldIgnore = [
-            /^\/_worker\.js.*/,
-            /^\/admin/,
-            /^\/api\//,
-            /^\/preview/,
-            /^\/login/,
-      ].some((pattern) => pattern.test(url.pathname));
+      return fetch(request)
+        .then((response) => {
+          if (
+            response.ok &&
+            (isHtml || isStatic)
+          ) {
+            const cloned = response.clone();
+            const headers = new Headers(cloned.headers);
+            headers.append("sw-cache-time", Math.floor(Date.now() / 1000));
 
-      if (shouldIgnore) {
-            console.log("[SW] Ignored request (excluded):", url.pathname);
-            return;
-      }
+            const resToCache = new Response(cloned.body, {
+              status: cloned.status,
+              statusText: cloned.statusText,
+              headers,
+            });
 
-      let cacheName = "astro-pages";
-      if (/^\/biology/.test(url.pathname)) {
-            cacheName = "astro-biology";
-      } else if (/^\/chemistry/.test(url.pathname)) {
-            cacheName = "astro-chemistry";
-      } else if (/^\/physics/.test(url.pathname)) {
-            cacheName = "astro-physics";
-      }
+            cache.put(request, resToCache);
+            console.log("[SW] Cached:", url.pathname);
+          }
 
-      console.log(
-            "[SW] Handling fetch for:",
-            url.pathname,
-            "| Cache:",
-            cacheName
-      );
-
-      event.respondWith(
-            fetch(request)
-                  .then((response) => {
-                        console.log("[SW] Fetched from network:", url.pathname);
-                        const cloned = response.clone();
-                        caches.open(cacheName).then((cache) => {
-                              cache.put(request, cloned);
-                              console.log("[SW] Cached:", url.pathname);
-                        });
-                        return response;
-                  })
-                  .catch((error) => {
-                        console.warn(
-                              "[SW] Network failed, trying cache for:",
-                              url.pathname
-                        );
-                        return caches.open(cacheName).then((cache) =>
-                              cache.match(request).then((cached) => {
-                                    if (cached) {
-                                          console.log(
-                                                "[SW] Serving from cache:",
-                                                url.pathname
-                                          );
-                                          return cached;
-                                    } else {
-                                          console.warn(
-                                                "[SW] No cache found. Showing offline.html"
-                                          );
-                                          return caches
-                                                .open("fallbacks")
-                                                .then((fb) =>
-                                                      fb.match("/offline.html")
-                                                );
-                                    }
-                              })
-                        );
-                  })
-      );
+          return response;
+        })
+        .catch(() => {
+          if (isHtml) {
+            return caches.open("fallbacks").then((fb) =>
+              fb.match(FALLBACK_HTML)
+            );
+          }
+        });
+    })
+  );
 });
