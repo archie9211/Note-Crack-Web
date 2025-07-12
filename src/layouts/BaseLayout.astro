@@ -21,7 +21,13 @@ const subjects = Object.keys(collections);
             <meta name="msapplication-TileColor" content="#ffffff" />
             <meta name="theme-color" content="#ffffff" />
             <title>Note Crack</title>
-
+            <link
+                  rel="stylesheet"
+                  href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.css"
+                  integrity="sha512-DanfxWBasQtq+RtkNAEDTdX4Q6BPCJQ/kexi/RftcP0BcA4NIJPSi7i31Vl+Yl5OCfgZkdJmCqz+byTOIIRboQ=="
+                  crossorigin="anonymous"
+                  referrerpolicy="no-referrer"
+            />
             <script is:inline>
                   // FOUC prevention script (unchanged)
                   document.documentElement.classList.toggle(
@@ -33,6 +39,13 @@ const subjects = Object.keys(collections);
                                     ).matches)
                   );
             </script>
+            <style is:global>
+                  #nprogress .bar {
+                        /* Match your site's accent color (blue-600) */
+                        background: #2563eb !important;
+                        height: 3px !important;
+                  }
+            </style>
       </head>
 
       <body class="flex flex-col min-h-screen font-sans antialiased">
@@ -204,6 +217,7 @@ const subjects = Object.keys(collections);
             {/* Your PWA script remains untouched and correct */}
             <script>
                   import "../scripts/pwa.ts";
+                  import "../scripts/nprogress.ts";
             </script>
       </body>
 </html>
