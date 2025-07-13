@@ -5,6 +5,7 @@ import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import ArticleNav from "../../components/ArticleNav.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
 import MobileToggles from "../../components/MobileToggles.astro";
+import PrevNextNav from "../../components/PrevNextNav.astro"; // <-- Import new component
 
 export async function getStaticPaths() {
       const paths = [];
@@ -27,11 +28,23 @@ const topicSlug = slugParts.slice(1).join("/");
 
 const entry = await getEntry(subjectSlug, topicSlug);
 if (!entry) return new Response("Article not found", { status: 404 });
-const { Content, headings } = await entry.render();
 
+const { Content, headings } = await entry.render();
 const allSubjects = Object.keys(collections);
-const topicsInCurrentSubject = await getCollection(subjectSlug);
 const hasHeadings = headings.length > 0;
+
+// Get all topics in the current subject to find prev/next
+const topicsInCurrentSubject = await getCollection(subjectSlug);
+const currentIndex = topicsInCurrentSubject.findIndex(
+      (topic) => topic.slug === topicSlug
+);
+
+const prevTopic =
+      currentIndex > 0 ? topicsInCurrentSubject[currentIndex - 1] : undefined;
+const nextTopic =
+      currentIndex < topicsInCurrentSubject.length - 1
+            ? topicsInCurrentSubject[currentIndex + 1]
+            : undefined;
 
 const navProps = {
       allSubjects: allSubjects,
@@ -71,6 +84,16 @@ const navProps = {
                   <hr class="my-8" />
                   <Content />
             </article>
+            <PrevNextNav
+                  prev={prevTopic && {
+                        url: `/notes/${subjectSlug}/${prevTopic.slug}`,
+                        title: prevTopic.data.title,
+                  }}
+                  next={nextTopic && {
+                        url: `/notes/${subjectSlug}/${nextTopic.slug}`,
+                        title: nextTopic.data.title,
+                  }}
+            />
       </div>
 
       <!-- Right Sidebar (Desktop) -->

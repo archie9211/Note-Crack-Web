@@ -1,0 +1,51 @@
+---
+export interface Link {
+      url: string;
+      title: string;
+}
+export interface Props {
+      prev?: Link;
+      next?: Link;
+}
+const { prev, next } = Astro.props;
+---
+
+<nav
+      class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 grid grid-cols-1 md:grid-cols-2 gap-4"
+      aria-label="Article navigation"
+>
+      <div>
+            {
+                  prev && (
+                        <a
+                              href={prev.url}
+                              class="block h-full p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-500 transition-colors"
+                        >
+                              <div class="text-sm text-gray-500 dark:text-gray-400">
+                                    Previous
+                              </div>
+                              <div class="font-semibold text-blue-600 dark:text-blue-400 mt-1">
+                                    {prev.title}
+                              </div>
+                        </a>
+                  )
+            }
+      </div>
+      <div class="md:text-right">
+            {
+                  next && (
+                        <a
+                              href={next.url}
+                              class="block h-full p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-500 transition-colors"
+                        >
+                              <div class="text-sm text-gray-500 dark:text-gray-400">
+                                    Next
+                              </div>
+                              <div class="font-semibold text-blue-600 dark:text-blue-400 mt-1">
+                                    {next.title}
+                              </div>
+                        </a>
+                  )
+            }
+      </div>
+</nav>

@@ -1,8 +1,11 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import ReadingProgressBar from "../components/ReadingProgressBar.astro"; // <-- Import the new component
 ---
 
 <BaseLayout>
+      <ReadingProgressBar />
+
       <!-- Main Grid Layout for Desktop with responsive padding -->
       <div class="max-w-8xl mx-auto w-full relative px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-[260px_1fr_260px] lg:gap-x-8">

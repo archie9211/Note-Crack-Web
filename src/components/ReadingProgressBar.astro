@@ -1,0 +1,50 @@
+<div
+      id="progress-container"
+      class="fixed top-0 left-0 w-full h-1 bg-gray-200/50 dark:bg-gray-700/50 z-50 pointer-events-none"
+      client:visible
+>
+      <div
+            id="progress-bar"
+            class="h-full bg-blue-600 dark:bg-blue-400 transition-all duration-75 ease-linear"
+            style="width: 0%;"
+      >
+      </div>
+</div>
+
+<script>
+      const progressBar = document.getElementById("progress-bar");
+
+      function updateProgressBar() {
+            if (!progressBar) return;
+
+            // The total scrollable height of the document
+            const scrollHeight = document.documentElement.scrollHeight;
+            // The height of the visible part of the window
+            const clientHeight = document.documentElement.clientHeight;
+            // The current vertical scroll position
+            const scrollTop = window.scrollY;
+
+            // Calculate the total scrollable distance
+            const totalScrollableDistance = scrollHeight - clientHeight;
+
+            // Prevent division by zero if content is shorter than the viewport
+            if (totalScrollableDistance <= 0) {
+                  progressBar.style.width = "0%";
+                  return;
+            }
+
+            // Calculate the scroll percentage
+            const scrollPercentage =
+                  (scrollTop / totalScrollableDistance) * 100;
+
+            // Use requestAnimationFrame for a smoother animation and better performance
+            window.requestAnimationFrame(() => {
+                  progressBar.style.width = `${Math.min(scrollPercentage, 100)}%`;
+            });
+      }
+
+      // Listen for scroll events
+      window.addEventListener("scroll", updateProgressBar);
+      // Also run on load in case the page is reloaded at a scrolled position
+      window.addEventListener("load", updateProgressBar);
+</script>
