@@ -90,13 +90,24 @@ self.addEventListener("fetch", (event) => {
       // Determine which cache to use
       let cacheName = STATIC_CACHE_NAME;
       if (isHtml) {
-            if (/^\/biology/.test(url.pathname)) {
+            // Check for subject pages like /biology
+            if (
+                  /^\/biology$/.test(url.pathname) ||
+                  /^\/notes\/biology/.test(url.pathname)
+            ) {
                   cacheName = "astro-biology";
-            } else if (/^\/chemistry/.test(url.pathname)) {
+            } else if (
+                  /^\/chemistry$/.test(url.pathname) ||
+                  /^\/notes\/chemistry/.test(url.pathname)
+            ) {
                   cacheName = "astro-chemistry";
-            } else if (/^\/physics/.test(url.pathname)) {
+            } else if (
+                  /^\/physics$/.test(url.pathname) ||
+                  /^\/notes\/physics/.test(url.pathname)
+            ) {
                   cacheName = "astro-physics";
             } else {
+                  // All other pages (like the homepage)
                   cacheName = "astro-pages";
             }
       }
