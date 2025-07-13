@@ -7,8 +7,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <BaseLayout>
       <html>
             <body>
-                  <h1>You are offline</h1>
-                  <p>This page was not cached. Please reconnect.</p>
+                  <div
+                        class="prose prose-neutral dark:prose-invert max-w-5xl mx-auto px-4 py-8"
+                  >
+                        <h1>You are offline</h1>
+                        <p>This page was not cached. Please reconnect.</p>
+                  </div>
             </body>
       </html>
 </BaseLayout>

@@ -4,8 +4,19 @@ console.log("[SW] Service worker loaded");
 import { precacheAndRoute } from "workbox-precaching";
 precacheAndRoute(self.__WB_MANIFEST);
 
-const TTL_SECONDS = 7 * 24 * 60 * 60; // 7 days
-const FALLBACK_HTML = "/offline.html";
+// --- THIS IS THE NEW, CRITICAL PART ---
+// This listener waits for the "SKIP_WAITING" message from the client.
+self.addEventListener("message", (event) => {
+      if (event.data && event.data.type === "SKIP_WAITING") {
+            console.log(
+                  "[SW] Received SKIP_WAITING message. Activating new service worker now."
+            );
+            self.skipWaiting();
+      }
+});
+
+const TTL_SECONDS = 7 * 24 * 60 * 60;
+const FALLBACK_HTML = "/offline";
 
 // Apply to HTML, CSS, JS, Images
 const STATIC_CACHE_NAME = "static-assets-v1";
