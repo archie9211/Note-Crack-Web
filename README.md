@@ -43,6 +43,8 @@ This isn't just a simple static site. It's a full-featured web application packe
 - **☁️ Deployment Ready:**
      - Configured for **Server-Side Rendering (SSR)**.
      - Optimized for deployment on the **Cloudflare Workers** platform.
+- ** CMS - TinaCMS
+     - Currently broken but is planned for in future. We might also add some other CMS if suited.
 
 ---
 
