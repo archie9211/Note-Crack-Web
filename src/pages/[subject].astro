@@ -4,6 +4,7 @@ import { collections } from "../content/config.mjs";
 import ArticleLayout from "../layouts/ArticleLayout.astro";
 import ArticleNav from "../components/ArticleNav.astro";
 import MobileToggles from "../components/MobileToggles.astro";
+import ForceUpdateButton from "../components/ForceUpdateButton.astro";
 
 export async function getStaticPaths() {
       const subjects = Object.keys(collections);
@@ -60,6 +61,7 @@ const navProps = {
                         ))
                   }
             </ul>
+            <ForceUpdateButton />
       </div>
 
       <!-- Mobile Toggle Buttons: Show ONLY the "Menu" button -->

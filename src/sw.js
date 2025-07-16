@@ -28,6 +28,46 @@ self.addEventListener("install", (event) => {
       );
 });
 
+async function fetchAndCache(request, cacheName) {
+      const response = await fetch(request);
+
+      if (response.ok) {
+            const cache = await caches.open(cacheName);
+            const clonedResponse = response.clone();
+
+            // --- THIS IS THE KEY FIX ---
+            // Create a new URL object from the request URL to manipulate it.
+            const url = new URL(request.url);
+            // Remove the 'forceNetwork' parameter before caching.
+            url.searchParams.delete("forceNetwork");
+            // Create a "clean" request object to use as the cache key.
+            const cacheKeyRequest = new Request(url.toString(), {
+                  headers: request.headers,
+                  method: request.method,
+                  mode: request.mode,
+                  credentials: request.credentials,
+                  redirect: request.redirect,
+                  referrer: request.referrer,
+            });
+
+            const headers = new Headers(clonedResponse.headers);
+            headers.append("sw-cache-time", Math.floor(Date.now() / 1000));
+            const resToCache = new Response(clonedResponse.body, {
+                  status: clonedResponse.status,
+                  statusText: clonedResponse.statusText,
+                  headers,
+            });
+
+            // Use the clean request as the key and the fetched response as the value.
+            await cache.put(cacheKeyRequest, resToCache);
+            console.log(
+                  "[SW] Force update: Cached fresh content for:",
+                  cacheKeyRequest.url
+            );
+      }
+      return response;
+}
+
 // Cleanup expired cache entries
 async function cleanUpCacheEntry(cacheName, request) {
       const cache = await caches.open(cacheName);
@@ -47,6 +87,33 @@ async function cleanUpCacheEntry(cacheName, request) {
       }
 
       return response;
+}
+function getDynamicCacheName(isHtml, pathname) {
+      let cacheName = STATIC_CACHE_NAME;
+      if (isHtml) {
+            // Check for subject pages like /biology
+            if (
+                  /^\/biology$/.test(pathname) ||
+                  /^\/notes\/biology/.test(pathname)
+            ) {
+                  cacheName = "astro-biology";
+            } else if (
+                  /^\/chemistry$/.test(pathname) ||
+                  /^\/notes\/chemistry/.test(pathname)
+            ) {
+                  cacheName = "astro-chemistry";
+            } else if (
+                  /^\/physics$/.test(pathname) ||
+                  /^\/notes\/physics/.test(pathname)
+            ) {
+                  cacheName = "astro-physics";
+            } else {
+                  // All other pages (like the homepage)
+                  cacheName = "astro-pages";
+            }
+      }
+
+      return cacheName;
 }
 
 self.addEventListener("fetch", (event) => {
@@ -86,31 +153,17 @@ self.addEventListener("fetch", (event) => {
       ].some((pattern) => pattern.test(url.pathname));
 
       if (shouldIgnore) return;
+      if (url.searchParams.has("forceNetwork")) {
+            console.log("[SW] Force network request for:", url.pathname);
+
+            // Determine the correct cache name to update
+            let cacheName = getDynamicCacheName(isHtml, url.pathname);
+            event.respondWith(fetchAndCache(request, cacheName));
+            return; // Stop further processing
+      }
 
       // Determine which cache to use
-      let cacheName = STATIC_CACHE_NAME;
-      if (isHtml) {
-            // Check for subject pages like /biology
-            if (
-                  /^\/biology$/.test(url.pathname) ||
-                  /^\/notes\/biology/.test(url.pathname)
-            ) {
-                  cacheName = "astro-biology";
-            } else if (
-                  /^\/chemistry$/.test(url.pathname) ||
-                  /^\/notes\/chemistry/.test(url.pathname)
-            ) {
-                  cacheName = "astro-chemistry";
-            } else if (
-                  /^\/physics$/.test(url.pathname) ||
-                  /^\/notes\/physics/.test(url.pathname)
-            ) {
-                  cacheName = "astro-physics";
-            } else {
-                  // All other pages (like the homepage)
-                  cacheName = "astro-pages";
-            }
-      }
+      let cacheName = getDynamicCacheName(isHtml, url.pathname);
 
       // Apply Cache-First Strategy
       event.respondWith(

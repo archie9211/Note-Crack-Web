@@ -5,7 +5,8 @@ import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import ArticleNav from "../../components/ArticleNav.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
 import MobileToggles from "../../components/MobileToggles.astro";
-import PrevNextNav from "../../components/PrevNextNav.astro"; // <-- Import new component
+import PrevNextNav from "../../components/PrevNextNav.astro";
+import ForceUpdateButton from "../../components/ForceUpdateButton.astro";
 
 export async function getStaticPaths() {
       const paths = [];
@@ -94,6 +95,7 @@ const navProps = {
                         title: nextTopic.data.title,
                   }}
             />
+            <ForceUpdateButton />
       </div>
 
       <!-- Right Sidebar (Desktop) -->
