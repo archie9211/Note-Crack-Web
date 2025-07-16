@@ -28,6 +28,30 @@ const subjects = Object.keys(collections);
                   crossorigin="anonymous"
                   referrerpolicy="no-referrer"
             />
+            <!-- KaTeX CSS -->
+            <link
+                  rel="stylesheet"
+                  href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+            />
+
+            <!-- KaTeX core JS -->
+            <script
+                  defer
+                  src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+            ></script>
+
+            <!-- mhchem extension -->
+            <script
+                  defer
+                  src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/mhchem.min.js"
+            ></script>
+
+            <!-- auto-render extension -->
+            <script
+                  defer
+                  src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+            ></script>
+
             <script is:inline>
                   // FOUC prevention script (unchanged)
                   document.documentElement.classList.toggle(
@@ -220,6 +244,33 @@ const subjects = Object.keys(collections);
             </script>
             <script>
                   import "../scripts/nprogress.ts";
+            </script>
+            <script>
+                  window.addEventListener("load", () => {
+                        if (window.renderMathInElement) {
+                              renderMathInElement(document.body, {
+                                    delimiters: [
+                                          {
+                                                left: "$$",
+                                                right: "$$",
+                                                display: true,
+                                          },
+                                          {
+                                                left: "$",
+                                                right: "$",
+                                                display: false,
+                                          },
+                                    ],
+                                    macros: {
+                                          "\\ce": "\\ce",
+                                    },
+                              });
+                        } else {
+                              console.warn(
+                                    "KaTeX auto-render script not loaded"
+                              );
+                        }
+                  });
             </script>
       </body>
 </html>
