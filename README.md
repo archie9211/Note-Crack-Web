@@ -1,52 +1,116 @@
-# Astro Starter Kit: Basics
+# Note Crack ⚡️
 
-```sh
-npm create astro@latest -- --template basics
-```
+A minimalist, fast, and offline-first PWA for student revision notes, built with Astro and deployed on Cloudflare. This project is designed from the ground up to provide a blazing-fast, distraction-free reading experience, making it the perfect tool for last-minute study sessions.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+---
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## ✨ Core Features
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+This isn't just a simple static site. It's a full-featured web application packed with modern tools to enhance the user experience.
 
-## 🚀 Project Structure
+- **🚀 Blazing Fast Performance:** Built with [Astro](https://astro.build/) for a static-first, zero-JavaScript-by-default architecture. Pages are incredibly lightweight and load instantly.
 
-Inside of your Astro project, you'll see the following folders and files:
+- **📱 Progressive Web App (PWA):** Fully installable on both desktop and mobile for an app-like experience.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+     - **Complete Offline Support:** A custom service worker aggressively caches all visited notes, static assets, and even the search index, making the app fully functional without an internet connection.
+     - **Smart Update Prompts:** Users are notified with a toast pop-up when new content is available and can reload the app to get the latest version.
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+- **🔎 Client-Side Fuzzy Search:**
 
-## 🧞 Commands
+     - Lightweight and instant search of note **titles and descriptions** for maximum relevance.
+     - Powered by [Fuse.js](https://fusejs.io/), a powerful fuzzy-search library.
+     - A simple JSON index is generated at build time, keeping the client-side footprint small.
 
-All commands are run from the root of the project, from a terminal:
+- **📖 Distraction-Free Reading Experience:**
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+     - A clean, three-column layout on desktop: **Navigation | Article | Table of Contents**.
+     - Fully responsive design that refactors into a focused, single-column view on mobile.
+     - **Auto-hiding navigation bars** on scroll to maximize reading space.
+     - **Reading Progress Bar** at the top of the page.
+     - **Page Load Progress Bar** ([NProgress](https://github.com/rstacruz/nprogress)) for instant feedback on navigation.
+     - Convenient **Next/Previous Article** navigation links.
 
-## 👀 Want to learn more?
+- **✍️ Content as Code:**
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+     - Notes are written in simple **Markdown** using Astro's type-safe [Content Collections](https://docs.astro.build/en/guides/content-collections/).
+     - Organized by `subject > class > topic` for a clear and scalable information architecture.
+
+- **🎨 Theming:**
+
+     - Light and Dark mode support with a manual toggle.
+     - Persists user preference in `localStorage` and prevents FOUC (Flash of Unstyled Content).
+
+- **☁️ Deployment Ready:**
+     - Configured for **Server-Side Rendering (SSR)**.
+     - Optimized for deployment on the **Cloudflare Workers** platform.
+
+---
+
+## 🛠 Tech Stack
+
+- **Framework:** [Astro](https://astro.build/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Client-Side Search:** [Fuse.js](https://fusejs.io/)
+- **PWA / Service Worker:** Manual with [Workbox](https://developer.chrome.com/docs/workbox)
+- **Deployment:** [Cloudflare Workers](https://workers.cloudflare.com/)
+
+---
+
+## 🚀 Getting Started
+
+You can clone this repository and run it locally for development or contributions.
+
+1.    **Clone the repository:**
+
+      ```bash
+      git clone https://github.com/archie9211/Note-Crack-Web.git
+      cd Note-Crack-Web
+      ```
+
+2.    **Install dependencies:**
+
+      ```bash
+      npm install
+      ```
+
+3.    **Run the development server:**
+
+      ```bash
+      npm run dev
+      ```
+
+4.    **Open your browser:**
+      Navigate to `http://localhost:4321` to see the site in action.
+
+---
+
+## ☁️ Deployment
+
+This project is configured for a **Server-Side Rendering (SSR)** deployment on **Cloudflare Workers**.
+
+- The `astro.config.mjs` file is set up with `output: 'server'` and the `@astrojs/cloudflare` adapter.
+- The `wrangler.toml` file (if you choose to use it for direct deployment) should be configured to point to the `dist/_worker.js` entry point.
+- To build the project for production, run:
+     ```bash
+     npm run build
+     ```
+     This will generate the `dist/` directory, which can be deployed to Cloudflare.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! If you find a bug, have a feature request, or want to improve the notes, please feel free to open an issue or submit a pull request.
+
+1.    Fork the repository.
+2.    Create a new branch (`git checkout -b feature/your-amazing-feature`).
+3.    Make your changes.
+4.    Commit your changes (`git commit -m 'Add some amazing feature'`).
+5.    Push to the branch (`git push origin feature/your-amazing-feature`).
+6.    Open a Pull Request.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
