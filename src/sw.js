@@ -29,43 +29,51 @@ self.addEventListener("install", (event) => {
 });
 
 async function fetchAndCache(request, cacheName) {
-      const response = await fetch(request);
+      try {
+            const response = await fetch(request);
 
-      if (response.ok) {
-            const cache = await caches.open(cacheName);
-            const clonedResponse = response.clone();
+            if (response.ok) {
+                  const cache = await caches.open(cacheName);
+                  const clonedResponse = response.clone();
 
-            // --- THIS IS THE KEY FIX ---
-            // Create a new URL object from the request URL to manipulate it.
-            const url = new URL(request.url);
-            // Remove the 'forceNetwork' parameter before caching.
-            url.searchParams.delete("forceNetwork");
-            // Create a "clean" request object to use as the cache key.
-            const cacheKeyRequest = new Request(url.toString(), {
-                  headers: request.headers,
-                  method: request.method,
-                  mode: request.mode,
-                  credentials: request.credentials,
-                  redirect: request.redirect,
-                  referrer: request.referrer,
-            });
+                  // --- THIS IS THE KEY FIX ---
+                  // Create a URL object from the request URL.
+                  const url = new URL(request.url);
+                  // Remove the 'forceNetwork' parameter to get the clean URL.
+                  url.searchParams.delete("forceNetwork");
+                  // Use the clean URL STRING as the cache key. This avoids the constructor error.
+                  const cacheKey = url.toString();
 
-            const headers = new Headers(clonedResponse.headers);
-            headers.append("sw-cache-time", Math.floor(Date.now() / 1000));
-            const resToCache = new Response(clonedResponse.body, {
-                  status: clonedResponse.status,
-                  statusText: clonedResponse.statusText,
-                  headers,
-            });
+                  const headers = new Headers(clonedResponse.headers);
+                  headers.append(
+                        "sw-cache-time",
+                        Math.floor(Date.now() / 1000)
+                  );
+                  const resToCache = new Response(clonedResponse.body, {
+                        status: clonedResponse.status,
+                        statusText: clonedResponse.statusText,
+                        headers,
+                  });
 
-            // Use the clean request as the key and the fetched response as the value.
-            await cache.put(cacheKeyRequest, resToCache);
-            console.log(
-                  "[SW] Force update: Cached fresh content for:",
-                  cacheKeyRequest.url
-            );
+                  // Use the clean URL string as the key.
+                  await cache.put(cacheKey, resToCache);
+                  console.log(
+                        "[SW] Force update: Cached fresh content for:",
+                        cacheKey
+                  );
+            }
+            return response;
+      } catch (error) {
+            console.error("[SW] Fetch failed in fetchAndCache:", error);
+            // When fetch fails (e.g., offline), try to return a fallback for HTML requests.
+            if (request.headers.get("accept")?.includes("text/html")) {
+                  return caches
+                        .open("fallbacks")
+                        .then((fb) => fb.match(FALLBACK_HTML));
+            }
+            // For other asset types, let the error propagate.
+            throw error;
       }
-      return response;
 }
 
 // Cleanup expired cache entries
