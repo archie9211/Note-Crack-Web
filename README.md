@@ -111,6 +111,20 @@ Contributions are welcome! If you find a bug, have a feature request, or want to
 
 ---
 
-## 📄 License
+## 📜 Licensing
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+This project uses a dual-license model to separate the open-source code from the creative content.
+
+### The Code
+
+The underlying code for this project (everything outside of the `src/content/` directory) is open-source and licensed under the **MIT License**. You are free to fork, modify, and use this code for your own projects.
+
+See the [LICENSE](LICENSE) file for details.
+
+### The Content
+
+All educational notes and materials located within the `src/content/` directory are the intellectual property of the author and are licensed under the **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0)**.
+
+This means you are free to share the notes, but you **cannot** use them for commercial purposes or distribute modified versions.
+
+See the [LICENSE-CONTENT.md](LICENSE-CONTENT.md) file for more information.
