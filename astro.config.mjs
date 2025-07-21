@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
-
+import sitemap from "@astrojs/sitemap";
 import cloudflare from "@astrojs/cloudflare";
 
 import AstroPWA from "@vite-pwa/astro";
@@ -10,6 +10,7 @@ import rehypeKatex from "rehype-katex";
 
 // https://astro.build/config
 export default defineConfig({
+      site: "https://notecrack.com",
       output: "server",
       markdown: {
             remarkPlugins: [remarkMath],
@@ -21,6 +22,7 @@ export default defineConfig({
       },
       adapter: cloudflare(),
       integrations: [
+            sitemap(),
             AstroPWA({
                   // THIS IS THE KEY CHANGE
                   injectRegister: "auto",

@@ -1,183 +1,97 @@
 ---
-import "../styles/global.css";
+import { getSubjects } from "../content/config.mjs";
 import ThemeToggle from "./ThemeToggle.astro";
 import CustomSearch from "./CustomSearch.astro";
 
-export interface Props {
-      subjects: string[];
-}
-const { subjects = [] } = Astro.props as Props;
+const subjects = getSubjects();
 ---
 
 <header
-      id="main-header"
-      class="w-full border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur sticky top-0 z-30 transition-transform duration-300"
+  id="main-header"
+  class="w-full border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur sticky top-0 z-30 transition-transform duration-300"
 >
-      <nav
-            class="max-w-8xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-2"
-      >
-            <!-- Left group -->
-            <div class="flex items-center gap-4 lg:gap-6">
-                  <a
-                        href="/"
-                        id="logo-link"
-                        class="font-bold text-lg tracking-tight flex-shrink-0 flex items-center gap-2"
-                  >
-                        <img
-                              src="/logo.png"
-                              alt="logo"
-                              class="h-8 w-8 object-contain"
-                        />
-                        <span class="hidden sm:inline">Note Crack</span>
+  <nav class="max-w-8xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-2">
+    <!-- Left group -->
+    <div class="flex items-center gap-4 lg:gap-6">
+      <a href="/" id="logo-link" class="font-bold text-lg tracking-tight flex-shrink-0 flex items-center gap-2">
+        <img src="/logo.png" alt="logo" class="h-8 w-8 object-contain" />
+        <span class="hidden sm:inline">Note Crack</span>
+      </a>
+
+      <!-- Desktop-only Subjects dropdown -->
+      <div class="hidden lg:flex items-center gap-4 border-l border-gray-200 dark:border-gray-700 pl-6">
+        <div class="relative group">
+          <button class="px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition font-medium text-sm">
+            Subjects
+          </button>
+          <div class="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity z-40">
+            <ul class="py-1">
+              {subjects.map((subject) => (
+                <li>
+                  <a href={`/${subject.name}`} class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800 capitalize">
+                    {subject.name.replace("-", " ")}
                   </a>
-
-                  <!-- Desktop-only Subjects dropdown -->
-                  <div
-                        class="hidden lg:flex items-center gap-4 border-l border-gray-200 dark:border-gray-700 pl-6"
-                  >
-                        <div class="relative" id="subjects-dropdown-wrapper">
-                              <button
-                                    id="subjects-button"
-                                    class="px-3 py-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition font-medium text-sm"
-                              >
-                                    Subjects
-                              </button>
-                              <div
-                                    id="subjects-menu"
-                                    class="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg opacity-0 pointer-events-none transition-opacity z-40"
-                              >
-                                    <ul class="py-1">
-                                          {
-                                                subjects.map((subject) => (
-                                                      <li>
-                                                            <a
-                                                                  href={`/${subject}`}
-                                                                  class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800 capitalize"
-                                                            >
-                                                                  {subject.replace(
-                                                                        "-",
-                                                                        " "
-                                                                  )}
-                                                            </a>
-                                                      </li>
-                                                ))
-                                          }
-                                    </ul>
-                              </div>
-                        </div>
-                  </div>
-            </div>
-
-            <!-- Right group. We render CustomSearch once and use flexbox ordering. -->
-            <div class="flex items-center gap-2">
-                  <!-- Search Component is pushed to the left of ThemeToggle on desktop -->
-                  <div class="lg:order-first">
-                        <CustomSearch />
-                  </div>
-
-                  <ThemeToggle />
-                  <button
-                        id="mobile-menu-toggle"
-                        class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 lg:hidden"
-                        aria-label="Toggle menu"
-                  >
-                        <svg
-                              id="menu-open-icon"
-                              class="w-6 h-6"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                              ><path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h16"></path></svg
-                        >
-                        <svg
-                              id="menu-close-icon"
-                              class="w-6 h-6 hidden"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                              ><path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12"></path></svg
-                        >
-                  </button>
-            </div>
-      </nav>
-
-      <!-- Mobile Menu Flyout -->
-      <div
-            id="mobile-menu"
-            class="hidden lg:hidden absolute w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-800"
-      >
-            <div class="p-4 space-y-4">
-                  <h3
-                        class="font-semibold text-gray-500 dark:text-gray-400 px-4"
-                  >
-                        Subjects
-                  </h3>
-                  <ul>
-                        {
-                              subjects.map((subject) => (
-                                    <li>
-                                          <a
-                                                href={`/${subject}`}
-                                                class="block px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 capitalize"
-                                          >
-                                                {subject.replace("-", " ")}
-                                          </a>
-                                    </li>
-                              ))
-                        }
-                  </ul>
-            </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <!-- Right group -->
+    <div class="flex items-center gap-2">
+      <div class="lg:order-first">
+        <CustomSearch />
+      </div>
+      <ThemeToggle />
+      <button id="mobile-menu-toggle" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 lg:hidden" aria-label="Toggle menu">
+        <svg id="menu-open-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg id="menu-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Flyout -->
+  <div id="mobile-menu" class="hidden lg:hidden absolute w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-800">
+    <div class="p-4 space-y-4">
+      {subjects.map((subject) => (
+        <div class="subject-group">
+          <h3 class="font-semibold text-gray-500 dark:text-gray-400 px-4 capitalize">
+            <a href={`/${subject.name}`}>{subject.name.replace("-", " ")}</a>
+          </h3>
+          <ul class="pl-4">
+            {subject.classes.map((className) => (
+              <li>
+                <a href={`/${subject.name}/${className}`} class="block px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 capitalize">
+                  {className.replace("-", " ")}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
 </header>
 
 <script>
-      // ** WRAP EVERYTHING IN DOMContentLoaded **
-      document.addEventListener("DOMContentLoaded", () => {
-            // --- Desktop Subjects Dropdown Logic ---
-            const wrapper = document.getElementById(
-                  "subjects-dropdown-wrapper"
-            );
-            const button = document.getElementById("subjects-button");
-            const menu = document.getElementById("subjects-menu");
+  document.addEventListener("DOMContentLoaded", () => {
+    const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const openIcon = document.getElementById("menu-open-icon");
+    const closeIcon = document.getElementById("menu-close-icon");
 
-            if (wrapper && button && menu) {
-                  button.addEventListener("click", (event) => {
-                        event.stopPropagation();
-                        menu.classList.toggle("opacity-0");
-                        menu.classList.toggle("pointer-events-none");
-                  });
-                  // Close dropdown if clicked outside
-                  document.addEventListener("click", (event) => {
-                        if (!wrapper.contains(event.target as Node)) {
-                              menu.classList.add(
-                                    "opacity-0",
-                                    "pointer-events-none"
-                              );
-                        }
-                  });
-            }
-
-            // --- Mobile Hamburger Menu Logic ---
-            const mobileMenuToggle =
-                  document.getElementById("mobile-menu-toggle");
-            const mobileMenu = document.getElementById("mobile-menu");
-            const openIcon = document.getElementById("menu-open-icon");
-            const closeIcon = document.getElementById("menu-close-icon");
-
-            if (mobileMenuToggle && mobileMenu && openIcon && closeIcon) {
-                  mobileMenuToggle.addEventListener("click", () => {
-                        const isHidden = mobileMenu.classList.toggle("hidden");
-                        openIcon.classList.toggle("hidden", !isHidden);
-                        closeIcon.classList.toggle("hidden", isHidden);
-                  });
-            }
+    if (mobileMenuToggle && mobileMenu && openIcon && closeIcon) {
+      mobileMenuToggle.addEventListener("click", () => {
+        const isHidden = mobileMenu.classList.toggle("hidden");
+        openIcon.classList.toggle("hidden", !isHidden);
+        closeIcon.classList.toggle("hidden", isHidden);
       });
+    }
+  });
 </script>

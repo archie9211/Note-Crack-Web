@@ -1,6 +1,6 @@
 ---
-import { getCollection, getEntry } from "astro:content";
-import { collections } from "../../content/config.mjs";
+import { getCollection, getEntryBySlug } from "astro:content";
+import { getSubjects } from "../../content/config.mjs";
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import ArticleNav from "../../components/ArticleNav.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
@@ -9,12 +9,12 @@ import PrevNextNav from "../../components/PrevNextNav.astro";
 import ForceUpdateButton from "../../components/ForceUpdateButton.astro";
 
 export async function getStaticPaths() {
+      const subjects = getSubjects();
       const paths = [];
-      const subjects = Object.keys(collections);
       for (const subject of subjects) {
-            const entries = await getCollection(subject);
+            const entries = await getCollection(subject.name);
             for (const entry of entries) {
-                  paths.push({ params: { slug: `${subject}/${entry.slug}` } });
+                  paths.push({ params: { slug: entry.slug } });
             }
       }
       return paths;
@@ -23,21 +23,20 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 if (!slug) return new Response("Not Found", { status: 404 });
 
-const slugParts = slug.split("/");
-const subjectSlug = slugParts[0];
-const topicSlug = slugParts.slice(1).join("/");
+const [subjectSlug, classSlug, ...topicParts] = slug.split("/");
+const topicSlug = topicParts.join("/");
 
-const entry = await getEntry(subjectSlug, topicSlug);
+const entry = await getEntryBySlug(subjectSlug, slug);
 if (!entry) return new Response("Article not found", { status: 404 });
 
 const { Content, headings } = await entry.render();
-const allSubjects = Object.keys(collections);
+const allSubjects = getSubjects();
 const hasHeadings = headings.length > 0;
 
 // Get all topics in the current subject to find prev/next
 const topicsInCurrentSubject = await getCollection(subjectSlug);
 const currentIndex = topicsInCurrentSubject.findIndex(
-      (topic) => topic.slug === topicSlug
+      (topic) => topic.slug === slug
 );
 
 const prevTopic =
@@ -48,10 +47,10 @@ const nextTopic =
             : undefined;
 
 const navProps = {
-      allSubjects: allSubjects,
+      allSubjects: allSubjects.map(s => s.name),
       currentSubject: subjectSlug,
-      topicsInCurrentSubject: topicsInCurrentSubject,
-      currentTopicSlug: topicSlug,
+      topicsInCurrentSubject: topicsInCurrentSubject.filter(e => e.slug.startsWith(classSlug)),
+      currentTopicSlug: slug,
 };
 ---
 
@@ -87,11 +86,11 @@ const navProps = {
             </article>
             <PrevNextNav
                   prev={prevTopic && {
-                        url: `/notes/${subjectSlug}/${prevTopic.slug}`,
+                        url: `/notes/${prevTopic.slug}`,
                         title: prevTopic.data.title,
                   }}
                   next={nextTopic && {
-                        url: `/notes/${subjectSlug}/${nextTopic.slug}`,
+                        url: `/notes/${nextTopic.slug}`,
                         title: nextTopic.data.title,
                   }}
             />
