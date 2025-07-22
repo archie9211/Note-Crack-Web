@@ -3,3 +3,25 @@
 /* This line tells v4 to use a class for dark mode */
 @custom-variant dark (&:where(.dark, .dark *));
 @plugin "@tailwindcss/typography";
+
+.math-inline {
+      display: inline-block;
+      vertical-align: middle; /* Aligns the formula with the text */
+      margin: 0 0.15em; /* Adds a little breathing room around the formula */
+}
+
+/* Target the DIV wrapper for DISPLAY (block) math */
+/* This ensures it's centered and has proper spacing. */
+.math-display {
+      display: block;
+      overflow-x: auto; /* Allows wide equations to be scrolled horizontally */
+      margin: 1em 0;
+      text-align: center;
+}
+
+/* This general rule for the SVG inside any MathJax container is still good practice. */
+mjx-container svg {
+      display: inline-block;
+      width: initial;
+      height: initial;
+}
