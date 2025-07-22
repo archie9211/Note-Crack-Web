@@ -10,8 +10,8 @@ import rehypeKatex from "rehype-katex";
 
 // https://astro.build/config
 export default defineConfig({
-      site: "https://notecrack.com",
-      output: "server",
+      site: "https://notecrack.archie9211.com",
+      output: "static",
       markdown: {
             remarkPlugins: [remarkMath],
             rehypePlugins: [rehypeKatex],

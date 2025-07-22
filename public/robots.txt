@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://notecrack.com/sitemap-index.xml
+Sitemap: https://notecrack.archie9211.com/sitemap-index.xml
