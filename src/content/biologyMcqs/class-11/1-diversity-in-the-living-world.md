@@ -1,1055 +1,1554 @@
 ---
-title: "Diversity in the living World"
-description: "A concise revision guide covering key concepts of the living world, biological classification systems, and detailed characteristics of the Plant and Animal Kingdoms, designed for quick understanding and mental mapping."
+title: "Diversity in the living World: MCQ Test"
+description: "An extensive multiple-choice question test covering the diversity of the living world, biological classification systems, and detailed characteristics of the five kingdoms (Monera, Protista, Fungi, Plantae, and Animalia) including viruses, viroids, prions, and lichens, designed for competitive exam preparation."
+mcqs:
+      - text: "Who was known as 'The Darwin of the 20th century' and pioneered the currently accepted definition of a biological species?"
+        options:
+              - "Carolus Linnaeus"
+              - "Ernst Mayr"
+              - "R.H. Whittaker"
+              - "Aristotle"
+        correct: 1
+        explanation: "Ernst Mayr, a Harvard University evolutionary biologist, was called 'The Darwin of the 20th century' and pioneered the currently accepted definition of a biological species [1]."
+
+      - text: "Which of the following prizes were awarded to Ernst Mayr?"
+        options:
+              - "Balzan Prize"
+              - "Nobel Prize"
+              - "International Prize for Biology"
+              - "Crafoord Prize"
+        correct: [1, 2]
+        explanation: "Ernst Mayr was awarded the Balzan Prize in 1983, the International Prize for Biology in 1994, and the Crafoord Prize in 1999 [3]. These three are widely regarded as the triple crown of biology [3]."
+
+      - text: "The estimated range of known and described species on Earth is:"
+        options:
+              - "1.0-1.5 million"
+              - "1.7-1.8 million"
+              - "2.0-2.5 million"
+              - "5.0-10.0 million"
+        correct: 1
+        explanation: "The number of species that are known and described range between 1.7-1.8 million, referring to biodiversity [4]."
+
+      - text: "The process of standardising the naming of living organisms so that a particular organism is known by the same name all over the world is called:"
+        options:
+              - "Classification"
+              - "Identification"
+              - "Nomenclature"
+              - "Systematics"
+        correct: 2
+        explanation: "Nomenclature is the process needed to standardise the naming of living organisms so they are known by the same name globally [5]."
+
+      - text: "Nomenclature is only possible when the organism is correctly described and known. This prerequisite process is termed:"
+        options:
+              - "Classification"
+              - "Identification"
+              - "Characterisation"
+              - "Systematization"
+        correct: 1
+        explanation: "Nomenclature or naming is only possible when the organism is described correctly, and we know to what organism the name is attached to, which is called identification [6]."
+
+      - text: "Which international code provides principles and criteria for scientific names of plants?"
+        options:
+              - "ICZN"
+              - "ICPN"
+              - "ICBN"
+              - "ICAN"
+        correct: 2
+        explanation: "For plants, scientific names are based on agreed principles and criteria provided in the International Code for Botanical Nomenclature (ICBN) [6]."
+
+      - text: "The scientific name of Mango, *Mangifera indica*, is an example of which naming system?"
+        options:
+              - "Monomial nomenclature"
+              - "Trinomial nomenclature"
+              - "Binomial nomenclature"
+              - "Polynomial nomenclature"
+        correct: 2
+        explanation: "The system of providing a name with two components – the Generic name and the specific epithet – is called Binomial nomenclature, as exemplified by *Mangifera indica* [7, 8]."
+
+      - text: "According to the universal rules of nomenclature, which of the following is correct regarding biological names?"
+        options:
+              - "Biological names are generally in English and written in bold."
+              - "The first word represents the species, and the second is the genus."
+              - "When handwritten, both words are separately underlined to indicate Latin origin."
+              - "The specific epithet starts with a capital letter."
+        correct: 2
+        explanation: "Biological names are generally in Latin and written in italics [9]. When handwritten, both words are separately underlined to indicate their Latin origin [9]. The first word represents the genus, and the second denotes the specific epithet [9]. The first word denoting the genus starts with a capital letter, while the specific epithet starts with a small letter [10]."
+
+      - text: "In the scientific name *Mangifera indica Linn.*, what does 'Linn.' signify?"
+        options:
+              - "The region of origin"
+              - "The year of discovery"
+              - "The habitat where it was found"
+              - "The author who first described the species"
+        correct: 3
+        explanation: "The name of the author appears after the specific epithet and is written in an abbreviated form, indicating that this species was first described by Linnaeus [10]."
+
+      - text: "The process by which anything is grouped into convenient categories based on some easily observable characters is called:"
+        options:
+              - "Identification"
+              - "Systematics"
+              - "Classification"
+              - "Nomenclature"
+        correct: 2
+        explanation: "Since it is nearly impossible to study all living organisms, it is necessary to devise some means to make this possible. This process is classification, which groups things into convenient categories based on easily observable characters [10]."
+
+      - text: "The scientific term for convenient categories used to study organisms like 'Plants', 'Wheat', 'Animals', 'Mammals', and 'Dogs' is:"
+        options:
+              - "Groups"
+              - "Phyla"
+              - "Taxa"
+              - "Orders"
+        correct: 2
+        explanation: "The scientific term for these convenient categories used to study organisms is taxa [11]."
+
+      - text: "Modern taxonomic studies are based on which of the following characteristics?"
+        options:
+              - "Only external structure and ecological information."
+              - "Only internal structure and development process."
+              - "External and internal structure, along with cell structure, development process, and ecological information."
+              - "Only historical use by human beings."
+        correct: 2
+        explanation: "External and internal structure, along with the structure of cell, development process, and ecological information of organisms are essential and form the basis of modern taxonomic studies [12]."
+
+      - text: "Which of the following processes are considered basic to taxonomy?"
+        options:
+              - "Observation"
+              - "Experimentation"
+              - "Documentation"
+              - "Characterisation"
+              - "Identification"
+              - "Classification"
+              - "Nomenclature"
+        correct: [1, 3, 13, 14]
+        explanation: "Characterisation, identification, classification, and nomenclature are the processes that are basic to taxonomy [15]."
+
+      - text: "The word 'systematics' is derived from the Latin word 'systema', which means:"
+        options:
+              - "Diverse life forms"
+              - "Evolutionary relationships"
+              - "Systematic arrangement of organisms"
+              - "Biological classification"
+        correct: 2
+        explanation: "The word systematics is derived from the Latin word 'systema' which means systematic arrangement of organisms [16]."
+
+      - text: "The scope of systematics was later enlarged to include:"
+        options:
+              - "Only identification and nomenclature."
+              - "Identification, nomenclature, and classification."
+              - "Only evolutionary relationships."
+              - "Classification and economic importance."
+        correct: 1
+        explanation: "The scope of systematics was later enlarged to include identification, nomenclature, and classification. Systematics also takes into account evolutionary relationships between organisms [16]."
+
+      - text: "Which of the following represents the correct ascending order of taxonomic categories?"
+        options:
+              - "Genus, Species, Family, Order, Class, Phylum, Kingdom"
+              - "Species, Genus, Family, Order, Class, Phylum, Kingdom"
+              - "Kingdom, Phylum, Class, Order, Family, Genus, Species"
+              - "Family, Genus, Species, Order, Class, Phylum, Kingdom"
+        correct: 1
+        explanation: "The common categories developed from taxonomical studies of all known organisms, in ascending order starting with species, are: species, genus, family, order, class, phylum or division (for plants), and kingdom [21, Figure 1.1]."
+
+      - text: "As we go higher from species to kingdom in the taxonomic hierarchy, what happens to the number of common characteristics?"
+        options:
+              - "It increases"
+              - "It remains constant"
+              - "It decreases"
+              - "It first increases then decreases"
+        correct: 2
+        explanation: "As we go higher from species to kingdom, the number of common characteristics goes on decreasing. Lower the taxa, more are the characteristics that the members within the taxon share [17]."
+
+      - text: "A group of individual organisms with fundamental similarities is considered a:"
+        options:
+              - "Genus"
+              - "Family"
+              - "Species"
+              - "Class"
+        correct: 2
+        explanation: "Taxonomic studies consider a group of individual organisms with fundamental similarities as a species [18]."
+
+      - text: "Which of the following specific epithets belong to the genus *Solanum*?"
+        options:
+              - "*leo*"
+              - "*indica*"
+              - "*tigris*"
+              - "*nigrum*"
+              - "*melongena*"
+              - "*tuberosum*"
+        correct: [1, 3, 13]
+        explanation: "*Solanum* includes species like *nigrum*, *melongena*, and *tuberosum* (potato) [19]."
+
+      - text: "The genus *Panthera* includes which of the following species?"
+        options:
+              - "*leo*"
+              - "*pardus*"
+              - "*tigris*"
+              - "*domesticus*"
+        correct: [2, 20]
+        explanation: "Lion (*Panthera leo*), leopard (*P. pardus*), and tiger (*P. tigris*) with several common features, are all species of the genus *Panthera* [21]."
+
+      - text: "The family Felidae includes which of the following genera?"
+        options:
+              - "*Canis*"
+              - "*Panthera*"
+              - "*Homo*"
+              - "*Felis*"
+        correct: [1, 20]
+        explanation: "Among animals for example, genus *Panthera*, comprising lion, tiger, leopard is put along with genus, *Felis* (cats) in the family Felidae [22]."
+
+      - text: "The animal order Carnivora includes which of the following families?"
+        options:
+              - "Hominidae"
+              - "Felidae"
+              - "Canidae"
+              - "Primata"
+        correct: [2, 20]
+        explanation: "The animal order, Carnivora, includes families like Felidae and Canidae [23]."
+
+      - text: "The class Mammalia includes which of the following orders?"
+        options:
+              - "Carnivora"
+              - "Primata"
+              - "Diptera"
+              - "Sapindales"
+        correct: [20]
+        explanation: "For example, order Primata comprising monkey, gorilla and gibbon is placed in class Mammalia along with order Carnivora that includes animals like tiger, cat and dog [24]."
+
+      - text: "In the classification system, the highest category for animals is:"
+        options:
+              - "Phylum"
+              - "Class"
+              - "Order"
+              - "Kingdom Animalia"
+        correct: 3
+        explanation: "All animals belonging to various phyla are assigned to the highest category called Kingdom Animalia in the classification system of animals [25]."
+
+      - text: "What are the genus and family of the Housefly as per the provided taxonomic categories table?"
+        options:
+              - "Genus: *Musca*, Family: Muscidae"
+              - "Genus: *Musca*, Family: Diptera"
+              - "Genus: *domestica*, Family: Muscidae"
+              - "Genus: *Insecta*, Family: Arthropoda"
+        correct: 0
+        explanation: "As per Table 1.1, the Housefly's Biological Name is *Musca domestica*, its Genus is *Musca*, and its Family is Muscidae [26]."
+
+      - text: "Aristotle classified plants into:"
+        options:
+              - "Algae"
+              - "Fungi"
+              - "Mosses"
+              - "Trees"
+              - "Shrubs"
+              - "Herbs"
+        correct: [1, 3, 13]
+        explanation: "Aristotle used simple morphological characters to classify plants into trees, shrubs and herbs [27]."
+
+      - text: "Aristotle also divided animals into two groups based on:"
+        options:
+              - "Presence or absence of wings"
+              - "Aquatic or terrestrial habitat"
+              - "Presence or absence of red blood"
+              - "Vertebrates or invertebrates"
+        correct: 2
+        explanation: "He also divided animals into two groups, those which had red blood and those that did not [27]."
+
+      - text: "The Two Kingdom system of classification, developed in Linnaeus' time, did not distinguish between which of the following?"
+        options:
+              - "Eukaryotes and prokaryotes"
+              - "Unicellular and multicellular organisms"
+              - "Photosynthetic and non-photosynthetic organisms"
+              - "Animals with red blood and without red blood"
+        correct: [2, 20]
+        explanation: "This system did not distinguish between the eukaryotes and prokaryotes, unicellular and multicellular organisms and photosynthetic (green algae) and non-photosynthetic (fungi) organisms [28]."
+
+      - text: "The Five Kingdom Classification was proposed by R.H. Whittaker in which year?"
+        options:
+              - "1892"
+              - "1935"
+              - "1969"
+              - "1971"
+        correct: 2
+        explanation: "R.H. Whittaker (1969) proposed a Five Kingdom Classification [29]."
+
+      - text: "What are the five kingdoms proposed by R.H. Whittaker?"
+        options:
+              - "Protista"
+              - "Fungi"
+              - "Plantae"
+              - "Animalia"
+              - "Eubacteria"
+              - "Archaebacteria"
+              - "Monera"
+        correct: [1, 2, 14, 20]
+        explanation: "The kingdoms defined by him were named Monera, Protista, Fungi, Plantae and Animalia [29]."
+
+      - text: "Which of the following are the main criteria for classification used by R.H. Whittaker?"
+        options:
+              - "Cell structure"
+              - "Body organisation"
+              - "Mode of nutrition"
+              - "Reproductive strategy"
+              - "Phylogenetic relationships"
+              - "Habitat"
+        correct: [0, 1, 2, 3]
+        explanation: "The main criteria for classification used by him include cell structure, body organisation, mode of nutrition, reproduction and phylogenetic relationships."
+
+      - text: "According to the Five Kingdom Classification, which organisms were grouped together under ‘Plants’ in earlier classification systems due to the presence of a cell wall, despite differing in other characteristics?"
+        options:
+              - "Bacteria"
+              - "Blue green algae"
+              - "Fungi"
+              - "Mosses"
+              - "Ferns"
+              - "Gymnosperms"
+              - "Angiosperms"
+        correct: [0, 1, 2]
+        explanation: "Earlier classification systems included bacteria, blue green algae, fungi, mosses, ferns, gymnosperms and the angiosperms under ‘Plants’. The character that unified this whole kingdom was that all the organisms included had a cell wall in their cells [31]."
+
+      - text: "What is the characteristic difference in cell wall composition between fungi and green plants according to the sources?"
+        options:
+              - "Fungi have cellulosic cell walls, green plants have chitin."
+              - "Fungi have chitin in their walls, green plants have cellulosic cell walls."
+              - "Both have chitin in their cell walls."
+              - "Both have cellulosic cell walls."
+        correct: 1
+        explanation: "The fungi had chitin in their walls while the green plants had a cellulosic cell wall [32]."
+
+      - text: "In Whittaker's classification, all prokaryotic organisms were grouped under:"
+        options:
+              - "Kingdom Protista"
+              - "Kingdom Monera"
+              - "Kingdom Plantae"
+              - "Kingdom Fungi"
+        correct: 1
+        explanation: "All prokaryotic organisms were grouped together under Kingdom Monera [33]."
+
+      - text: "Which kingdom includes all single-celled eukaryotic organisms?"
+        options:
+              - "Monera"
+              - "Fungi"
+              - "Protista"
+              - "Plantae"
+        correct: 2
+        explanation: "The unicellular eukaryotic organisms were placed in Kingdom Protista [33]."
+
+      - text: "Bacteria are the sole members of which kingdom?"
+        options:
+              - "Protista"
+              - "Monera"
+              - "Fungi"
+              - "Plantae"
+        correct: 1
+        explanation: "Bacteria are the sole members of the Kingdom Monera [34]."
+
+      - text: "Which of the following shapes are used to categorize bacteria?"
+        options:
+              - "Spherical"
+              - "Rod-shaped"
+              - "Comma-shaped"
+              - "Spiral"
+              - "Cuboidal"
+        correct: [1, 2, 20]
+        explanation: "Bacteria are grouped under four categories based on their shape: the spherical Coccus, the rod-shaped Bacillus, the comma-shaped Vibrium, and the spiral Spirillum [35]."
+
+      - text: "Bacteria show the most extensive metabolic diversity. Which types of nutrition are observed in bacteria?"
+        options:
+              - "Photosynthetic autotrophic"
+              - "Chemosynthetic autotrophic"
+              - "Heterotrophic (saprophytic)"
+              - "Heterotrophic (parasitic)"
+              - "Holozoic"
+        correct: [1, 2, 20]
+        explanation: "Some of the bacteria are autotrophic, i.e., they synthesise their own food from inorganic substrates. They may be photosynthetic autotrophic or chemosynthetic autotrophic. The vast majority of bacteria are heterotrophs, i.e., they depend on other organisms or on dead organic matter for food [36]."
+
+      - text: "Archaebacteria are special due to their ability to live in harsh habitats. Which of these are types of Archaebacteria based on habitat?"
+        options:
+              - "Halophiles"
+              - "Thermoacidophiles"
+              - "Methanogens"
+              - "Cyanobacteria"
+        correct: [2, 20]
+        explanation: "These bacteria are special since they live in some of the most harsh habitats such as extreme salty areas (halophiles), hot springs (thermoacidophiles) and marshy areas (methanogens) [36]."
+
+      - text: "What unique feature of Archaebacteria's cell wall structure allows them to survive in extreme conditions?"
+        options:
+              - "Presence of peptidoglycan"
+              - "Presence of chitin"
+              - "A different cell wall structure from other bacteria"
+              - "Absence of a cell wall"
+        correct: 2
+        explanation: "Archaebacteria differ from other bacteria in having a different cell wall structure and this feature is responsible for their survival in extreme conditions [36]."
+
+      - text: "Which eubacteria have chlorophyll 'a' similar to green plants and are photosynthetic autotrophs?"
+        options:
+              - "Mycoplasma"
+              - "Methanogens"
+              - "Cyanobacteria"
+              - "Heterotrophic bacteria"
+        correct: 2
+        explanation: "The cyanobacteria (also referred to as blue-green algae) have chlorophyll a similar to green plants and are photosynthetic autotrophs [37]."
+
+      - text: "Some cyanobacteria can fix atmospheric nitrogen in specialised cells called:"
+        options:
+              - "Spores"
+              - "Heterocysts"
+              - "Conidia"
+              - "Plasmodium"
+        correct: 1
+        explanation: "Some of these organisms can fix atmospheric nitrogen in specialised cells called heterocysts, e.g., Nostoc and Anabaena [38]."
+
+      - text: "Heterotrophic bacteria are mostly abundant in nature and are important as:"
+        options:
+              - "Producers"
+              - "Decomposers"
+              - "Pathogens"
+              - "Symbionts"
+        correct: [2, 20]
+        explanation: "The majority of heterotrophic bacteria are important decomposers. Many of them have a significant impact on human affairs, including being pathogens [39]. While they can be symbionts, the source specifically highlights them as decomposers and pathogens among other impacts."
+
+      - text: "Which of the following diseases are caused by different bacteria?"
+        options:
+              - "Cholera"
+              - "Typhoid"
+              - "Tetanus"
+              - "Citrus canker"
+              - "Malaria"
+              - "Mumps"
+        correct: [1, 2, 20]
+        explanation: "Cholera, typhoid, tetanus, citrus canker are well known diseases caused by different bacteria [39]."
+
+      - text: "Which organisms completely lack a cell wall and are the smallest living cells known, capable of surviving without oxygen?"
+        options:
+              - "Bacteria"
+              - "Mycoplasma"
+              - "Viruses"
+              - "Archaebacteria"
+        correct: 1
+        explanation: "The Mycoplasma are organisms that completely lack a cell wall. They are the smallest living cells known and can survive without oxygen [40]."
+
+      - text: "All single-celled eukaryotes are placed under which kingdom?"
+        options:
+              - "Monera"
+              - "Fungi"
+              - "Protista"
+              - "Animalia"
+        correct: 2
+        explanation: "All single-celled eukaryotes are placed under Protista [41]."
+
+      - text: "Members of Protista are primarily:"
+        options:
+              - "Terrestrial"
+              - "Aquatic"
+              - "Aerial"
+              - "Arboreal"
+        correct: 1
+        explanation: "Members of Protista are primarily aquatic [41]."
+
+      - text: "Which group within Protista includes diatoms and golden algae (desmids)?"
+        options:
+              - "Dinoflagellates"
+              - "Euglenoids"
+              - "Chrysophytes"
+              - "Slime moulds"
+        correct: 2
+        explanation: "This group includes diatoms and golden algae (desmids) [42]."
+
+      - text: "The cell walls of diatoms form two thin overlapping shells embedded with:"
+        options:
+              - "Cellulose"
+              - "Chitin"
+              - "Silica"
+              - "Peptidoglycan"
+        correct: 2
+        explanation: "In diatoms the cell walls form two thin overlapping shells, which fit together as in a soap box. The walls are embedded with silica and thus the walls are indestructible [42]."
+
+      - text: "What is 'diatomaceous earth' primarily used for?"
+        options:
+              - "Fertiliser"
+              - "Fuel"
+              - "Polishing and filtration of oils/syrups"
+              - "Construction material"
+        correct: 2
+        explanation: "Thus, diatoms have left behind large amount of cell wall deposits in their habitat; this accumulation over billions of years is referred to as ‘diatomaceous earth’. Being gritty this soil is used in polishing, filtration of oils and syrups [43]."
+
+      - text: "Which organisms are considered the chief ‘producers’ in the oceans?"
+        options:
+              - "Dinoflagellates"
+              - "Diatoms"
+              - "Euglenoids"
+              - "Protozoans"
+        correct: 1
+        explanation: "Diatoms are the chief ‘producers’ in the oceans [43]."
+
+      - text: "The phenomenon where red dinoflagellates (e.g., *Gonyaulax*) undergo rapid multiplication, making the sea appear red, is known as:"
+        options:
+              - "Algal bloom"
+              - "Red tides"
+              - "Bioluminescence"
+              - "Eutrophication"
+        correct: 1
+        explanation: "Very often, red dinoflagellates (Example: Gonyaulax) undergo such rapid multiplication that they make the sea appear red (red tides) [44]."
+
+      - text: "Instead of a cell wall, Euglenoids have a protein-rich layer called:"
+        options:
+              - "Pellicle"
+              - "Capsule"
+              - "Sheath"
+              - "Exoskeleton"
+        correct: 0
+        explanation: "Instead of a cell wall, they have a protein rich layer called pellicle which makes their body flexible [45]."
+
+      - text: "Which of the following protists are saprophytic and form an aggregation called plasmodium under suitable conditions?"
+        options:
+              - "Euglena"
+              - "Paramoecium"
+              - "Slime moulds"
+              - "Diatoms"
+        correct: 2
+        explanation: "Slime moulds are saprophytic protists. Under suitable conditions, they form an aggregation called plasmodium which may grow and spread over several feet [46]."
+
+      - text: "Which group of protozoans moves and captures prey by putting out pseudopodia?"
+        options:
+              - "Flagellated protozoans"
+              - "Ciliated protozoans"
+              - "Amoeboid protozoans"
+              - "Sporozoans"
+        correct: 2
+        explanation: "Amoeboid protozoans: These organisms live in fresh water, sea water or moist soil. They move and capture their prey by putting out pseudopodia (false feet) as in Amoeba [47]."
+
+      - text: "*Trypanosoma*, a flagellated protozoan, causes which disease?"
+        options:
+              - "Malaria"
+              - "Sleeping sickness"
+              - "Cholera"
+              - "Typhoid"
+        correct: 1
+        explanation: "The parasitic forms of flagellated protozoans cause diaseases such as sleeping sickness. Example: Trypanosoma [47]."
+
+      - text: "Which group of protozoans is known for having thousands of cilia and a gullet to steer food into the cell?"
+        options:
+              - "Amoeboid protozoans"
+              - "Flagellated protozoans"
+              - "Ciliated protozoans"
+              - "Sporozoans"
+        correct: 2
+        explanation: "Ciliated protozoans: These are aquatic, actively moving organisms because of the presence of thousands of cilia. They have a cavity (gullet) that opens to the outside of the cell surface. The coordinated movement of rows of cilia causes the water laden with food to be steered into the gullet. Example: Paramoecium [48]."
+
+      - text: "*Plasmodium*, the malarial parasite, belongs to which group of protozoans?"
+        options:
+              - "Amoeboid protozoans"
+              - "Flagellated protozoans"
+              - "Ciliated protozoans"
+              - "Sporozoans"
+        correct: 3
+        explanation: "This includes diverse organisms that have an infectious spore-like stage in their life cycle. The most notorious is Plasmodium (malarial parasite) which causes malaria [48]."
+
+      - text: "The unique kingdom of heterotrophic organisms that are cosmopolitan and prefer to grow in warm and humid places is:"
+        options:
+              - "Monera"
+              - "Protista"
+              - "Fungi"
+              - "Plantae"
+        correct: 2
+        explanation: "The fungi constitute a unique kingdom of heterotrophic organisms. Fungi are cosmopolitan and occur in air, water, soil and on animals and plants. They prefer to grow in warm and humid places [49, 50]."
+
+      - text: "With the exception of yeasts, fungi are filamentous, and their bodies consist of long, slender thread-like structures called:"
+        options:
+              - "Mycelium"
+              - "Hyphae"
+              - "Sporangia"
+              - "Conidia"
+        correct: 1
+        explanation: "With the exception of yeasts which are unicellular, fungi are filamentous. Their bodies consist of long, slender thread-like structures called hyphae [50]."
+
+      - text: "What are the cell walls of fungi composed of?"
+        options:
+              - "Cellulose and pectin"
+              - "Chitin and polysaccharides"
+              - "Peptidoglycan and lipids"
+              - "Silica and cellulose"
+        correct: 1
+        explanation: "The cell walls of fungi are composed of chitin and polysaccharides [51]."
+
+      - text: "Fungi that absorb soluble organic matter from dead substrates are called:"
+        options:
+              - "Parasites"
+              - "Saprophytes"
+              - "Symbionts"
+              - "Autotrophs"
+        correct: 1
+        explanation: "Most fungi are heterotrophic and absorb soluble organic matter from dead substrates and hence are called saprophytes [51]."
+
+      - text: "Which of the following are symbiotic associations involving fungi?"
+        options:
+              - "Lichens"
+              - "Mycorrhiza"
+              - "Parasitism"
+              - "Predation"
+        correct: [20]
+        explanation: "They can also live as symbionts – in association with algae as lichens and with roots of higher plants as mycorrhiza [51]."
+
+      - text: "The sexual cycle in fungi involves which three steps?"
+        options:
+              - "Fertilisation"
+              - "Germination"
+              - "Plasmogamy"
+              - "Karyogamy"
+              - "Meiosis"
+        correct: [2, 3, 4]
+        explanation: "The sexual cycle involves the following three steps: (i) Fusion of protoplasms between two motile or non-motile gametes called plasmogamy. (ii) Fusion of two nuclei called karyogamy. (iii) Meiosis in zygote resulting in haploid spores."
+
+      - text: "In which class of fungi does an intervening dikaryotic stage (n+n) occur before the parental nuclei fuse?"
+        options:
+              - "Phycomycetes"
+              - "Ascomycetes"
+              - "Basidiomycetes"
+              - "Deuteromycetes"
+        correct: [1, 2]
+        explanation: "However, in other fungi (ascomycetes and basidiomycetes), an intervening dikaryotic stage (n + n, i.e., two nuclei per cell) occurs."
+
+      - text: "Members of Phycomycetes have a mycelium that is:"
+        options:
+              - "Septate and branched"
+              - "Aseptate and coenocytic"
+              - "Unicellular"
+              - "Loose tissue"
+        correct: 1
+        explanation: "The mycelium is aseptate and coenocytic [54]."
+
+      - text: "Which of the following are examples of Phycomycetes?"
+        options:
+              - "*Mucor*"
+              - "*Rhizopus*"
+              - "*Albugo*"
+              - "*Penicillium*"
+              - "*Aspergillus*"
+        correct: [2, 20]
+        explanation: "Some common examples are Mucor, Rhizopus (the bread mould mentioned earlier) and Albugo (the parasitic fungi on mustard) [55]."
+
+      - text: "Ascomycetes are commonly known as:"
+        options:
+              - "Club fungi"
+              - "Sac-fungi"
+              - "Imperfect fungi"
+              - "Bracket fungi"
+        correct: 1
+        explanation: "Commonly known as sac-fungi, the ascomycetes are mostly multicellular [56]."
+
+      - text: "In Ascomycetes, asexual spores called conidia are produced:"
+        options:
+              - "Endogenously in sporangium"
+              - "Exogenously on conidiophores"
+              - "By budding"
+              - "By fragmentation"
+        correct: 1
+        explanation: "The asexual spores are conidia produced exogenously on the special mycelium called conidiophores [56]."
+
+      - text: "Which ascomycete is extensively used in biochemical and genetic work?"
+        options:
+              - "*Penicillium*"
+              - "*Aspergillus*"
+              - "*Neurospora*"
+              - "*Claviceps*"
+        correct: 2
+        explanation: "*Neurospora* is used extensively in biochemical and genetic work [57]."
+
+      - text: "Mushrooms, bracket fungi, and puffballs are common forms of which class of fungi?"
+        options:
+              - "Phycomycetes"
+              - "Ascomycetes"
+              - "Basidiomycetes"
+              - "Deuteromycetes"
+        correct: 2
+        explanation: "Commonly known forms of basidiomycetes are mushrooms, bracket fungi or puffballs [58]."
+
+      - text: "In Basidiomycetes, what structures are absent, and how is plasmogamy brought about?"
+        options:
+              - "Sex organs are present, plasmogamy by fusion of gametes."
+              - "Sex organs are absent, plasmogamy by fusion of vegetative or somatic cells."
+              - "Sexual reproduction is absent entirely."
+              - "Asexual spores are common, and plasmogamy is internal."
+        correct: 1
+        explanation: "The sex organs are absent, but plasmogamy is brought about by fusion of two vegetative or somatic cells of different strains or genotypes [58]."
+
+      - text: "Deuteromycetes are commonly known as imperfect fungi because:"
+        options:
+              - "Their sexual forms are unknown"
+              - "They only reproduce sexually"
+              - "They lack a mycelial structure"
+              - "They are found only in decaying matter"
+        correct: 0
+        explanation: "Commonly known as imperfect fungi because only the asexual or vegetative phases of these fungi are known [59]."
+
+      - text: "*Alternaria*, *Colletotrichum*, and *Trichoderma* are examples of which class of fungi?"
+        options:
+              - "Phycomycetes"
+              - "Ascomycetes"
+              - "Basidiomycetes"
+              - "Deuteromycetes"
+        correct: 3
+        explanation: "Some examples are Alternaria, Colletotrichum and Trichoderma [60]."
+
+      - text: "Which of the following are examples of partially heterotrophic plants?"
+        options:
+              - "*Cuscuta*"
+              - "*Bladderwort*"
+              - "*Venus fly trap*"
+              - "*Nostoc*"
+        correct: [2, 20]
+        explanation: "A few members are partially heterotrophic such as the insectivorous plants or parasites. Bladderwort and Venus fly trap are examples of insectivorous plants and Cuscuta is a parasite [61]."
+
+      - text: "The plant cells in Kingdom Plantae have a cell wall mainly made of:"
+        options:
+              - "Chitin"
+              - "Peptidoglycan"
+              - "Cellulose"
+              - "Silica"
+        correct: 2
+        explanation: "The plant cells have an eukaryotic structure with prominent chloroplasts and cell wall mainly made of cellulose [61]."
+
+      - text: "The life cycle of plants exhibits two distinct phases, a diploid sporophytic and a haploid gametophytic, that alternate with each other. This phenomenon is called:"
+        options:
+              - "Metagenesis"
+              - "Alternation of generations"
+              - "Sporogenesis"
+              - "Gametogenesis"
+        correct: 1
+        explanation: "Life cycle of plants has two distinct phases – the diploid sporophytic and the haploid gametophytic – that alternate with each other. This phenomenon is called alternation of generations [62]."
+
+      - text: "Which of the following are characteristic features of Kingdom Animalia?"
+        options:
+              - "Autotrophic nutrition"
+              - "Presence of cell walls"
+              - "Multicellular eukaryotic organisms"
+              - "Holozoic nutrition"
+              - "Lack of locomotion"
+        correct: [1, 2]
+        explanation: "This kingdom is characterised by heterotrophic eukaryotic organisms that are multicellular and their cells lack cell walls. Their mode of nutrition is holozoic – by ingestion of food. Most of them are capable of locomotion [63]."
+
+      - text: "Which scientist recognised certain microbes as the causal organism of the mosaic disease of tobacco and found them smaller than bacteria?"
+        options:
+              - "M.W. Beijerinck"
+              - "Dmitri Ivanowsky"
+              - "W.M. Stanley"
+              - "T.O. Diener"
+        correct: 1
+        explanation: "Dmitri Ivanowsky (1892) recognised certain microbes as causal organism of the mosaic disease of tobacco. These were found to be smaller than bacteria because they passed through bacteria-proof filters [64]."
+
+      - text: "M.W. Beijerinck named the new pathogen 'virus' and called the infectious fluid:"
+        options:
+              - "Infectious protein"
+              - "Contagium vivum fluidum"
+              - "Toxic fluid"
+              - "Mosaic fluid"
+        correct: 1
+        explanation: "M.W. Beijerinck (1898) demonstrated that the extract of the infected plants of tobacco could cause infection in healthy plants and named the new pathogen “virus” and called the fluid as Contagium vivum fluidum (infectious living fluid) [65]."
+
+      - text: "W.M. Stanley (1935) showed that viruses could be crystallised, and crystals consist largely of:"
+        options:
+              - "Nucleic acids"
+              - "Lipids"
+              - "Carbohydrates"
+              - "Proteins"
+        correct: 3
+        explanation: "W.M. Stanley (1935) showed that viruses could be crystallised and crystals consist largely of proteins [65]."
+
+      - text: "Which statement about the genetic material of viruses is correct?"
+        options:
+              - "All viruses contain both RNA and DNA."
+              - "No virus contains both RNA and DNA."
+              - "Viruses only contain DNA."
+              - "Viruses only contain RNA."
+        correct: 1
+        explanation: "In addition to proteins, viruses also contain genetic material, that could be either RNA or DNA. No virus contains both RNA and DNA [65]."
+
+      - text: "Plant viruses generally have:"
+        options:
+              - "Single stranded RNA"
+              - "Double stranded DNA"
+              - "Double stranded RNA"
+              - "Both single and double stranded DNA"
+        correct: 0
+        explanation: "In general, viruses that infect plants have single stranded RNA [65]."
+
+      - text: "Bacterial viruses, or bacteriophages, are usually:"
+        options:
+              - "Single stranded RNA viruses"
+              - "Double stranded RNA viruses"
+              - "Single stranded DNA viruses"
+              - "Double stranded DNA viruses"
+        correct: 3
+        explanation: "Bacterial viruses or bacteriophages (viruses that infect the bacteria) are usually double stranded DNA viruses [66]."
+
+      - text: "The protein coat of a virus is called a capsid, and it is made of small subunits called:"
+        options:
+              - "Virions"
+              - "Capsomeres"
+              - "Envelopes"
+              - "Peptidoglycans"
+        correct: 1
+        explanation: "The protein coat called capsid made of small subunits called capsomeres, protects the nucleic acid [66]."
+
+      - text: "Which of the following diseases are caused by viruses in humans?"
+        options:
+              - "Mumps"
+              - "Smallpox"
+              - "Herpes"
+              - "Influenza"
+              - "AIDS"
+              - "Cholera"
+        correct: [0, 1, 2, 3, 4]
+        explanation: "Viruses cause diseases like mumps, small pox, herpes and influenza. AIDS in humans is also caused by a virus [66]."
+
+      - text: "Who discovered viroids, and what was their key characteristic?"
+        options:
+              - "T.O. Diener, free RNA lacking a protein coat."
+              - "Dmitri Ivanowsky, small bacteria causing mosaic disease."
+              - "M.W. Beijerinck, infectious living fluid."
+              - "W.M. Stanley, crystallisable proteins."
+        correct: 0
+        explanation: "In 1971, T.O. Diener discovered a new infectious agent that was smaller than viruses and caused potato spindle tuber disease. It was found to be a free RNA; it lacked the protein coat that is found in viruses, hence the name viroid [67]."
+
+      - text: "Prions are infectious agents consisting of:"
+        options:
+              - "Free RNA"
+              - "Double-stranded DNA"
+              - "Abnormally folded protein"
+              - "Polysaccharides"
+        correct: 2
+        explanation: "In modern medicine certain infectious neurological diseases were found to be transmitted by an agent consisting of abnormally folded protein. These agents were called prions [68]."
+
+      - text: "Bovine spongiform encephalopathy (BSE), or 'mad cow disease', and Creutzfeldt–Jacob disease (CJD) in humans are caused by:"
+        options:
+              - "Viruses"
+              - "Viroids"
+              - "Prions"
+              - "Bacteria"
+        correct: 2
+        explanation: "The most notable diseases caused by prions are bovine spongiform encephalopathy (BSE) commonly called mad cow disease in cattle and its analogous variant Creutzfeldt–Jacob disease (CJD) in humans [68]."
+
+      - text: "Lichens are symbiotic associations between:"
+        options:
+              - "Bacteria and fungi"
+              - "Algae and fungi"
+              - "Algae and plants"
+              - "Fungi and roots"
+        correct: 1
+        explanation: "Lichens are symbiotic associations i.e. mutually useful associations, between algae and fungi [68]."
+
+      - text: "In a lichen, the algal component is known as the __________ and the fungal component as the __________."
+        options:
+              - "Mycobiont, Phycobiont"
+              - "Phycobiont, Mycobiont"
+              - "Chlorobiont, Fungibiont"
+              - "Algobiont, Myceliobiont"
+        correct: 1
+        explanation: "The algal component is known as phycobiont and fungal component as mycobiont [68]."
+
+      - text: "Lichens are very good indicators of:"
+        options:
+              - "Water purity"
+              - "Soil fertility"
+              - "Air pollution"
+              - "Biodiversity"
+        correct: 2
+        explanation: "Lichens are very good pollution indicators – they do not grow in polluted areas [69]."
+
+      - text: "Which of the following classification systems for flowering plants was given by George Bentham and Joseph Dalton Hooker?"
+        options:
+              - "Artificial system"
+              - "Natural classification system"
+              - "Phylogenetic classification system"
+              - "Numerical Taxonomy"
+        correct: 1
+        explanation: "Such a classification for flowering plants was given by George Bentham and Joseph Dalton Hooker [70]."
+
+      - text: "Artificial classification systems are criticized for:"
+        options:
+              - "Being based on internal features."
+              - "Separating closely related species."
+              - "Giving unequal weightage to vegetative and sexual characters."
+              - "Considering evolutionary relationships."
+        correct: 1
+        explanation: "Such systems were artificial; they separated the closely related species since they were based on a few characteristics. Also, the artificial systems gave equal weightage to vegetative and sexual characteristics; this is not acceptable since we know that often the vegetative characters are more easily affected by environment [71]."
+
+      - text: "Which classification system is based on all observable characteristics, assigns numbers and codes to them, and processes data using computers?"
+        options:
+              - "Cytotaxonomy"
+              - "Chemotaxonomy"
+              - "Numerical Taxonomy"
+              - "Phylogenetic classification"
+        correct: 2
+        explanation: "Numerical Taxonomy which is now easily carried out using computers is based on all observable characteristics. Number and codes are assigned to all the characters and the data are then processed [72]."
+
+      - text: "The field of plant classification that uses cytological information like chromosome number, structure, and behaviour is called:"
+        options:
+              - "Chemotaxonomy"
+              - "Cytotaxonomy"
+              - "Numerical Taxonomy"
+              - "Paleobotany"
+        correct: 1
+        explanation: "Cytotaxonomy, that is based on cytological information like chromosome number, structure, behaviour [72]."
+
+      - text: "Algae are characterized as:"
+        options:
+              - "Chlorophyll-bearing"
+              - "Simple"
+              - "Thalloid"
+              - "Autotrophic"
+              - "Largely aquatic"
+              - "Heterotrophic"
+        correct: [0, 1, 2, 3, 4]
+        explanation: "Algae are chlorophyll-bearing, simple, thalloid, autotrophic and largely aquatic (both fresh water and marine) organisms [73]."
+
+      - text: "Which of the following are examples of colonial and filamentous forms of algae, respectively?"
+        options:
+              - "*Ulothrix* (colonial), *Volvox* (filamentous)"
+              - "*Volvox* (colonial), *Spirogyra* (filamentous)"
+              - "*Laminaria* (colonial), *Fucus* (filamentous)"
+              - "*Porphyra* (colonial), *Polysiphonia* (filamentous)"
+        correct: 1
+        explanation: "The form and size of algae is highly variable, ranging from colonial forms like Volvox and the filamentous forms like Ulothrix and Spirogyra [73]."
+
+      - text: "In algae, the fusion of two gametes dissimilar in size is termed:"
+        options:
+              - "Isogamous"
+              - "Anisogamous"
+              - "Oogamous"
+              - "Zoosporous"
+        correct: 1
+        explanation: "Fusion of two gametes dissimilar in size, as in species of Eudorina is termed as anisogamous [74]."
+
+      - text: "Which type of sexual reproduction in algae involves a large, non-motile female gamete and a smaller, motile male gamete?"
+        options:
+              - "Isogamous"
+              - "Anisogamous"
+              - "Oogamous"
+              - "Conjugation"
+        correct: 2
+        explanation: "Fusion between one large, non-motile (static) female gamete and a smaller, motile male gamete is termed oogamous, e.g., Volvox, Fucus [74]."
+
+      - text: "Algae contribute significantly to Earth's atmosphere by carrying out at least half of the total:"
+        options:
+              - "Nitrogen fixation"
+              - "Oxygen release"
+              - "Carbon dioxide fixation"
+              - "Water absorption"
+        correct: 2
+        explanation: "At least a half of the total carbon dioxide fixation on earth is carried out by algae through photosynthesis [75]."
+
+      - text: "Which marine algae produce the hydrocolloids algin and carrageen, used commercially?"
+        options:
+              - "Green algae (algin), Red algae (carrageen)"
+              - "Brown algae (algin), Red algae (carrageen)"
+              - "Red algae (algin), Brown algae (carrageen)"
+              - "Green algae (carrageen), Brown algae (algin)"
+        correct: 1
+        explanation: "Certain marine brown and red algae produce large amounts of hydrocolloids (water holding substances), e.g., algin (brown algae) and carrageen (red algae) which are used commercially [75]."
+
+      - text: "Agar, a commercial product obtained from *Gelidium* and *Gracilaria*, is used to:"
+        options:
+              - "Make biofuels"
+              - "Grow microbes"
+              - "Produce medicines"
+              - "Fertilize soil"
+        correct: 1
+        explanation: "Agar, one of the commercial products obtained from Gelidium and Gracilaria are used to grow microbes and in preparations of ice-creams and jellies [76]."
+
+      - text: "*Chlorella*, a unicellular alga, is rich in proteins and used as a food supplement by:"
+        options:
+              - "Athletes"
+              - "Space travellers"
+              - "Infants"
+              - "Elderly"
+        correct: 1
+        explanation: "Chlorella, a unicellular alga rich in proteins, is used as food supplement even by space travellers [76]."
+
+      - text: "Green algae (Chlorophyceae) are usually grass green due to the dominance of which pigments?"
+        options:
+              - "Chlorophyll a and c"
+              - "Chlorophyll a and b"
+              - "Fucoxanthin and chlorophyll c"
+              - "Phycoerythrin and phycocyanin"
+        correct: 1
+        explanation: "They are usually grass green due to the dominance of pigments chlorophyll a and b [76]."
+
+      - text: "Storage bodies in green algae, located in the chloroplasts, which contain protein besides starch, are called:"
+        options:
+              - "Chromoplasts"
+              - "Pyrenoids"
+              - "Vacuoles"
+              - "Plastids"
+        correct: 1
+        explanation: "Most of the members have one or more storage bodies called pyrenoids located in the chloroplasts. Pyrenoids contain protein besides starch [77]."
+
+      - text: "The colour variation in brown algae (Phaeophyceae) from olive green to various shades of brown depends upon the amount of which xanthophyll pigment?"
+        options:
+              - "Chlorophyll a"
+              - "Chlorophyll c"
+              - "Fucoxanthin"
+              - "r-phycoerythrin"
+        correct: 2
+        explanation: "They vary in colour from olive green to various shades of brown depending upon the amount of the xanthophyll pigment, fucoxanthin present in them [78]."
+
+      - text: "In brown algae, food is stored as complex carbohydrates, which may be in the form of:"
+        options:
+              - "Starch or glycogen"
+              - "Floridean starch or mannitol"
+              - "Laminarin or mannitol"
+              - "Pectose or algin"
+        correct: 2
+        explanation: "Food is stored as complex carbohydrates, which may be in the form of laminarin or mannitol [78]."
+
+      - text: "The plant body of a brown alga is usually attached to the substratum by a __________, has a stalk called the __________, and a leaf-like photosynthetic organ called the __________."
+        options:
+              - "frond, holdfast, stipe"
+              - "stipe, frond, holdfast"
+              - "holdfast, stipe, frond"
+              - "holdfast, frond, stipe"
+        correct: 2
+        explanation: "The plant body is usually attached to the substratum by a holdfast, and has a stalk, the stipe and leaf like photosynthetic organ – the frond [79]."
+
+      - text: "The red colour of Rhodophyceae (red algae) is due to the predominance of which pigment?"
+        options:
+              - "Chlorophyll b"
+              - "Fucoxanthin"
+              - "r-phycoerythrin"
+              - "Carotenoids"
+        correct: 2
+        explanation: "The members of rhodophyceae are commonly called red algae because of the predominance of the red pigment, r-phycoerythrin in their body [80]."
+
+      - text: "The food stored in red algae (Rhodophyceae) is floridean starch, which is very similar in structure to:"
+        options:
+              - "Cellulose and pectin"
+              - "Amylopectin and glycogen"
+              - "Starch and mannitol"
+              - "Chitin and cellulose"
+        correct: 1
+        explanation: "The food is stored as floridean starch which is very similar to amylopectin and glycogen in structure [80]."
+
+      - text: "Bryophytes are often called 'amphibians of the plant kingdom' because:"
+        options:
+              - "They can live in water and on land independently."
+              - "They reproduce sexually in water but live on soil."
+              - "They are dependent on water for sexual reproduction while living in soil."
+              - "They have both aquatic and terrestrial forms in their life cycle."
+        correct: 2
+        explanation: "Bryophytes are also called amphibians of the plant kingdom because these plants can live in soil but are dependent on water for sexual reproduction [81]."
+
+      - text: "The main plant body of a bryophyte is:"
+        options:
+              - "Diploid sporophyte"
+              - "Haploid sporophyte"
+              - "Diploid gametophyte"
+              - "Haploid gametophyte"
+        correct: 3
+        explanation: "The main plant body of the bryophyte is haploid. It produces gametes, hence is called a gametophyte [82]."
+
+      - text: "The male sex organ in bryophytes is called __________, producing biflagellate __________."
+        options:
+              - "archegonium, eggs"
+              - "antheridium, antherozoids"
+              - "sporangium, spores"
+              - "microsporophyll, pollen grains"
+        correct: 1
+        explanation: "The male sex organ is called antheridium. They produce biflagellate antherozoids [82]."
+
+      - text: "*Sphagnum*, a moss, provides peat which has been used as fuel and as packing material for trans-shipment of living material due to its capacity to:"
+        options:
+              - "Provide nutrients"
+              - "Prevent disease"
+              - "Hold water"
+              - "Act as a pesticide"
+        correct: 2
+        explanation: "Species of Sphagnum, a moss, provide peat that have long been used as fuel, and as packing material for trans-shipment of living material because of their capacity to hold water [83]."
+
+      - text: "Asexual reproduction in liverworts (e.g., *Marchantia*) takes place by fragmentation or by the formation of specialized green, multicellular, asexual buds called:"
+        options:
+              - "Protonema"
+              - "Gemmae"
+              - "Spores"
+              - "Antherozoids"
+        correct: 1
+        explanation: "Asexual reproduction in liverworts takes place by fragmentation of thalli, or by the formation of specialised structures called gemmae (sing. gemma) [84]."
+
+      - text: "Pteridophytes are evolutionarily significant as they are the first terrestrial plants to possess:"
+        options:
+              - "Flowers"
+              - "Seeds"
+              - "Vascular tissues"
+              - "True roots, stems, and leaves"
+        correct: [1, 2]
+        explanation: "Evolutionarily, they are the first terrestrial plants to possess vascular tissues – xylem and phloem. The main plant body is a sporophyte which is differentiated into true root, stem and leaves [85, 86]."
+
+      - text: "In pteridophytes, the dominant phase in the life cycle is the:"
+        options:
+              - "Gametophyte"
+              - "Sporophyte"
+              - "Prothallus"
+              - "Embryo"
+        correct: 1
+        explanation: "However, in pteridophytes, the main plant body is a sporophyte. The zygote thereafter produces a multicellular well-differentiated sporophyte which is the dominant phase of the pteridophytes [85, 87]."
+
+      - text: "The small leaves in pteridophyta, as seen in *Selaginella*, are called:"
+        options:
+              - "Macrophylls"
+              - "Sporophylls"
+              - "Microphylls"
+              - "Fronds"
+        correct: 2
+        explanation: "The leaves in pteridophyta are small (microphylls) as in Selaginella or large (macrophylls) as in ferns [86]."
+
+      - text: "Which of the following pteridophytes are heterosporous, producing two kinds of spores (macro and micro spores)?"
+        options:
+              - "*Psilotum*"
+              - "*Lycopodium*"
+              - "*Selaginella*"
+              - "*Salvinia*"
+              - "*Equisetum*"
+        correct: [1, 2]
+        explanation: "Genera like Selaginella and Salvinia which produce two kinds of spores, macro (large) and micro (small) spores, are known as heterosporous [87]."
+
+      - text: "The retention of female gametophytes on the parent sporophytes and the development of zygotes into young embryos within them in heterosporous pteridophytes is considered a precursor to:"
+        options:
+              - "Alternation of generations"
+              - "Seed habit"
+              - "Flower evolution"
+              - "Fruit formation"
+        correct: 1
+        explanation: "The development of the zygotes into young embryos take place within the female gametophytes. This event is a precursor to the seed habit considered an important step in evolution [88]."
+
+      - text: "The term 'gymnosperms' means 'naked seeds' because:"
+        options:
+              - "Their ovules are enclosed within an ovary wall."
+              - "Their seeds are covered by a fruit."
+              - "Their ovules are not enclosed by any ovary wall and seeds are not covered."
+              - "They lack any reproductive structures."
+        correct: 2
+        explanation: "The gymnosperms (gymnos : naked, sperma : seeds) are plants in which the ovules are not enclosed by any ovary wall and remain exposed, both before and after fertilisation. The seeds that develop post-fertilisation, are not covered, i.e., are naked [89]."
+
+      - text: "Which gymnosperm is known as one of the tallest tree species?"
+        options:
+              - "*Cycas*"
+              - "*Pinus*"
+              - "*Cedrus*"
+              - "*Sequoia*"
+        correct: 3
+        explanation: "One of the gymnosperms, the giant redwood tree Sequoia is one of the tallest tree species [89]."
+
+      - text: "In *Cycas*, small specialized roots called __________ are associated with N2-fixing cyanobacteria."
+        options:
+              - "Tap roots"
+              - "Fibrous roots"
+              - "Coralloid roots"
+              - "Prop roots"
+        correct: 2
+        explanation: "Roots in some genera have fungal association in the form of mycorrhiza (Pinus), while in some others (Cycas) small specialised roots called coralloid roots are associated with N2 - fixing cyanobacteria [90]."
+
+      - text: "The male gametophytic generation in gymnosperms, which is highly reduced and confined to a limited number of cells, is called a:"
+        options:
+              - "Antherozoid"
+              - "Microspore"
+              - "Pollen grain"
+              - "Megaspore"
+        correct: 2
+        explanation: "The microspores develop into a male gametophytic generation which is highly reduced and is confined to only a limited number of cells. This reduced gametophyte is called a pollen grain [91]."
+
+      - text: "Unlike bryophytes and pteridophytes, the male and female gametophytes in gymnosperms:"
+        options:
+              - "Have an independent free-living existence."
+              - "Are dependent on water for transfer."
+              - "Remain within the sporangia retained on the sporophytes."
+              - "Are formed after fertilization."
+        correct: 2
+        explanation: "Unlike bryophytes and pteridophytes, in gymnosperms, the male and the female gametophytes do not have an independent free-living existence. They remain within the sporangia retained on the sporophytes [92]."
+
+      - text: "In angiosperms, the seeds are enclosed in:"
+        options:
+              - "Cones"
+              - "Sporangia"
+              - "Fruits"
+              - "Ovary walls"
+        correct: 2
+        explanation: "In angiosperms, the seeds are enclosed in fruits [93]."
+
+      - text: "Which is the smallest angiosperm mentioned in the source?"
+        options:
+              - "*Eucalyptus*"
+              - "*Wolffia*"
+              - "Rice"
+              - "Wheat"
+        correct: 1
+        explanation: "They range in size from the smallest Wolffia to tall trees of Eucalyptus [93]."
+
+      - text: "In sponges, cells are arranged as loose cell aggregates, exhibiting which level of organization?"
+        options:
+              - "Tissue level"
+              - "Organ level"
+              - "Organ system level"
+              - "Cellular level"
+        correct: 3
+        explanation: "In sponges, the cells are arranged as loose cell aggregates, i.e., they exhibit cellular level of organisation [94]."
+
+      - text: "Which phyla exhibit an organ system level of organization?"
+        options:
+              - "Coelenterates"
+              - "Platyhelminthes"
+              - "Annelids"
+              - "Arthropods"
+              - "Molluscs"
+              - "Echinoderms"
+              - "Chordates"
+        correct: [2, 3, 4, 5, 6]
+        explanation: "In animals like Annelids, Arthropods, Molluscs, Echinoderms and Chordates, organs have associated to form functional systems, each system concerned with a specific physiological function. This pattern is called organ system level of organisation [95]."
+
+      - text: "An incomplete digestive system, found in Platyhelminthes, is characterized by:"
+        options:
+              - "Two openings (mouth and anus)"
+              - "No openings"
+              - "A single opening serving as both mouth and anus"
+              - "A complex system with multiple specialized organs"
+        correct: 2
+        explanation: "For example, the digestive system in Platyhelminthes has only a single opening to the outside of the body that serves as both mouth and anus, and is hence called incomplete [96]."
+
+      - text: "In which type of circulatory system is the blood pumped out of the heart, and the cells and tissues are directly bathed in it?"
+        options:
+              - "Closed type"
+              - "Open type"
+              - "Incomplete type"
+              - "Complete type"
+        correct: 1
+        explanation: "Open type in which the blood is pumped out of the heart and the cells and tissues are directly bathed in it [96]."
+
+      - text: "Which of the following animals exhibit radial symmetry?"
+        options:
+              - "Annelids"
+              - "Ctenophores"
+              - "Adult echinoderms"
+              - "Sponges"
+              - "Coelenterates"
+        correct: [2, 3, 20]
+        explanation: "When any plane passing through the central axis of the body divides the organism into two identical halves, it is called radial symmetry. Coelenterates, ctenophores and echinoderms have this kind of body plan [97]. Note: Echinodermata exhibits radial or bilateral symmetry depending on the stage, with adults being radial [142, Table 4.2]."
+
+      - text: "Animals in which the body can be divided into identical left and right halves in only one plane exhibit:"
+        options:
+              - "Radial symmetry"
+              - "Asymmetry"
+              - "Bilateral symmetry"
+              - "Spherical symmetry"
+        correct: 2
+        explanation: "Animals like annelids, arthropods, etc., where the body can be divided into identical left and right halves in only one plane, exhibit bilateral symmetry [97]."
+
+      - text: "Animals like coelenterates, where cells are arranged in two embryonic layers (external ectoderm and internal endoderm) with an undifferentiated mesoglea in between, are called:"
+        options:
+              - "Triploblastic"
+              - "Diploblastic"
+              - "Acoelomates"
+              - "Pseudocoelomates"
+        correct: 1
+        explanation: "Animals in which the cells are arranged in two embryonic layers, an external ectoderm and an internal endoderm, are called diploblastic animals, e.g., coelenterates. An undifferentiated layer, mesoglea, is present in between the ectoderm and the endoderm [98]."
+
+      - text: "Triploblastic animals possess a third germinal layer called __________ between the ectoderm and endoderm."
+        options:
+              - "Mesoglea"
+              - "Mesoderm"
+              - "Coelom"
+              - "Notochord"
+        correct: 1
+        explanation: "Those animals in which the developing embryo has a third germinal layer, mesoderm, in between the ectoderm and endoderm, are called triploblastic animals (platyhelminthes to chordates) [99]."
+
+      - text: "An animal with a body cavity not lined by mesoderm, where the mesoderm is present as scattered pouches between ectoderm and endoderm, is called a:"
+        options:
+              - "Coelomate"
+              - "Acoelomate"
+              - "Pseudocoelomate"
+              - "Metameric"
+        correct: 2
+        explanation: "In some animals, the body cavity is not lined by mesoderm, instead, the mesoderm is present as scattered pouches in between the ectoderm and endoderm. Such a body cavity is called pseudocoelom and the animals possessing them are called pseudocoelomates, e.g., aschelminthes [100]."
+
+      - text: "Which of the following animal phyla are considered coelomates?"
+        options:
+              - "Platyhelminthes"
+              - "Aschelminthes"
+              - "Annelids"
+              - "Molluscs"
+              - "Arthropods"
+              - "Echinoderms"
+              - "Hemichordates"
+              - "Chordates"
+        correct: [2, 3, 4, 5, 6, 7]
+        explanation: "Animals possessing coelom are called coelomates, e.g., annelids, molluscs, arthropods, echinoderms, hemichordates and chordates [99]."
+
+      - text: "The rod-like structure formed on the dorsal side during embryonic development in some animals, derived mesodermally, is called the:"
+        options:
+              - "Nerve cord"
+              - "Vertebral column"
+              - "Notochord"
+              - "Gill slit"
+        correct: 2
+        explanation: "Notochord is a mesodermally derived rod-like structure formed on the dorsal side during embryonic development in some animals [101]."
+
+      - text: "Which phylum consists of primitive multicellular animals with a cellular level of organization and a characteristic water transport or canal system?"
+        options:
+              - "Coelenterata"
+              - "Porifera"
+              - "Ctenophora"
+              - "Platyhelminthes"
+        correct: 1
+        explanation: "Members of this phylum are commonly known as sponges. These are primitive multicellular animals and have cellular level of organisation. Sponges have a water transport or canal system [102, 103]."
+
+      - text: "In Porifera, what are the flagellated cells lining the spongocoel and canals called?"
+        options:
+              - "Cnidoblasts"
+              - "Choanocytes"
+              - "Flame cells"
+              - "Nematocysts"
+        correct: 1
+        explanation: "Choanocytes or collar cells line the spongocoel and the canals [103]."
+
+      - text: "Which unique feature helps Cnidarians for anchorage, defense, and prey capture?"
+        options:
+              - "Pseudopodia"
+              - "Parapodia"
+              - "Cnidoblasts"
+              - "Comb plates"
+        correct: 2
+        explanation: "The name cnidaria is derived from the cnidoblasts or cnidocytes (which contain the stinging capsules or nematocysts) present on the tentacles and the body. Cnidoblasts are used for anchorage, defense and for the capture of prey [104]."
+
+      - text: "*Obelia* exhibits alternation of generations, where polyps produce medusae __________ and medusae form polyps __________."
+        options:
+              - "sexually, asexually"
+              - "asexually, sexually"
+              - "by budding, by fission"
+              - "by fragmentation, by regeneration"
+        correct: 1
+        explanation: "Those cnidarians which exist in both forms exhibit alternation of generations (Metagenesis), i.e., polyps produce medusae asexually and medusae form the polyps sexually (e.g., Obelia) [105]."
+
+      - text: "Ctenophores are commonly known as:"
+        options:
+              - "Sponges"
+              - "Jellyfish"
+              - "Sea walnuts or comb jellies"
+              - "Flatworms"
+        correct: 2
+        explanation: "Ctenophores, commonly known as sea walnuts or comb jellies are exclusively marine, radially symmetrical, diploblastic organisms with tissue level of organisation [106]."
+
+      - text: "A unique property of living organisms to emit light, well-marked in ctenophores, is called:"
+        options:
+              - "Phosphorescence"
+              - "Bioluminescence"
+              - "Chemiluminescence"
+              - "Fluorescence"
+        correct: 1
+        explanation: "Bioluminescence (the property of a living organism to emit light) is well-marked in ctenophores [106]."
+
+      - text: "Which phylum is characterized by dorso-ventrally flattened bodies and the presence of flame cells for osmoregulation and excretion?"
+        options:
+              - "Cnidaria"
+              - "Platyhelminthes"
+              - "Aschelminthes"
+              - "Annelida"
+        correct: 1
+        explanation: "They have dorso-ventrally flattened body, hence are called flatworms. Specialised cells called flame cells help in osmoregulation and excretion [107]."
+
+      - text: "*Planaria* is known for its high:"
+        options:
+              - "Bioluminescence"
+              - "Regeneration capacity"
+              - "Sexual dimorphism"
+              - "Parasitic nature"
+        correct: 1
+        explanation: "Some members like Planaria possess high regeneration capacity [108]."
+
+      - text: "Aschelminthes are commonly called roundworms due to their body shape in cross-section. What is their body cavity type?"
+        options:
+              - "Acoelomate"
+              - "Coelomate"
+              - "Pseudocoelomate"
+              - "Haemocoel"
+        correct: 2
+        explanation: "The body of the aschelminthes is circular in cross-section, hence, the name roundworms. They are bilaterally symmetrical, triploblastic and pseudocoelomate animals [109]."
+
+      - text: "In which phylum is the body surface distinctly marked out into segments or metameres?"
+        options:
+              - "Platyhelminthes"
+              - "Aschelminthes"
+              - "Annelida"
+              - "Arthropoda"
+        correct: 2
+        explanation: "Their body surface is distinctly marked out into segments or metameres and, hence, the phylum name Annelida (Latin, annulus : little ring) [110]."
+
+      - text: "Which aquatic annelid possesses lateral appendages called parapodia that help in swimming?"
+        options:
+              - "Earthworm (*Pheretima*)"
+              - "Leech (*Hirudinaria*)"
+              - "*Nereis*"
+              - "*Ascaris*"
+        correct: 2
+        explanation: "Aquatic annelids like Nereis possess lateral appendages, parapodia, which help in swimming [111]."
+
+      - text: "Which phylum is the largest group of Animalia, including insects, and is characterized by a chitinous exoskeleton and jointed appendages?"
+        options:
+              - "Annelida"
+              - "Mollusca"
+              - "Arthropoda"
+              - "Chordata"
+        correct: 2
+        explanation: "This is the largest phylum of Animalia which includes insects. The body of arthropods is covered by chitinous exoskeleton. They have jointed appendages [112]."
+
+      - text: "What are the respiratory organs found in Arthropods?"
+        options:
+              - "Gills"
+              - "Book gills"
+              - "Book lungs"
+              - "Tracheal system"
+              - "Lungs"
+        correct: [1, 2, 20]
+        explanation: "Respiratory organs are gills, book gills, book lungs or tracheal system [113]."
+
+      - text: "Excretion in Arthropods takes place through:"
+        options:
+              - "Nephridia"
+              - "Flame cells"
+              - "Malpighian tubules"
+              - "Kidneys"
+        correct: 2
+        explanation: "Excretion takes place through malpighian tubules [113]."
+
+      - text: "The second largest animal phylum, characterized by a calcareous shell, a muscular foot, and a radula for feeding, is:"
+        options:
+              - "Annelida"
+              - "Arthropoda"
+              - "Mollusca"
+              - "Echinodermata"
+        correct: 2
+        explanation: "This is the second largest animal phylum. Body is covered by a calcareous shell and is unsegmented with a distinct head, muscular foot and visceral hump. The mouth contains a file-like rasping organ for feeding, called radula [114, 115]."
+
+      - text: "The distinctive feature of Echinoderms, helping in locomotion, food capture and transport, and respiration, is the presence of:"
+        options:
+              - "Ambulacral system"
+              - "Water vascular system"
+              - "Closed circulatory system"
+              - "Parapodia"
+        correct: 1
+        explanation: "The most distinctive feature of echinoderms is the presence of water vascular system which helps in locomotion, capture and transport of food and respiration [116]."
+
+      - text: "In Echinoderms, the adult exhibits __________ symmetry, while the larvae exhibit __________ symmetry."
+        options:
+              - "bilateral, radial"
+              - "radial, bilateral"
+              - "asymmetrical, radial"
+              - "asymmetrical, bilateral"
+        correct: 1
+        explanation: "The adult echinoderms are radially symmetrical but larvae are bilaterally symmetrical [116]."
+
+      - text: "Hemichordates possess a rudimentary structure in the collar region, similar to a notochord, called the:"
+        options:
+              - "Neural cord"
+              - "Stomochord"
+              - "Nerve tube"
+              - "Post-anal tail"
+        correct: 1
+        explanation: "Hemichordates have a rudimentary structure in the collar region called stomochord, a structure similar to notochord [117]."
+
+      - text: "Which of the following characteristics are fundamental to animals belonging to Phylum Chordata?"
+        options:
+              - "Presence of notochord"
+              - "Dorsal hollow nerve cord"
+              - "Paired pharyngeal gill slits"
+              - "Ventral muscular heart"
+              - "Post-anal tail"
+        correct: [2, 3, 20]
+        explanation: "Animals belonging to phylum Chordata are fundamentally characterised by the presence of a notochord, a dorsal hollow nerve cord and paired pharyngeal gill slits. They possess a post anal tail and a closed circulatory system [118]."
+
+      - text: "The statement 'All vertebrates are chordates but all chordates are not vertebrates' is justified because:"
+        options:
+              - "Vertebrates have a notochord throughout their life, while chordates replace it."
+              - "Chordates only have a notochord in the larval stage, while vertebrates develop a vertebral column."
+              - "All vertebrates possess a vertebral column derived from the notochord, while not all chordates develop a vertebral column."
+              - "Vertebrates lack gill slits, but chordates possess them."
+        correct: 2
+        explanation: "The notochord is replaced by a cartilaginous or bony vertebral column in the adult. Thus all vertebrates are chordates but all chordates are not vertebrates [119]."
+
+      - text: "In which subphylum of Chordata is the notochord present only in the larval tail?"
+        options:
+              - "Vertebrata"
+              - "Cephalochordata"
+              - "Urochordata"
+              - "Hemichordata"
+        correct: 2
+        explanation: "In Urochordata, notochord is present only in larval tail [120]."
+
+      - text: "Which class of vertebrates comprises all living members that are ectoparasites on some fishes and have a sucking and circular mouth without jaws?"
+        options:
+              - "Chondrichthyes"
+              - "Osteichthyes"
+              - "Cyclostomata"
+              - "Amphibia"
+        correct: 2
+        explanation: "All living members of the class Cyclostomata are ectoparasites on some fishes. They have an elongated body bearing 6-15 pairs of gill slits for respiration. Cyclostomes have a sucking and circular mouth without jaws [121]."
+
+      - text: "Fishes with a cartilaginous endoskeleton, a ventral mouth, and persistent notochord throughout life belong to which class?"
+        options:
+              - "Osteichthyes"
+              - "Chondrichthyes"
+              - "Cyclostomata"
+              - "Amphibia"
+        correct: 1
+        explanation: "They are marine animals with streamlined body and have cartilaginous endoskeleton. Mouth is located ventrally. Notochord is persistent throughout life [122]."
+
+      - text: "Which group of fishes possesses an air bladder that regulates buoyancy?"
+        options:
+              - "Chondrichthyes"
+              - "Osteichthyes"
+              - "Cyclostomata"
+              - "Agnatha"
+        correct: 1
+        explanation: "Air bladder is present which regulates buoyancy in Osteichthyes [123]."
+
+      - text: "Amphibians are characterized by a three-chambered heart. How many auricles and ventricles do they have?"
+        options:
+              - "One auricle, two ventricles"
+              - "Two auricles, one ventricle"
+              - "One auricle, one ventricle"
+              - "Two auricles, two ventricles"
+        correct: 1
+        explanation: "The heart is three-chambered (two auricles and one ventricle) [124]."
+
+      - text: "Which class of reptiles is notable for having a four-chambered heart, unlike most other reptiles?"
+        options:
+              - "Snakes"
+              - "Lizards"
+              - "Tortoises"
+              - "Crocodiles"
+        correct: 3
+        explanation: "Heart is usually three-chambered, but four-chambered in crocodiles [125]."
+
+      - text: "Birds (Aves) possess several modifications for flight. Which of the following are adaptations for flight in birds?"
+        options:
+              - "Presence of feathers"
+              - "Forelimbs modified into wings"
+              - "Dry skin without glands (except oil gland)"
+              - "Hollow bones with air cavities (pneumatic bones)"
+              - "Three-chambered heart"
+        correct: [1, 2, 20]
+        explanation: "The characteristic features of Aves (birds) are the presence of feathers. The forelimbs are modified into wings. Skin is dry without glands except the oil gland at the base of the tail. Endoskeleton is fully ossified (bony) and the long bones are hollow with air cavities (pneumatic). The heart is completely four-chambered (not three-chambered) [126, 127]."
+
+      - text: "The most unique mammalian characteristic is the presence of:"
+        options:
+              - "Hair on skin"
+              - "External ears/pinnae"
+              - "Milk producing glands (mammary glands)"
+              - "Viviparity"
+        correct: 2
+        explanation: "The most unique mammalian characteristic is the presence of milk producing glands (mammary glands) by which the young ones are nourished [128]."
+
+      - text: "Which of the following mammals is an exception to the general viviparous nature of the class?"
+        options:
+              - "*Macropus* (Kangaroo)"
+              - "*Pteropus* (Flying fox)"
+              - "*Ornithorhynchus* (Platypus)"
+              - "*Balaenoptera* (Blue whale)"
+        correct: 2
+        explanation: "They are viviparous with few exceptions (Oviparous-Ornithorhynchus (Platypus)) and development is direct [129]."
 ---
-
-## Chapter 1: The Living World
-
-### 1.1 Diversity in the Living World
-
-- **Biology** is the science of life forms and living processes.
-- Early humans easily distinguished between inanimate matter and living organisms and sometimes deified them due to awe or fear.
-- **Anthropocentric views** limited early biological knowledge.
-- **Systematic description of life forms** led to identification, nomenclature, and classification systems.
-- A key revelation was the **sharing of similarities among living organisms**, indicating that all present-day organisms are related to each other and to all organisms that ever lived, which fostered conservation movements.
-- The living world exhibits an amazing diversity of living types, found in extraordinary habitats from cold mountains to hot springs. The beauty and interactions of life evoke wonder and reflection on "what indeed is life?".
-- The question "what is life?" has two implicit parts:
-     - **Technical**: What is living as opposed to non-living?
-     - **Philosophical**: What is the purpose of life? (Scientists focus on the technical question).
-- **Diversity**: A large variety of living organisms are visible (potted plants, insects, birds, pets) and invisible (microbes). Increasing the area of observation increases the range and variety of organisms.
-- Each different kind of plant, animal, or organism represents a **species**.
-- The number of known and described species ranges between **1.7-1.8 million**, which refers to **biodiversity** (number and types of organisms). New organisms are continuously being identified in new and old areas.
-
-### 1.2 Taxonomic Categories
-
-- **Nomenclature**: The process of standardising the naming of living organisms so a particular organism is known by the same name worldwide.
-     - Naming is only possible when the organism is correctly described and identified. This process is **identification**.
-- **Scientific names** are based on agreed principles and criteria established by scientists and are acceptable to biologists globally.
-     - For plants: **International Code for Botanical Nomenclature (ICBN)**.
-     - For animals: **International Code of Zoological Nomenclature (ICZN)**.
-     - Scientific names ensure each organism has **only one name** and that this name has not been used for any other known organism.
-- **Binomial Nomenclature**: A system of providing a name with two components.
-     - Given by **Carolus Linnaeus**.
-     - Components: **Generic name** and **specific epithet**.
-     - Example: For mango, **_Mangifera indica_**. _Mangifera_ is the genus, and _indica_ is the specific epithet.
-- **Universal Rules of Nomenclature**:
-     1.    **Biological names are generally in Latin** and written in _italics_, or Latinised/derived from Latin.
-     2.    The **first word represents the genus**, and the **second component denotes the specific epithet**.
-     3.    Both words, when handwritten, are **separately underlined**, or printed in _italics_, to indicate their Latin origin.
-     4.    The **genus starts with a capital letter**; the **specific epithet starts with a small letter** (e.g., _Mangifera indica_).
-     5.    The **author's name appears after the specific epithet** in abbreviated form (e.g., _Mangifera indica Linn._ indicating Linnaeus described it).
-- **Classification**: The process of grouping anything into convenient categories based on easily observable characters.
-     - Example: Recognising groups like plants, animals, dogs, cats, or insects.
-     - **Taxa** (singular: taxon): The scientific term for these convenient categories used to study organisms. Taxa can indicate categories at very different levels (e.g., 'Plants' is a taxon, 'Wheat' is a taxon; 'animals', 'mammals', 'dogs' are all taxa at different levels).
-- **Taxonomy**: The process of classifying living organisms based on characteristics.
-     - Basis of modern taxonomic studies: **External and internal structure, cell structure, development process, and ecological information**.
-     - **Basic processes of taxonomy**: Characterisation, identification, classification, and nomenclature.
-     - Not new: Early classifications were based on the 'uses' of various organisms (food, clothing, shelter).
-- **Systematics**: The branch of study interested in knowing different kinds of organisms, their diversities, and their relationships.
-     - Derived from the Latin word 'systema' meaning systematic arrangement of organisms.
-     - Linnaeus used **_Systema Naturae_** as the title of his publication.
-     - The scope of systematics was later enlarged to include identification, nomenclature, and classification, and it now **takes into account evolutionary relationships** between organisms.
-
-### 1.3 Taxonomic Hierarchy
-
-- Classification is a hierarchy of steps, where each step represents a rank or category.
-- A **taxonomic category** is part of the overall taxonomic arrangement.
-- All categories together constitute the **taxonomic hierarchy**.
-- Each category is a unit of classification, commonly termed a **taxon** (plural: taxa).
-- **Common Taxonomic Categories** (in descending order):
-     - **Kingdom**
-     - **Phylum** (for animals) or **Division** (for plants)
-     - **Class**
-     - **Order**
-     - **Family**
-     - **Genus**
-     - **Species**
-- **Basis of arrangement**: As one moves from species to kingdom (ascending order), the number of common characteristics **decreases**.
-     - **Lower the taxa**: More characteristics are shared among members within that taxon.
-     - **Higher the category**: Greater difficulty in determining relationships to other taxa at the same level, making classification more complex.
-
-#### 1.2.1 Species
-
-- A group of individual organisms with **fundamental similarities**.
-- Distinguishable from closely related species based on **distinct morphological differences**.
-- Examples:
-     - _Mangifera indica_ (mango): _indica_ is the specific epithet.
-     - _Solanum tuberosum_ (potato): _tuberosum_ is the specific epithet.
-     - _Panthera leo_ (lion): _leo_ is the specific epithet.
-     - Human beings: _Homo sapiens_ (_sapiens_ is the specific epithet).
-
-#### 1.2.2 Genus
-
-- Comprises a group of **related species** that have more characters in common compared to species of other genera.
-- Aggregates of closely related species.
-- Examples:
-     - Potato (_Solanum tuberosum_) and brinjal (Solanum melongena) both belong to genus _Solanum_.
-     - Lion (_Panthera leo_), leopard (_Panthera pardus_), and tiger (_Panthera tigris_) are species of the genus _Panthera_.
-     - Genus _Panthera_ differs from genus _Felis_ (which includes cats).
-
-#### 1.2.3 Family
-
-- The next category, grouping **related genera**.
-- Has fewer similarities compared to genus and species.
-- Characterised by **both vegetative and reproductive features**.
-- Examples:
-     - Plant genera _Solanum_, _Petunia_, and _Datura_ are placed in the family **Solanaceae**.
-     - Animal genera _Panthera_ (lion, tiger, leopard) and _Felis_ (cats) are placed in the family **Felidae**.
-     - Cats (Felidae) and dogs (Canidae) are separated into two different families due to similarities and differences.
-
-#### 1.2.4 Order
-
-- Identified based on **aggregates of characters**.
-- A higher category, it is an **assemblage of families** which exhibit a few similar characters. The similar characters are less in number compared to different genera within a family.
-- Examples:
-     - Plant families like Convolvulaceae and Solanaceae are included in the order **Polymoniales**, mainly based on floral characters.
-     - The animal order **Carnivora** includes families like Felidae and Canidae.
-
-#### 1.2.5 Class
-
-- This category includes **related orders**.
-- Example: Order Primata (monkey, gorilla, gibbon) is placed in class **Mammalia** along with order Carnivora (tiger, cat, dog).
-
-#### 1.2.6 Phylum / Division
-
-- **Phylum**: For animals, classes with common features like the presence of notochord and dorsal hollow neural system are grouped into a higher category called Phylum.
-     - Example: Fishes, amphibians, reptiles, birds, and mammals are included in phylum **Chordata**.
-- **Division**: For plants, classes with a few similar characters are assigned to a higher category called Division.
-
-#### 1.2.7 Kingdom
-
-- The **highest category**.
-- **Kingdom Animalia**: All animals belonging to various phyla.
-- **Kingdom Plantae**: Comprises all plants from various divisions.
-
-**Table 1.1: Organisms with their Taxonomic Categories**
-
-| Common Name | Biological Name     | Genus       | Family        | Order      | Class           | Phylum/Division |
-| :---------- | :------------------ | :---------- | :------------ | :--------- | :-------------- | :-------------- |
-| Man         | _Homo sapiens_      | _Homo_      | Hominidae     | Primata    | Mammalia        | Chordata        |
-| Housefly    | _Musca domestica_   | _Musca_     | Muscidae      | Diptera    | Insecta         | Arthropoda      |
-| Mango       | _Mangifera indica_  | _Mangifera_ | Anacardiaceae | Sapindales | Dicotyledonae   | Angiospermae    |
-| Wheat       | _Triticum aestivum_ | _Triticum_  | Poaceae       | Poales     | Monocotyledonae | Angiospermae    |
-
----
-
-## Chapter 2: Biological Classification
-
-### Historical Context and Whittaker's System
-
-- Early attempts to classify organisms were instinctive and based on utility (food, shelter, clothing).
-- **Aristotle**: Earliest to attempt a more scientific basis, using simple morphological characters.
-     - Classified plants into trees, shrubs, and herbs.
-     - Divided animals into two groups: those with red blood and those without.
-- **Linnaeus' Two Kingdom System**: Developed with Plantae and Animalia kingdoms, including all plants and animals respectively.
-     - **Limitations**:
-          - Did not distinguish between eukaryotes and prokaryotes.
-          - Did not distinguish between unicellular and multicellular organisms.
-          - Did not distinguish between photosynthetic (e.g., green algae) and non-photosynthetic (e.g., fungi) organisms.
-     - Found inadequate because many organisms did not fit neatly into either category.
-- **Evolution of Classification Systems**: A need arose to include characteristics beyond gross morphology, such as cell structure, nature of cell wall, mode of nutrition, habitat, methods of reproduction, and evolutionary relationships.
-- Plant and animal kingdoms have been constant under all systems, but the understanding of which groups belong to them has changed. The number and nature of other kingdoms have also varied.
-
-### 2.1 R.H. Whittaker's Five Kingdom Classification (1969)
-
-- **Kingdoms proposed**: Monera, Protista, Fungi, Plantae, and Animalia.
-- **Main criteria for classification**:
-     - Cell structure
-     - Body organisation
-     - Mode of nutrition
-     - Reproduction
-     - Phylogenetic relationships (evolutionary relationships).
-- **Three-domain system**: A more recent proposal that divides Kingdom Monera into two domains, leaving the eukaryotic kingdoms in a third domain, resulting in a six-kingdom classification (details for higher classes).
-- **Improvements over earlier systems**:
-     - Earlier systems placed diverse groups like bacteria, blue-green algae, fungi, mosses, ferns, gymnosperms, and angiosperms all under 'Plants' simply because they had a cell wall. This grouped prokaryotic bacteria with eukaryotic groups, and unicellular organisms with multicellular ones.
-     - Fungi were grouped with green plants, despite their characteristic differences (fungi had chitin cell walls, green plants had cellulosic cell walls) and heterotrophic mode of nutrition.
-     - Whittaker's system placed fungi in a separate Kingdom Fungi.
-     - All prokaryotic organisms were grouped under Kingdom Monera.
-     - All unicellular eukaryotic organisms were placed in Kingdom Protista, bringing together organisms that were previously in different kingdoms (e.g., _Chlamydomonas_ and _Chlorella_ from 'Plants' with _Paramoecium_ and _Amoeba_ from 'Animal kingdom').
-- These changes reflect improved understanding of characteristics and evolutionary relationships, a trend expected to continue.
-
-**Table 2.1: Characteristics of the Five Kingdoms**
-
-| Characters            | Monera                                                                                  | Protista                                       | Fungi                                 | Plantae                      | Animalia                                  |
-| :-------------------- | :-------------------------------------------------------------------------------------- | :--------------------------------------------- | :------------------------------------ | :--------------------------- | :---------------------------------------- |
-| **Cell type**         | Prokaryotic                                                                             | Eukaryotic                                     | Eukaryotic                            | Eukaryotic                   | Eukaryotic                                |
-| **Cell wall**         | Non-cellulosic (Polysaccharide + amino acid)                                            | Present in some                                | Present (with chitin)                 | Present (cellulose)          | Absent                                    |
-| **Nuclear membrane**  | Absent                                                                                  | Present                                        | Present                               | Present                      | Present                                   |
-| **Body organisation** | Cellular                                                                                | Cellular                                       | Multicellular/loose tissue            | Tissue/organ                 | Tissue/organ/organ system                 |
-| **Mode of nutrition** | Autotrophic (chemosynthetic & photosynthetic) and Heterotrophic (saprophytic/parasitic) | Autotrophic (Photosynthetic) and Heterotrophic | Heterotrophic (Saprophytic/Parasitic) | Autotrophic (Photosynthetic) | Heterotrophic (Holozoic/Saprophytic etc.) |
-
-### 2.2 Kingdom Monera
-
-- **Bacteria** are the sole members of Kingdom Monera.
-- Most abundant micro-organisms, found almost everywhere, including extreme habitats like hot springs, deserts, snow, and deep oceans. Many are parasites.
-- **Grouped by shape**:
-     - **Coccus** (pl.: cocci): Spherical
-     - **Bacillus** (pl.: bacilli): Rod-shaped
-     - **Vibrium** (pl.: vibrio): Comma-shaped
-     - **Spirillum** (pl.: spirilla): Spiral
-- Show extensive **metabolic diversity** despite simple structure.
-     - **Autotrophic**: Synthesize own food from inorganic substrates.
-          - Photosynthetic autotrophic
-          - Chemosynthetic autotrophic
-     - **Heterotrophic**: Depend on other organisms or dead organic matter for food (vast majority).
-
-#### 2.1.1 Archaebacteria
-
-- Special bacteria found in **harsh habitats**:
-     - Extreme salty areas (**halophiles**)
-     - Hot springs (**thermoacidophiles**)
-     - Marshy areas (**methanogens**)
-- Differ from other bacteria by a **different cell wall structure**, which aids survival in extreme conditions.
-- **Methanogens** are present in the gut of ruminant animals (cows, buffaloes) and produce methane (biogas) from dung.
-
-#### 2.1.2 Eubacteria (True Bacteria)
-
-- Characterised by a **rigid cell wall**. If motile, they have a **flagellum**.
-- **Cyanobacteria (blue-green algae)**:
-     - Have **chlorophyll a** (similar to green plants) and are photosynthetic autotrophs.
-     - Unicellular, colonial, or filamentous; found in freshwater, marine, or terrestrial environments.
-     - Colonies often surrounded by a **gelatinous sheath**.
-     - Can form **blooms in polluted water bodies**.
-     - Some fix atmospheric nitrogen in specialised cells called **heterocysts** (e.g., _Nostoc_, _Anabaena_).
-- **Chemosynthetic autotrophic bacteria**:
-     - Oxidise inorganic substances (nitrates, nitrites, ammonia) to produce ATP.
-     - Play a great role in **recycling nutrients** like nitrogen, phosphorus, iron, and sulphur.
-- **Heterotrophic bacteria**:
-     - Most abundant in nature, majority are important **decomposers**.
-     - **Useful roles**: Making curd from milk, antibiotic production, fixing nitrogen in legume roots.
-     - **Pathogens**: Cause diseases in humans, crops, farm animals, and pets (e.g., cholera, typhoid, tetanus, citrus canker).
-- **Reproduction in bacteria**:
-     - Mainly by **fission**.
-     - Under unfavourable conditions, they produce **spores**.
-     - Also reproduce by a primitive type of **DNA transfer** (sexual reproduction).
-- **Mycoplasma**:
-     - Completely **lack a cell wall**.
-     - Smallest living cells known.
-     - Can survive without oxygen.
-     - Many are pathogenic in animals and plants.
-
-### 2.3 Kingdom Protista
-
-- Includes **all single-celled eukaryotes**.
-- Boundaries are not well-defined, leading to varied classifications among biologists.
-- Members are primarily **aquatic**.
-- Forms a link with plants, animals, and fungi kingdoms.
-- **Eukaryotic cell body**: Well-defined nucleus and other membrane-bound organelles.
-- Some have **flagella or cilia**.
-- **Reproduction**: Asexually and sexually (involving cell fusion and zygote formation).
-- **Groups included**: Chrysophytes, Dinoflagellates, Euglenoids, Slime moulds, and Protozoans.
-
-#### 2.2.1 Chrysophytes
-
-- Includes **diatoms** and **golden algae (desmids)**.
-- Found in fresh water and marine environments.
-- Microscopic and float passively in water currents (**plankton**).
-- Most are **photosynthetic**.
-- **Diatoms**:
-     - Cell walls form two thin overlapping shells that fit like a soapbox.
-     - Walls embedded with **silica**, making them indestructible.
-     - Leave behind large cell wall deposits forming **'diatomaceous earth'** (used in polishing, filtration of oils and syrups).
-     - Are the chief **'producers' in the oceans**.
-
-#### 2.2.2 Dinoflagellates
-
-- Mostly marine and photosynthetic.
-- Appear yellow, green, brown, blue, or red depending on main pigments.
-- Cell wall has **stiff cellulose plates** on the outer surface.
-- Most have **two flagella**: one longitudinal, one transverse in a furrow.
-- **Red dinoflagellates** (e.g., _Gonyaulax_) can multiply rapidly, causing **red tides**, and release toxins that kill other marine animals.
-
-#### 2.2.3 Euglenoids
-
-- Majority are freshwater organisms found in stagnant water.
-- Instead of a cell wall, they have a **protein-rich layer called pellicle**, which makes their body flexible.
-- Have **two flagella** (one short, one long).
-- **Mixotrophic**: Photosynthetic in sunlight, but behave as heterotrophs (predating on smaller organisms) when deprived of sunlight.
-- Pigments are identical to those in higher plants.
-- Example: _Euglena_.
-
-#### 2.2.4 Slime Moulds
-
-- **Saprophytic protists**.
-- Body moves along decaying twigs and leaves, engulfing organic material.
-- Under suitable conditions, form an aggregation called **plasmodium**, which can grow and spread.
-- During unfavourable conditions, plasmodium differentiates into **fruiting bodies** bearing spores at their tips.
-- Spores possess **true walls**, are extremely resistant, and survive for years; dispersed by air currents.
-
-#### 2.2.5 Protozoans
-
-- All are **heterotrophs**, living as predators or parasites.
-- Believed to be **primitive relatives of animals**.
-- **Four major groups**:
-     1.    **Amoeboid protozoans**:
-           - Live in fresh water, sea water, or moist soil.
-           - Move and capture prey using **pseudopodia (false feet)** (e.g., _Amoeba_).
-           - Marine forms have **silica shells** on their surface.
-           - Some are parasites (e.g., _Entamoeba_).
-     2.    **Flagellated protozoans**:
-           - Either free-living or parasitic; have **flagella**.
-           - Parasitic forms cause diseases (e.g., sleeping sickness by _Trypanosoma_).
-     3.    **Ciliated protozoans**:
-           - Aquatic, actively moving due to thousands of **cilia**.
-           - Have a cavity (**gullet**) that opens to the outside; coordinated ciliary movement steers food-laden water into gullet.
-           - Example: _Paramoecium_.
-     4.    **Sporozoans**:
-           - Diverse organisms with an **infectious spore-like stage** in their life cycle.
-           - Example: _Plasmodium_ (malarial parasite), which causes malaria.
-
-### 2.4 Kingdom Fungi
-
-- A **unique kingdom of heterotrophic organisms**.
-- Great diversity in morphology and habitat.
-- Examples: Mushrooms, toadstools, white spots on mustard leaves (parasitic), yeast (unicellular, used in bread/beer), _Puccinia_ (wheat rust), _Penicillium_ (source of antibiotics).
-- **Cosmopolitan**: Occur in air, water, soil, animals, and plants. Prefer warm and humid places (food kept in refrigerators to prevent fungal/bacterial infections).
-- **Structure**:
-     - Mostly **filamentous** (except unicellular yeasts).
-     - Bodies consist of long, slender thread-like structures called **hyphae**.
-     - Network of hyphae is called **mycelium**.
-     - Some hyphae are continuous tubes filled with multinucleated cytoplasm (**coenocytic hyphae**); others have cross walls (**septae**).
-     - **Cell walls are composed of chitin and polysaccharides**.
-- **Nutrition**:
-     - Most are **saprophytes**: Absorb soluble organic matter from dead substrates.
-     - Some are **parasites**: Depend on living plants and animals.
-     - Can live as **symbionts**:
-          - **Lichens**: Association with algae.
-          - **Mycorrhiza**: Association with roots of higher plants.
-- **Reproduction**:
-     - **Vegetative means**: Fragmentation, fission, budding.
-     - **Asexual reproduction**: By spores called **conidia**, **sporangiospores**, or **zoospores**. These spores are produced in distinct structures called fruiting bodies.
-     - **Sexual reproduction**: By **oospores, ascospores, and basidiospores**.
-          - Involves three steps:
-               1.    **Plasmogamy**: Fusion of protoplasms between two motile or non-motile gametes.
-               2.    **Karyogamy**: Fusion of two nuclei.
-               3.    **Meiosis in zygote**: Results in haploid spores.
-          - In some fungi, fusion of haploid cells immediately results in diploid cells (2n).
-          - In other fungi (ascomycetes and basidiomycetes), an intervening **dikaryotic stage** (n + n, two nuclei per cell) occurs, called **dikaryophase**. Later, parental nuclei fuse to become diploid.
-          - Fungi form fruiting bodies where reduction division occurs, leading to haploid spores.
-- **Classification Basis**: Morphology of mycelium, mode of spore formation, and fruiting bodies.
-
-#### 2.3.1 Phycomycetes
-
-- Found in aquatic habitats, on decaying wood in moist places, or as **obligate parasites on plants**.
-- Mycelium is **aseptate and coenocytic**.
-- **Asexual reproduction**: By zoospores (motile) or aplanospores (non-motile); these spores are endogenously produced in sporangium.
-- **Sexual reproduction**: A **zygospore** is formed by fusion of two gametes, which can be similar (isogamous) or dissimilar (anisogamous or oogamous) in morphology.
-- Examples: _Mucor_, _Rhizopus_ (bread mould), _Albugo_ (parasitic fungi on mustard).
-
-#### 2.3.2 Ascomycetes (Sac-Fungi)
-
-- Mostly multicellular (e.g., _Penicillium_), rarely unicellular (e.g., yeast, _Saccharomyces_).
-- Saprophytic, decomposers, parasitic, or **coprophilous** (growing on dung).
-- Mycelium is **branched and septate**.
-- **Asexual spores**: **Conidia**, produced exogenously on special mycelium called **conidiophores**. Conidia germinate to produce mycelium.
-- **Sexual spores**: **Ascospores**, produced endogenously in sac-like **asci** (singular: ascus). Asci are arranged in different types of fruiting bodies called **ascocarps**.
-- Examples: _Aspergillus_, _Claviceps_, _Neurospora_ (used extensively in biochemical and genetic work).
-- Many members like morels and truffles are edible delicacies.
-
-#### 2.3.3 Basidiomycetes
-
-- Commonly known forms: Mushrooms, bracket fungi, puffballs.
-- Grow in soil, on logs, tree stumps, and in living plant bodies as parasites (e.g., rusts and smuts).
-- Mycelium is **branched and septate**.
-- **Asexual spores**: Generally not found.
-- **Vegetative reproduction**: Common by fragmentation.
-- **Sex organs**: Absent. Plasmogamy brought about by fusion of two vegetative or somatic cells of different strains/genotypes.
-- Resultant structure is **dikaryotic**, which ultimately gives rise to **basidium**. Karyogamy and meiosis occur in the basidium, producing four basidiospores.
-- **Basidiospores**: Exogenously produced on the basidium (pl.: basidia).
-- Basidia are arranged in fruiting bodies called **basidiocarps**.
-- Examples: _Agaricus_ (mushroom), _Ustilago_ (smut), _Puccinia_ (rust fungus).
-
-#### 2.3.4 Deuteromycetes (Imperfect Fungi)
-
-- Commonly called imperfect fungi because **only the asexual or vegetative phases are known**.
-- If sexual forms are discovered, they are moved into their rightful classes (often ascomycetes and basidiomycetes).
-- Reproduce only by **asexual spores known as conidia**.
-- Mycelium is **septate and branched**.
-- Some members are saprophytes or parasites, while a large number are **decomposers of litter** and help in mineral cycling.
-- Examples: _Alternaria_, _Colletotrichum_, and _Trichoderma_.
-
-### 2.5 Kingdom Plantae
-
-- Includes all **eukaryotic chlorophyll-containing organisms** commonly called plants.
-- A few members are **partially heterotrophic**:
-     - **Insectivorous plants**: _Bladderwort_, _Venus fly trap_.
-     - **Parasites**: _Cuscuta_.
-- **Plant cells**: Eukaryotic structure with prominent chloroplasts and **cell wall mainly made of cellulose**.
-- Includes **algae, bryophytes, pteridophytes, gymnosperms, and angiosperms**.
-- **Life cycle**: Has two distinct phases that alternate with each other (**alternation of generations**):
-     - Diploid **sporophytic** phase
-     - Haploid **gametophytic** phase
-- The length and independence of these phases vary among different plant groups.
-
-### 2.6 Kingdom Animalia
-
-- Characterised by **heterotrophic eukaryotic organisms**.
-- Are **multicellular** and their cells **lack cell walls**.
-- Directly or indirectly depend on plants for food.
-- Digest food in an **internal cavity** and store food reserves as **glycogen or fat**.
-- Mode of nutrition is **holozoic** (by ingestion of food).
-- Follow a **definite growth pattern** and grow into adults with a definite shape and size.
-- Higher forms show **elaborate sensory and neuromotor mechanisms**.
-- Most are capable of **locomotion**.
-- **Sexual reproduction**: By copulation of male and female, followed by embryological development.
-
-### 2.7 Viruses, Viroids, Prions, and Lichens
-
-- These are **not mentioned in Whittaker's five kingdom classification**.
-
-#### Viruses
-
-- Not considered truly 'living' if 'living' is defined by cellular structure.
-- Are **non-cellular organisms** with an **inert crystalline structure** outside the living cell.
-- **Obligate parasites**: Once they infect a cell, they take over the host cell's machinery to replicate, killing the host.
-- **History**:
-     - **Dmitri Ivanowsky (1892)**: Recognised microbes causing mosaic disease of tobacco; found them smaller than bacteria (passed through filters).
-     - **M.W. Beijerinck (1898)**: Called the infectious fluid "Contagium vivum fluidum" (infectious living fluid).
-     - **W.M. Stanley (1935)**: Showed viruses could be crystallised, and crystals largely consist of proteins.
-- **Composition**:
-     - A **nucleoprotein**.
-     - Contain **genetic material** (either **RNA or DNA**, never both).
-     - The genetic material is infectious.
-     - Plant viruses generally have single-stranded RNA.
-     - Animal viruses have either single or double-stranded RNA or double-stranded DNA.
-     - Bacterial viruses (**bacteriophages**) are usually double-stranded DNA viruses.
-     - **Capsid**: A protein coat made of small subunits called **capsomeres**, which protects the nucleic acid. Capsomeres are arranged in helical or polyhedral geometric forms.
-- **Diseases**:
-     - **Humans**: Mumps, smallpox, herpes, influenza, AIDS.
-     - **Plants**: Mosaic formation, leaf rolling and curling, yellowing, vein clearing, dwarfing, stunted growth.
-
-#### Viroids
-
-- **T.O. Diener (1971)**: Discovered a new infectious agent smaller than viruses that caused potato spindle tuber disease.
-- Found to be a **free RNA**.
-- **Lacked the protein coat** found in viruses.
-- RNA of low molecular weight.
-
-#### Prions
-
-- Infectious agents consisting of **abnormally folded protein**.
-- Similar in size to viruses.
-- Cause certain infectious **neurological diseases**.
-- Examples: Bovine spongiform encephalopathy (BSE, 'mad cow disease' in cattle) and its analogous variant Creutzfeldt-Jacob disease (CJD) in humans.
-
-#### Lichens
-
-- **Symbiotic associations** (mutually useful) between **algae and fungi**.
-     - **Algal component (phycobiont)**: Autotrophic, prepares food for fungi.
-     - **Fungal component (mycobiont)**: Heterotrophic, provides shelter and absorbs mineral nutrients and water for the alga.
-- Their association is so close that they appear as a single organism in nature.
-- Very good **pollution indicators** – they do not grow in polluted areas.
-
----
-
-## Chapter 3: Plant Kingdom
-
-### 3.1 Overview and Classification Systems
-
-- **Kingdom Plantae** in Whittaker's system now excludes Fungi, Monera, and Protista (even those with cell walls), unlike earlier classifications. Cyanobacteria are no longer considered 'algae' in this context.
-- The Plant Kingdom includes **Algae, Bryophytes, Pteridophytes, Gymnosperms, and Angiosperms**.
-- **Classification Systems within Angiosperms**:
-     - **Earlier Artificial Systems**:
-          - Used only **gross superficial morphological characters** (habit, colour, number/shape of leaves).
-          - Mainly based on vegetative characters or androecium structure (e.g., Linnaeus' system).
-          - **Separated closely related species** because they were based on few characteristics.
-          - Gave **equal weightage to vegetative and sexual characteristics**, which is not ideal as vegetative characters are more easily affected by the environment.
-     - **Natural Classification Systems**:
-          - Based on **natural affinities among organisms**.
-          - Considered **external features** as well as **internal features** (ultrastructure, anatomy, embryology, phytochemistry).
-          - Example for flowering plants: Given by **George Bentham and Joseph Dalton Hooker**.
-     - **Phylogenetic Classification Systems**:
-          - Currently **acceptable**, based on **evolutionary relationships** between organisms.
-          - Assumes organisms in the same taxa have a **common ancestor**.
-          - Use information from many sources, especially when fossil evidence is lacking.
-     - **Numerical Taxonomy**:
-          - Easily carried out using **computers**.
-          - Based on **all observable characteristics**.
-          - Numbers and codes assigned to characters, data processed.
-          - Each character given **equal importance**, and hundreds of characters can be considered.
-     - **Cytotaxonomy**: Based on **cytological information** (chromosome number, structure, behaviour).
-     - **Chemotaxonomy**: Uses the **chemical constituents** of the plant to resolve classification confusions.
-
-### 3.2 Algae
-
-- **Characteristics**: Chlorophyll-bearing, simple, thalloid (undifferentiated body), autotrophic, and largely aquatic (fresh water and marine).
-- **Habitats**: Moist stones, soils, wood. Some associate with fungi (lichen) or animals (sloth bear).
-- **Form and Size**: Highly variable.
-     - Colonial forms: _Volvox_.
-     - Filamentous forms: _Ulothrix_, _Spirogyra_.
-     - Massive marine forms: Kelps (can be 100 meters tall).
-- **Reproduction**:
-     - **Vegetative**: By **fragmentation**; each fragment develops into a thallus.
-     - **Asexual**: By different types of **spores**, most common being **zoospores** (flagellated, motile), which germinate into new plants.
-     - **Sexual**: Fusion of two gametes.
-          - **Isogamous**: Gametes are flagellated and similar in size (e.g., _Ulothrix_) or non-flagellated but similar in size (e.g., _Spirogyra_).
-          - **Anisogamous**: Gametes are dissimilar in size (e.g., _Eudorina_).
-          - **Oogamous**: Fusion between a large, non-motile (static) female gamete and a smaller, motile male gamete (e.g., _Volvox_, _Fucus_).
-- **Economic Importance**:
-     - Perform at least half of the total CO2 fixation on Earth through photosynthesis, increasing dissolved oxygen.
-     - Paramount as **primary producers** in aquatic food cycles.
-     - **Food**: Many species of marine algae (e.g., _Porphyra_, _Laminaria_, _Sargassum_) are consumed.
-     - **Hydrocolloids** (water-holding substances) produced by some brown and red algae:
-          - **Algin** (from brown algae).
-          - **Carrageen** (from red algae).
-     - **Agar**: Commercial product from _Gelidium_ and _Gracilaria_, used to grow microbes and in preparations of ice-creams and jellies.
-     - **Chlorella**: A unicellular alga rich in proteins, used as a food supplement, even by space travellers.
-- **Classes**: Divided into three main classes: Chlorophyceae, Phaeophyceae, and Rhodophyceae.
-
-#### 3.1.1 Chlorophyceae (Green Algae)
-
-- Commonly called **green algae** due to dominance of chlorophyll a and b pigments.
-- Plant body: Unicellular, colonial, or filamentous.
-- Pigments localised in definite chloroplasts, which can be discoid, plate-like, reticulate, cup-shaped, spiral, or ribbon-shaped.
-- **Pyrenoids**: One or more storage bodies located in chloroplasts; contain protein besides starch. Some store food as oil droplets.
-- **Cell wall**: Rigid, made of an inner layer of cellulose and an outer layer of pectose.
-- **Reproduction**:
-     - Vegetative: Usually by fragmentation.
-     - Asexual: By flagellated zoospores produced in zoosporangia.
-     - Sexual: Shows considerable variation, can be isogamous, anisogamous, or oogamous.
-- Examples: _Chlamydomonas_, _Volvox_, _Ulothrix_, _Spirogyra_, _Chara_.
-
-#### 3.1.2 Phaeophyceae (Brown Algae)
-
-- Primarily found in **marine habitats**.
-- Show great variation in size and form: from simple branched filamentous forms (_Ectocarpus_) to profusely branched forms like **kelps** (can reach 100 metres).
-- **Pigments**: Chlorophyll a, c, carotenoids, and xanthophylls (e.g., **fucoxanthin**, which gives olive green to various shades of brown colour).
-- Food stored as **complex carbohydrates** (laminarin or mannitol).
-- **Cell wall**: Cellulosic, usually covered outside by a gelatinous coating of **algin**.
-- Protoplast contains plastids, a centrally located vacuole, and a nucleus.
-- **Plant body structure**: Usually attached to substratum by a **holdfast**, has a stalk called **stipe**, and a leaf-like photosynthetic organ called **frond**.
-- **Reproduction**:
-     - Vegetative: By fragmentation.
-     - Asexual: By **biflagellate zoospores** (pear-shaped with two unequal laterally attached flagella).
-     - Sexual: May be isogamous, anisogamous, or oogamous. Gamete union can be in water or within the oogonium (for oogamous species). Gametes are pyriform (pear-shaped) and bear two laterally attached flagella.
-- Examples: _Ectocarpus_, _Dictyota_, _Laminaria_, _Sargassum_, _Fucus_.
-
-#### 3.1.3 Rhodophyceae (Red Algae)
-
-- Commonly called **red algae** due to predominance of the red pigment, **r-phycoerythrin**.
-- Majority are **marine**, with higher concentrations in warmer areas.
-- Found in both well-lighted surface waters and great depths where little light penetrates.
-- Thalli of most are **multicellular** and can have complex body organisation.
-- Food stored as **floridean starch**, which is very similar to amylopectin and glycogen in structure.
-- **Reproduction**:
-     - Vegetative: Usually by fragmentation.
-     - Asexual: By **non-motile spores**.
-     - Sexual: By **non-motile gametes**; it is oogamous and accompanied by complex post-fertilisation developments.
-- Examples: _Polysiphonia_, _Porphyra_, _Gracilaria_, _Gelidium_.
-
-**Table 3.1: Divisions of Algae and their Main Characteristics**
-
-| Classes       | Common Name | Major Pigments                  | Stored Food         | Cell Wall                                  | Flagellar Number and Position of Insertions | Habitat                                               |
-| :------------ | :---------- | :------------------------------ | :------------------ | :----------------------------------------- | :------------------------------------------ | :---------------------------------------------------- |
-| Chlorophyceae | Green algae | Chlorophyll a, b                | Starch              | Cellulose                                  | 2-8, equal, apical                          | Fresh water, brackish water, salt water               |
-| Phaeophyceae  | Brown algae | Chlorophyll a, c, fucoxanthin   | Mannitol, laminarin | Cellulose and algin                        | 2, unequal, lateral                         | Fresh water (rare), brackish water, salt water        |
-| Rhodophyceae  | Red algae   | Chlorophyll a, d, phycoerythrin | Floridean starch    | Cellulose, pectin and poly sulphate esters | Absent                                      | Fresh water (some), brackish water, salt water (most) |
-
-### 3.3 Bryophytes
-
-- Includes various **mosses and liverworts**.
-- Found commonly growing in **moist shaded areas** in the hills.
-- Called **amphibians of the plant kingdom** because they can live in soil but depend on water for sexual reproduction.
-- Usually occur in damp, humid, and shaded localities.
-- **Ecological Importance**:
-     - Play an important role in **plant succession** on bare rocks/soil by decomposing rocks and making substrate suitable for higher plants.
-     - Mosses form dense mats on soil, reducing impact of rain and preventing **soil erosion**.
-     - Some mosses provide food for herbaceous mammals, birds, and other animals.
-     - Species of _Sphagnum_ (a moss) provide **peat**, used as fuel and packing material for trans-shipment due to high water-holding capacity.
-- **Plant Body**: More differentiated than algae.
-     - Thallus-like, prostrate or erect, attached to substratum by unicellular or multicellular **rhizoids**.
-     - Lack true roots, stem, or leaves, but may possess root-like, leaf-like, or stem-like structures.
-- **Main plant body**: **Haploid gametophyte**, which produces gametes.
-- **Sex Organs**: Multicellular.
-     - **Antheridium** (male sex organ): Produces biflagellate **antherozoids**.
-     - **Archegonium** (female sex organ): Flask-shaped, produces a single egg.
-- **Fertilisation**: Antherozoids are released into water, come in contact with archegonium, and fuse with the egg to produce the **zygote**.
-- **Sporophyte**: The zygote does not undergo reduction division immediately but produces a multicellular body called a sporophyte.
-     - Not free-living, but **attached to the photosynthetic gametophyte** and derives nourishment from it.
-     - Some cells undergo **meiosis** to produce haploid **spores**.
-     - These spores germinate to produce a new gametophyte.
-- **Divisions**: Bryophytes are divided into liverworts and mosses.
-
-#### 3.2.1 Liverworts
-
-- Grow in moist, shady habitats like stream banks, marshy ground, damp soil, bark of trees, and deep in woods.
-- **Plant body**: Thalloid (e.g., _Marchantia_), dorsiventral, and closely appressed to the substrate. Leafy members have tiny leaf-like appendages in two rows on stem-like structures.
-- **Asexual reproduction**:
-     - By **fragmentation of thalli**.
-     - By specialised structures called **gemmae** (singular: gemma). Gemmae are green, multicellular, asexual buds that develop in small receptacles called **gemma cups** on the thalli. They detach and germinate to form new individuals.
-- **Sexual reproduction**: Male and female sex organs produced on same or different thalli.
-     - The sporophyte is differentiated into a **foot, seta, and capsule**.
-     - Spores are produced after meiosis within the capsule.
-     - These spores germinate to form free-living gametophytes.
-
-#### 3.2.2 Mosses
-
-- **Predominant stage**: The gametophyte, which consists of two stages.
-     1.    **Protonema stage**: Develops directly from a spore; creeping, green, branched, frequently filamentous.
-     2.    **Leafy stage**: Develops from the secondary protonema as a lateral bud; consists of upright, slender axes bearing spirally arranged leaves. Attached to soil by multicellular and branched rhizoids. This stage bears the sex organs.
-- **Vegetative reproduction**: By fragmentation and budding in the secondary protonema.
-- **Sexual reproduction**: Antheridia and archegonia are produced at the apex of the leafy shoots.
-     - After fertilisation, the zygote develops into a **sporophyte** (foot, seta, and capsule).
-     - The sporophyte in mosses is more elaborate than in liverworts.
-     - The capsule contains spores formed after meiosis.
-     - Mosses have an elaborate mechanism of spore dispersal.
-- Examples: _Funaria_, _Polytrichum_, and _Sphagnum_.
-
-### 3.4 Pteridophytes
-
-- Includes **horsetails and ferns**.
-- **Uses**: Medicinal purposes, soil-binders, ornamentals.
-- **Evolutionary significance**: They are the **first terrestrial plants to possess vascular tissues (xylem and phloem)**.
-- **Habitats**: Found in cool, damp, shady places; some may flourish in sandy-soil conditions.
-- **Main plant body**: **Sporophyte**, which is the dominant phase.
-     - Differentiated into **true root, stem, and leaves**.
-     - These organs possess well-differentiated vascular tissues.
-- **Leaves**:
-     - Small (**microphylls**), as in _Selaginella_.
-     - Large (**macrophylls**), as in ferns.
-- **Sporangia**: Bear sporangia, subtended by leaf-like appendages called **sporophylls**.
-- **Strobili or Cones**: In some cases, sporophylls may form distinct compact structures (e.g., _Selaginella_, _Equisetum_).
-- **Spores**: Sporangia produce spores by meiosis in spore mother cells.
-     - Spores germinate to give rise to inconspicuous, small but multicellular, free-living, mostly photosynthetic thalloid gametophytes called **prothallus**.
-- **Gametophytes**: Require cool, damp, shady places to grow. This specific requirement and need for water for fertilisation limit the spread of living pteridophytes to narrow geographical regions.
-- **Sex Organs on Gametophytes**:
-     - Male sex organs: **Antheridia**.
-     - Female sex organs: **Archegonia**.
-- **Fertilisation**: Water is required for transfer of antherozoids (male gametes) from antheridia to the mouth of archegonium. Fusion of male gamete with egg forms a **zygote**.
-- The zygote produces a multicellular, well-differentiated sporophyte.
-- **Homosporous**: In the majority of pteridophytes, all spores are of similar kinds.
-- **Heterosporous**: Genera like _Selaginella_ and _Salvinia_ produce two kinds of spores – **macro (large)** and **micro (small) spores**.
-     - Megaspores and microspores germinate to give rise to female and male gametophytes, respectively.
-     - Female gametophytes are retained on the parent sporophytes for variable periods.
-     - The development of zygotes into young embryos within the female gametophytes is a **precursor to the seed habit**, considered an important step in evolution.
-- **Classes**: Classified into four classes:
-     - **Psilopsida**: (_Psilotum_)
-     - **Lycopsida**: (_Selaginella_, _Lycopodium_)
-     - **Sphenopsida**: (_Equisetum_)
-     - **Pteropsida**: (_Dryopteris_, _Pteris_, _Adiantum_)
-
-### 3.5 Gymnosperms
-
-- **"Naked seeds"**: The term **gymnos (naked), sperma (seeds)**. Ovules are **not enclosed by any ovary wall** and remain exposed both before and after fertilisation. The seeds that develop post-fertilisation are not covered.
-- **Size**: Include medium-sized trees or tall trees and shrubs. The giant redwood tree _Sequoia_ is one of the tallest tree species.
-- **Roots**: Generally **tap roots**.
-     - In some genera (_Pinus_), roots have **fungal association in the form of mycorrhiza**.
-     - In others (_Cycas_), small specialised roots called **coralloid roots** are associated with N2-fixing cyanobacteria.
-- **Stems**: Unbranched (_Cycas_) or branched (_Pinus_, _Cedrus_).
-- **Leaves**: May be simple or compound.
-     - In _Cycas_, pinnate leaves persist for a few years.
-     - Leaves are well-adapted to withstand extremes of temperature, humidity, and wind.
-     - In conifers, needle-like leaves reduce surface area; thick cuticle and sunken stomata also reduce water loss.
-- **Heterosporous**: They produce haploid **microspores** and **megaspores**.
-- **Sporangia and Strobili/Cones**: The two kinds of spores are produced within sporangia borne on sporophylls, which are arranged spirally along an axis to form lax or compact strobili or cones.
-     - **Male strobili (microsporangiate)**: Bear microsporophylls and microsporangia.
-          - Microspores develop into a highly reduced male gametophytic generation (a few cells) called a **pollen grain**.
-          - Development of pollen grains takes place within the microsporangia.
-     - **Female strobili (macrosporangiate)**: Bear megasporophylls with ovules or megasporangia.
-     - Male or female cones/strobili may be borne on the **same tree** (_Pinus_) or on **different trees** (_Cycas_).
-- **Megaspore Formation**:
-     - The megaspore mother cell differentiates from one of the cells of the nucellus.
-     - The nucellus is protected by envelopes, forming the composite structure called an **ovule**.
-     - Ovules are borne on megasporophylls, which may be clustered to form female cones.
-     - The megaspore mother cell divides meiotically to form **four megaspores**.
-     - One of the megaspores, enclosed within the megasporangium, develops into a multicellular **female gametophyte** that bears two or more archegonia (female sex organs).
-     - The multicellular female gametophyte is retained within the megasporangium.
-- **Gametophytes**: Unlike bryophytes and pteridophytes, male and female gametophytes **do not have an independent free-living existence**; they remain within the sporangia retained on the sporophytes.
-- **Pollination and Fertilisation**:
-     - Pollen grains are released from the microsporangium and carried by air currents.
-     - They come in contact with the opening of the ovules borne on megasporophylls.
-     - The pollen tube, carrying male gametes, grows towards archegonia in the ovules and discharges contents near the mouth.
-     - Following fertilisation, the zygote develops into an **embryo**, and the ovules develop into **seeds** (which are uncovered).
-
-### 3.6 Angiosperms
-
-- **Flowering plants**.
-- Unlike gymnosperms, ovules are **enclosed in specialised structures called flowers**.
-- After fertilisation, the seeds are **enclosed in fruits**.
-- An exceptionally large group of plants found in a **wide range of habitats**.
-- Size varies from the smallest _Wolffia_ to tall trees of _Eucalyptus_ (over 100 meters).
-- Provide food, fodder, fuel, medicines, and several other commercially important products.
-- **Classes**: Divided into two classes:
-     - **Dicotyledons**
-     - **Monocotyledons**
-
----
-
-## Chapter 4: Animal Kingdom
-
-### 4.1 Basis of Classification
-
-- With over a million animal species described, classification is crucial for assigning systematic positions to newly described species.
-- Despite differences in structure and form, fundamental features common to various animals are used as the basis for classification.
-
-#### 4.1.1 Levels of Organisation
-
-- All members of Animalia are **multicellular** but exhibit different patterns of cell organisation.
-     - **Cellular Level of Organisation**: Cells arranged as loose aggregates, with some division of labour (e.g., **sponges**).
-     - **Tissue Level of Organisation**: Cells performing the same function are arranged into tissues (e.g., **coelenterates**, **ctenophores**).
-     - **Organ Level of Organisation**: Tissues are grouped to form organs, each specialised for a particular function (e.g., **Platyhelminthes** and other higher phyla).
-     - **Organ System Level of Organisation**: Organs associate to form functional systems, each concerned with a specific physiological function (e.g., **Annelids, Arthropods, Molluscs, Echinoderms, Hemichordates, Chordates**).
-- **Complexities in Organ Systems**:
-     - **Digestive System**:
-          - **Incomplete**: Single opening serving as both mouth and anus (e.g., Platyhelminthes).
-          - **Complete**: Two openings, mouth and anus.
-     - **Circulatory System**:
-          - **Open type**: Blood is pumped out of the heart, directly bathing cells and tissues.
-          - **Closed type**: Blood is circulated through a series of vessels (arteries, veins, capillaries).
-
-#### 4.1.2 Symmetry
-
-- Animals can be categorised based on their body symmetry.
-     - **Asymmetrical**: Any plane passing through the centre does not divide them into equal halves (e.g., **sponges**).
-     - **Radial Symmetry**: Any plane passing through the central axis divides the organism into two identical halves (e.g., **Coelenterates, Ctenophores, Echinoderms**).
-     - **Bilateral Symmetry**: The body can be divided into identical left and right halves in only one plane (e.g., **Annelids, Arthropods**). (Note: Echinodermata larvae are bilaterally symmetrical, but adults are radial).
-
-#### 4.1.3 Diploblastic and Triploblastic Organisation
-
-- **Diploblastic Animals**: Cells arranged in two embryonic layers:
-     - External **ectoderm**
-     - Internal **endoderm**
-     - An undifferentiated layer, **mesoglea**, is present between the ectoderm and endoderm (e.g., **coelenterates**, **ctenophores**).
-- **Triploblastic Animals**: Developing embryo has a third germinal layer, **mesoderm**, between the ectoderm and endoderm (e.g., **Platyhelminthes to Chordates**).
-
-#### 4.1.4 Coelom (Body Cavity)
-
-- **Coelom**: Body cavity lined by mesoderm.
-     - **Coelomates**: Animals possessing a coelom (e.g., **annelids, molluscs, arthropods, echinoderms, hemichordates, and chordates**).
-- **Pseudocoelom**: Body cavity not lined by mesoderm; mesoderm is present as scattered pouches between the ectoderm and endoderm.
-     - **Pseudocoelomates**: Animals possessing a pseudocoelom (e.g., **aschelminthes**).
-- **Acoelomates**: Animals in which the body cavity is absent (e.g., **platyhelminthes**).
-
-#### 4.1.5 Segmentation
-
-- In some animals, the body is externally and internally divided into segments with a serial repetition of at least some organs.
-- This pattern is called **metameric segmentation**, and the phenomenon is known as **metamerism** (e.g., **earthworm**).
-
-#### 4.1.6 Notochord
-
-- A **mesodermally derived rod-like structure** formed on the dorsal side during embryonic development in some animals.
-- **Chordates**: Animals with a notochord.
-- **Non-chordates**: Animals that do not form this structure (e.g., Porifera to Echinoderms).
-
-### 4.2 Classification of Animals (Phyla)
-
-#### 4.2.1 Phylum – Porifera (Sponges)
-
-- Commonly known as **sponges**.
-- Generally **marine** and mostly **asymmetrical**.
-- Primitive multicellular animals with **cellular level of organisation**.
-- Have a **water transport or canal system**:
-     - Water enters through minute pores (**ostia**) into a central cavity (**spongocoel**), then exits through the **osculum**.
-     - This pathway aids in food gathering, respiratory exchange, and waste removal.
-- **Choanocytes** or collar cells line the spongocoel and canals.
-- Digestion is **intracellular**.
-- Body supported by a skeleton of **spicules or spongin fibres**.
-- Sexes are **not separate (hermaphrodite)**; eggs and sperms produced by the same individual.
-- **Reproduction**: Asexually by fragmentation; sexually by gamete formation.
-- Fertilisation is **internal**; development is **indirect** with a larval stage morphologically distinct from the adult.
-- Examples: _Sycon_ (Scypha), _Spongilla_ (Freshwater sponge), _Euspongia_ (Bath sponge).
-
-#### 4.2.2 Phylum – Coelenterata (Cnidaria)
-
-- Aquatic (mostly marine), sessile or free-swimming, **radially symmetrical** animals.
-- Name "Cnidaria" derived from **cnidoblasts** or **cnidocytes**. These cells contain stinging capsules (**nematocysts**) on tentacles and body, used for anchorage, defense, and prey capture.
-- Exhibit **tissue level of organisation** and are **diploblastic**.
-- Have a **central gastro-vascular cavity** with a single opening (mouth on hypostome).
-- Digestion is **extracellular and intracellular**.
-- Some (e.g., corals) have a skeleton composed of **calcium carbonate**.
-- Exhibit two basic body forms:
-     - **Polyp**: Sessile and cylindrical form (e.g., _Hydra_, _Adamsia_).
-     - **Medusa**: Umbrella-shaped and free-swimming (e.g., _Aurelia_ or jellyfish).
-- Those existing in both forms exhibit **alternation of generations (Metagenesis)**: polyps produce medusae asexually, and medusae form polyps sexually (e.g., _Obelia_).
-- Examples: _Physalia_ (Portuguese man-of-war), _Adamsia_ (Sea anemone), _Pennatula_ (Sea-pen), _Gorgonia_ (Sea-fan), _Meandrina_ (Brain coral).
-
-#### 4.2.3 Phylum – Ctenophora
-
-- Commonly known as **sea walnuts** or **comb jellies**.
-- Exclusively marine, **radially symmetrical**, **diploblastic organisms** with **tissue level of organisation**.
-- Body bears **eight external rows of ciliated comb plates**, which help in locomotion.
-- Digestion is both **extracellular and intracellular**.
-- **Bioluminescence** (ability to emit light) is well-marked.
-- Sexes are **not separate**.
-- Reproduction takes place only by **sexual means**.
-- Fertilisation is **external** with **indirect development**.
-- Examples: _Pleurobrachia_ and _Ctenoplana_.
-
-#### 4.2.4 Phylum – Platyhelminthes (Flatworms)
-
-- Have a **dorso-ventrally flattened body**, hence called flatworms.
-- Mostly **endoparasites** found in animals, including human beings.
-- **Bilaterally symmetrical**, **triploblastic**, and **acoelomate** animals with **organ level of organisation**.
-- Parasitic forms have **hooks and suckers**. Some absorb nutrients directly through their body surface.
-- Specialised cells called **flame cells** help in osmoregulation and excretion.
-- Sexes are **not separate**.
-- Fertilisation is **internal**; development is through many larval stages.
-- Some members like _Planaria_ possess high **regeneration capacity**.
-- Examples: _Taenia_ (Tapeworm), _Fasciola_ (Liver fluke).
-
-#### 4.2.5 Phylum – Aschelminthes (Roundworms)
-
-- Body is **circular in cross-section**, hence called roundworms.
-- May be free-living (aquatic and terrestrial) or parasitic in plants and animals.
-- Have **organ-system level of body organisation**.
-- Are **bilaterally symmetrical**, **triploblastic**, and **pseudocoelomate** animals.
-- **Alimentary canal is complete** with a well-developed muscular pharynx.
-- An **excretory tube** removes body wastes from the body cavity through the excretory pore.
-- Sexes are **separate (dioecious)**; females are often longer than males.
-- Fertilisation is **internal**; development may be direct (young ones resemble adult) or indirect.
-- Examples: _Ascaris_ (Roundworm), _Wuchereria_ (Filaria worm), _Ancylostoma_ (Hookworm).
-
-#### 4.2.6 Phylum – Annelida
-
-- May be aquatic (marine and freshwater) or terrestrial; free-living, and sometimes parasitic.
-- Exhibit **organ-system level of body organisation** and **bilateral symmetry**.
-- Are **triploblastic**, **metamerically segmented** (body distinctly marked into segments or metameres), and **coelomate animals**.
-- Possess **longitudinal and circular muscles** which help in locomotion.
-- Aquatic annelids like _Nereis_ possess **lateral appendages (parapodia)**, which help in swimming.
-- A **closed circulatory system** is present.
-- **Nephridia** help in osmoregulation and excretion.
-- **Neural system** consists of paired ganglia connected by lateral nerves to a double ventral nerve cord.
-- Sexes: _Nereis_ is dioecious, but earthworms and leeches are **monoecious**.
-- Reproduction is **sexual**.
-- Examples: _Nereis_, _Pheretima_ (Earthworm), and _Hirudinaria_ (Blood sucking leech).
-
-#### 4.2.7 Phylum – Arthropoda
-
-- **Largest phylum of Animalia**, includes insects. Over two-thirds of all named species on Earth are arthropods.
-- Have **organ-system level of organisation**.
-- Are **bilaterally symmetrical**, **triploblastic**, **segmented**, and **coelomate** animals.
-- Body covered by a **chitinous exoskeleton**.
-- Body consists of **head, thorax, and abdomen**.
-- Have **jointed appendages** (arthros-joint, poda-appendages).
-- **Respiratory organs**: Gills, book gills, book lungs, or tracheal system.
-- **Circulatory system is of open type**.
-- **Sensory organs**: Antennae, eyes (compound and simple), statocysts (balancing organs).
-- Excretion takes place through **malpighian tubules**.
-- Mostly **dioecious**.
-- Fertilisation is usually **internal**.
-- Mostly **oviparous**.
-- Development may be direct or indirect.
-- Examples:
-     - **Economically important insects**: _Apis_ (Honey bee), _Bombyx_ (Silkworm), _Laccifer_ (Lac insect).
-     - **Vectors**: _Anopheles_, _Culex_, and _Aedes_ (Mosquitoes).
-     - **Gregarious pest**: _Locusta_ (Locust).
-     - **Living fossil**: _Limulus_ (King crab).
-
-#### 4.2.8 Phylum – Mollusca
-
-- The **second largest animal phylum**.
-- Terrestrial or aquatic (marine or freshwater).
-- Having an **organ-system level of organisation**.
-- Are **bilaterally symmetrical**, **triploblastic**, and **coelomate** animals.
-- Body covered by a **calcareous shell** and is unsegmented with a distinct **head, muscular foot, and visceral hump**.
-- A soft and spongy layer of skin forms a **mantle** over the visceral hump.
-- The space between the hump and the mantle is called the **mantle cavity**, containing feather-like gills for respiratory and excretory functions.
-- The anterior head region has **sensory tentacles**.
-- Mouth contains a file-like rasping organ for feeding, called **radula**.
-- Usually **dioecious** and **oviparous** with **indirect development**.
-- Examples: _Pila_ (Apple snail), _Pinctada_ (Pearl oyster), _Sepia_ (Cuttlefish), _Loligo_ (Squid), _Octopus_ (Devil fish), _Aplysia_ (Sea-hare), _Dentalium_ (Tusk shell), and _Chaetopleura_ (Chiton).
-
-#### 4.2.9 Phylum – Echinodermata
-
-- Animals with an **endoskeleton of calcareous ossicles**, hence named Echinodermata (Spiny bodied).
-- All are **marine** with **organ-system level of organisation**.
-- Adult echinoderms are **radially symmetrical**, but larvae are **bilaterally symmetrical**.
-- Are **triploblastic** and **coelomate** animals.
-- **Digestive system is complete** with mouth on the lower (ventral) side and anus on the upper (dorsal) side.
-- The most distinctive feature is the presence of a **water vascular system**, which helps in locomotion, capture and transport of food, and respiration.
-- An **excretory system is absent**.
-- Sexes are **separate**. Reproduction is **sexual**.
-- Fertilisation is usually **external**.
-- Development is **indirect** with free-swimming larva.
-- Examples: _Asterias_ (Star fish), _Echinus_ (Sea urchin), _Antedon_ (Sea lily), _Cucumaria_ (Sea cucumber), and _Ophiura_ (Brittle star).
-
-#### 4.2.10 Phylum – Hemichordata
-
-- Formerly considered a sub-phylum under phylum Chordata, now placed as a **separate phylum under non-chordata**.
-- Have a rudimentary structure in the collar region called **stomochord**, similar to notochord.
-- Small group of **worm-like marine animals** with **organ-system level of organisation**.
-- Are **bilaterally symmetrical**, **triploblastic**, and **coelomate** animals.
-- Body is cylindrical and composed of an anterior **proboscis, a collar, and a long trunk**.
-- Circulatory system is of **open type**.
-- Respiration takes place through **gills**.
-- Excretory organ is **proboscis gland**.
-- Sexes are **separate**.
-- Fertilisation is **external**.
-- Development is **indirect**.
-- Examples: _Balanoglossus_ and _Saccoglossus_.
-
-#### 4.2.11 Phylum – Chordata
-
-- Fundamentally characterised by the presence of:
-     - A **notochord**
-     - A **dorsal hollow nerve cord**
-     - **Paired pharyngeal gill slits**
-- Are **bilaterally symmetrical**, **triploblastic**, **coelomate** with **organ-system level of organisation**.
-- Possess a **post-anal tail** and a **closed circulatory system**.
-
-**Table 4.1: Comparison of Chordates and Non-chordates**
-
-| S.No. | Chordates                                             | Non-chordates                                         |
-| :---- | :---------------------------------------------------- | :---------------------------------------------------- |
-| 1.    | Notochord present.                                    | Notochord absent.                                     |
-| 2.    | Central nervous system is dorsal, hollow, and single. | Central nervous system is ventral, solid, and double. |
-| 3.    | Pharynx perforated by gill slits.                     | Gill slits are absent.                                |
-| 4.    | Heart is ventral.                                     | Heart is dorsal (if present).                         |
-| 5.    | A post-anal part (tail) is present.                   | Post-anal tail is absent.                             |
-
-- Phylum Chordata is divided into three subphyla: **Urochordata (Tunicata), Cephalochordata, and Vertebrata**.
-
-##### Protochordates
-
-- Subphyla Urochordata and Cephalochordata are often referred to as **protochordates**.
-- They are exclusively **marine**.
-     - **Urochordata**: Notochord present only in the **larval tail** (e.g., _Ascidia_, _Salpa_, _Doliolum_).
-     - **Cephalochordata**: Notochord extends from **head to tail region** and is persistent throughout their life (e.g., _Branchiostoma_ (Amphioxus or Lancelet)).
-
-##### Subphylum – Vertebrata
-
-- Members possess a **notochord during the embryonic period**.
-- The notochord is replaced by a **cartilaginous or bony vertebral column in the adult**.
-- **Key concept**: All vertebrates are chordates, but not all chordates are vertebrates.
-- Besides basic chordate characters, vertebrates have:
-     - A **ventral muscular heart** with two, three, or four chambers.
-     - **Kidneys** for excretion and osmoregulation.
-     - **Paired appendages** (fins or limbs).
-- Vertebrata is divided into two divisions based on presence of jaws:
-     - **Agnatha** (lacks jaw)
-     - **Gnathostomata** (bears jaw)
-
-###### 4.2.11.1 Class – Cyclostomata (Agnatha)
-
-- All living members are **ectoparasites on some fishes**.
-- Elongated body bearing **6-15 pairs of gill slits** for respiration.
-- Have a **sucking and circular mouth without jaws**.
-- Body is **devoid of scales and paired fins**.
-- Cranium and vertebral column are **cartilaginous**.
-- Circulation is of **closed type**.
-- Are marine but **migrate for spawning to fresh water**, dying within days after. Larvae return to ocean after metamorphosis.
-- Examples: _Petromyzon_ (Lamprey) and _Myxine_ (Hagfish).
-
-###### Gnathostomata (Jawed Vertebrates)
-
-- Divided into two super classes:
-     - **Pisces** (bear fins)
-     - **Tetrapoda** (bear limbs)
-
-###### Super Class – Pisces (Fishes)
-
-- Includes two classes: Chondrichthyes and Osteichthyes.
-
-**4.2.11.2 Class – Chondrichthyes (Cartilaginous Fishes)**
-
-- **Marine animals** with a streamlined body and **cartilaginous endoskeleton**.
-- Mouth located **ventrally**.
-- Notochord is **persistent throughout life**.
-- Gill slits are separate and **without operculum** (gill cover).
-- Skin is tough, containing minute **placoid scales**.
-- Teeth are modified placoid scales, backwardly directed, with powerful jaws; these animals are predaceous.
-- Due to the **absence of an air bladder**, they must swim constantly to avoid sinking.
-- Heart is **two-chambered** (one auricle and one ventricle).
-- Some have **electric organs** (e.g., _Torpedo_) and some possess a **poison sting** (e.g., _Trygon_).
-- Are **cold-blooded (poikilothermous)** animals, lacking the capacity to regulate body temperature.
-- Sexes are separate; in males, pelvic fins bear **claspers**.
-- Have **internal fertilisation** and many are **viviparous**.
-- Examples: _Scoliodon_ (Dog fish), _Pristis_ (Saw fish), _Carcharodon_ (Great white shark), _Trygon_ (Sting ray).
-
-**4.2.11.3 Class – Osteichthyes (Bony Fishes)**
-
-- Includes both **marine and fresh water fishes** with a **bony endoskeleton**.
-- Body is **streamlined**. Mouth is mostly terminal.
-- Have **four pairs of gills covered by an operculum** on each side.
-- Skin is covered with **cycloid/ctenoid scales**.
-- **Air bladder is present**, which regulates buoyancy.
-- Heart is **two-chambered**.
-- Are **cold-blooded animals**.
-- Sexes are separate.
-- Fertilisation is usually **external**.
-- Mostly **oviparous** and development is **direct**.
-- Examples:
-     - **Marine**: _Exocoetus_ (Flying fish), _Hippocampus_ (Sea horse).
-     - **Freshwater**: _Labeo_ (Rohu), _Catla_ (Katla), _Clarias_ (Magur).
-     - **Aquarium**: _Betta_ (Fighting fish), _Pterophyllum_ (Angel fish).
-
-###### Super Class – Tetrapoda (Limbed Vertebrates)
-
-- Includes four classes: Amphibia, Reptilia, Aves, and Mammalia.
-
-**4.2.11.4 Class – Amphibia**
-
-- Name means "dual life" (Greek: Amphi - dual, bios - life) as they can live in aquatic and terrestrial habitats.
-- Most have **two pairs of limbs**. Body divisible into head and trunk; tail may be present.
-- Skin is **moist and without scales**.
-- Eyes have **eyelids**. A **tympanum represents the ear**.
-- Alimentary canal, urinary, and reproductive tracts open into a common chamber called **cloaca**.
-- Respiration is by **gills, lungs, and through skin**.
-- The heart is **three-chambered** (two auricles and one ventricle).
-- Are **cold-blooded animals**.
-- Sexes are separate. Fertilisation is **external**.
-- They are **oviparous** and development is **indirect**.
-- Examples: _Bufo_ (Toad), _Rana_ (Frog), _Hyla_ (Tree frog), _Salamandra_ (Salamander), _Ichthyophis_ (Limbless amphibia).
-
-**4.2.11.5 Class – Reptilia**
-
-- Class name refers to their creeping or crawling locomotion (Latin: _repere_ or _reptum_).
-- Mostly **terrestrial animals**.
-- Body is covered by **dry and cornified skin, epidermal scales or scutes**.
-- Do not have external ear openings; **tympanum represents ear**.
-- Limbs, when present, are two pairs. (Note: Limbs are absent in snakes).
-- Heart is usually **three-chambered**, but **four-chambered in crocodiles**.
-- Reptiles are **poikilotherms (cold-blooded)**.
-- Snakes and lizards shed their scales as skin cast.
-- Sexes are separate. Fertilisation is **internal**.
-- They are **oviparous** and development is **direct**.
-- Examples: _Chelone_ (Turtle), _Testudo_ (Tortoise), _Chameleon_ (Tree lizard), _Calotes_ (Garden lizard), _Crocodilus_ (Crocodile), _Alligator_ (Alligator), _Hemidactylus_ (Wall lizard).
-- **Poisonous snakes**: _Naja_ (Cobra), _Bangarus_ (Krait), _Vipera_ (Viper).
-
-**4.2.11.6 Class – Aves (Birds)**
-
-- Characteristic features: Presence of **feathers**. Most can fly, except flightless birds (e.g., Ostrich). Possess a **beak**.
-- **Forelimbs are modified into wings**.
-- Hind limbs generally have scales and are modified for walking, swimming, or clasping tree branches.
-- Skin is **dry without glands**, except for the oil gland at the base of the tail.
-- Endoskeleton is **fully ossified (bony)**, and long bones are **hollow with air cavities (pneumatic)**.
-- Digestive tract has additional chambers: the **crop and gizzard**.
-- Heart is **completely four-chambered**.
-- Are **warm-blooded (homoiothermous)** animals, able to maintain a constant body temperature.
-- Respiration is by **lungs**, supplemented by **air sacs** connected to lungs.
-- Sexes are separate. Fertilisation is **internal**.
-- They are **oviparous** and development is **direct**.
-- Examples: _Corvus_ (Crow), _Columba_ (Pigeon), _Psittacula_ (Parrot), _Struthio_ (Ostrich), _Pavo_ (Peacock), _Aptenodytes_ (Penguin), _Neophron_ (Vulture).
-
-**4.2.11.7 Class – Mammalia**
-
-- Found in a variety of habitats: polar ice caps, deserts, mountains, forests, grasslands, dark caves. Some adapted to fly or live in water.
-- Most unique characteristic: presence of **milk-producing glands (mammary glands)** by which young ones are nourished.
-- Have **two pairs of limbs**, adapted for walking, running, climbing, burrowing, swimming, or flying.
-- Skin is unique in possessing **hair**.
-- **External ears or pinnae** are present.
-- Different types of **teeth** are present in the jaw.
-- Heart is **four-chambered**.
-- Are **homoiothermous (warm-blooded)**.
-- Respiration is by **lungs**.
-- Sexes are separate. Fertilisation is **internal**.
-- They are **viviparous** with few exceptions (e.g., Platypus). Development is **direct**.
-- Examples:
-     - **Oviparous**: _Ornithorhynchus_ (Platypus).
-     - **Viviparous**: _Macropus_ (Kangaroo), _Pteropus_ (Flying fox), _Camelus_ (Camel), _Macaca_ (Monkey), _Rattus_ (Rat), _Canis_ (Dog), _Felis_ (Cat), _Elephas_ (Elephant), _Equus_ (Horse), _Delphinus_ (Common dolphin), _Balaenoptera_ (Blue whale), _Panthera tigris_ (Tiger), _Panthera leo_ (Lion).
-
-**Table 4.2: Salient Features of Different Phyla in the Animal Kingdom**
-
-| Phylum                  | Level of Organisation | Symmetry  | Coelom           | Segmentation | Digestive System | Circulatory System | Respiratory System | Distinctive Features                                                |
-| :---------------------- | :-------------------- | :-------- | :--------------- | :----------- | :--------------- | :----------------- | :----------------- | :------------------------------------------------------------------ |
-| Porifera                | Cellular              | Various   | Absent           | Absent       | Absent           | Absent             | Absent             | Body with pores and canals in walls.                                |
-| Coelenterata (Cnidaria) | Tissue                | Radial    | Absent           | Absent       | Incomplete       | Absent             | Absent             | Cnidoblasts present.                                                |
-| Ctenophora              | Tissue                | Radial    | Absent           | Absent       | Incomplete       | Absent             | Absent             | Comb plates for locomotion.                                         |
-| Platyhelminthes         | Organ                 | Bilateral | Absent           | Absent       | Incomplete       | Absent             | Absent             | Flat body, suckers.                                                 |
-| Aschelminthes           | Organ-system          | Bilateral | Pseudo coelomate | Absent       | Complete         | Absent             | Absent             | Often worm-shaped, elongated.                                       |
-| Annelida                | Organ-system          | Bilateral | Coelomate        | Present      | Complete         | Present            | Absent             | Body segmentation like rings.                                       |
-| Arthropoda              | Organ-system          | Bilateral | Coelomate        | Present      | Complete         | Present            | Present            | Exoskeleton of cuticle, jointed appendages.                         |
-| Mollusca                | Organ-system          | Bilateral | Coelomate        | Absent       | Complete         | Present            | Present            | External skeleton of shell usually present.                         |
-| Echinodermata           | Organ-system          | Radial    | Coelomate        | Absent       | Complete         | Present            | Present            | Water vascular system, radial symmetry.                             |
-| Hemichordata            | Organ-system          | Bilateral | Coelomate        | Absent       | Complete         | Present            | Present            | Worm-like with proboscis, collar and trunk.                         |
-| Chordata                | Organ-system          | Bilateral | Coelomate        | Present      | Complete         | Present            | Present            | Notochord, dorsal hollow nerve cord, gill slits with limbs or fins. |
