@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://notecrack.archie9211.com/sitemap-index.xml

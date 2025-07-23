@@ -1,4 +1,6 @@
 import { defineCollection, z } from "astro:content";
+import fs from "fs";
+import path from "path";
 
 const mcqSchema = z.object({
       text: z.string(),
@@ -13,19 +15,33 @@ const notesSchema = z.object({
       mcqs: z.array(mcqSchema).optional(),
 });
 
-// Define a collection for each subject
-export const collections = {
-      biology: defineCollection({
-            type: "content",
-            schema: notesSchema,
-      }),
-      chemistry: defineCollection({
-            type: "content",
-            schema: notesSchema,
-      }),
-      biologyMcqs: defineCollection({
-            type: "content",
-            schema: notesSchema,
-      }),
-      // Add more subjects here as you create them
+const contentDir = "src/content";
+
+const subjects = fs
+      .readdirSync(contentDir, { withFileTypes: true })
+      .filter((dirent) => dirent.isDirectory())
+      .map((dirent) => dirent.name);
+
+export const collections = Object.fromEntries(
+      subjects.map((subject) => [
+            subject,
+            defineCollection({
+                  type: "content",
+                  schema: notesSchema,
+            }),
+      ])
+);
+
+export const getSubjects = () => {
+      return subjects.map((subject) => {
+            const subjectDir = path.join(contentDir, subject);
+            const classes = fs
+                  .readdirSync(subjectDir, { withFileTypes: true })
+                  .filter((dirent) => dirent.isDirectory())
+                  .map((dirent) => dirent.name);
+            return {
+                  name: subject,
+                  classes,
+            };
+      });
 };

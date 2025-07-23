@@ -1,23 +1,24 @@
 ---
-import { getCollection } from "astro:content";
-import { collections } from "../content/config.mjs";
+import { getCollection }from "astro:content";
+import { getSubjects } from "../content/config.mjs";
 import ArticleLayout from "../layouts/ArticleLayout.astro";
 import ArticleNav from "../components/ArticleNav.astro";
 import MobileToggles from "../components/MobileToggles.astro";
 import ForceUpdateButton from "../components/ForceUpdateButton.astro";
 
 export async function getStaticPaths() {
-      const subjects = Object.keys(collections);
+      const subjects = getSubjects().map((s) => s.name);
       return subjects.map((subject) => ({ params: { subject } }));
 }
 
 const { subject } = Astro.params;
 
-const allSubjects = Object.keys(collections);
+const allSubjects = getSubjects();
+const currentSubjectDetails = allSubjects.find((s) => s.name === subject);
 const topicsInCurrentSubject = await getCollection(subject);
 
 const navProps = {
-      allSubjects: allSubjects,
+      allSubjects: allSubjects.map((s) => s.name),
       currentSubject: subject,
       topicsInCurrentSubject: topicsInCurrentSubject,
       currentTopicSlug: "",
@@ -44,18 +45,15 @@ const navProps = {
             </h1>
             <ul class="space-y-4 list-none pl-0">
                   {
-                        topicsInCurrentSubject.map((entry) => (
+                        currentSubjectDetails.classes.map((className) => (
                               <li>
                                     <a
-                                          href={`/notes/${subject}/${entry.slug}`}
+                                          href={`/${subject}/${className}`}
                                           class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all group hover:border-blue-500 dark:hover:border-blue-500"
                                     >
-                                          <h2 class="text-xl font-semibold text-blue-600 dark:text-blue-400 group-hover:underline">
-                                                {entry.data.title}
+                                          <h2 class="text-xl font-semibold text-blue-600 dark:text-blue-400 group-hover:underline capitalize">
+                                                {className.replace("-", " ")}
                                           </h2>
-                                          <p class="text-gray-600 dark:text-gray-400 mt-1">
-                                                {entry.data.description}
-                                          </p>
                                     </a>
                               </li>
                         ))

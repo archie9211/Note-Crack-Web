@@ -1,0 +1,79 @@
+---
+import { getCollection } from "astro:content";
+import { getSubjects } from "../../content/config.mjs";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import ArticleNav from "../../components/ArticleNav.astro";
+import MobileToggles from "../../components/MobileToggles.astro";
+import ForceUpdateButton from "../../components/ForceUpdateButton.astro";
+
+export async function getStaticPaths() {
+      const subjects = getSubjects();
+      const paths = [];
+      for (const subject of subjects) {
+            for (const className of subject.classes) {
+                  paths.push({ params: { subject: subject.name, class: className } });
+            }
+      }
+      return paths;
+}
+
+const { subject, class: className } = Astro.params;
+
+const allSubjects = getSubjects();
+const topicsInCurrentSubject = await getCollection(subject);
+
+const navProps = {
+      allSubjects: allSubjects.map((s) => s.name),
+      currentSubject: subject,
+      topicsInCurrentSubject: topicsInCurrentSubject.filter(entry => entry.slug.startsWith(className)),
+      currentTopicSlug: "",
+};
+---
+
+<ArticleLayout>
+      <!-- Left Sidebar (Desktop) -->
+      <div slot="left-sidebar">
+            <ArticleNav {...navProps} />
+      </div>
+
+      <!-- ** NEW: Content for the slide-out mobile nav drawer ** -->
+      <div slot="mobile-nav-drawer">
+            <ArticleNav {...navProps} />
+      </div>
+
+      <!-- Main Content Area -->
+      <div slot="main-content">
+            <h1
+                  class="text-3xl lg:text-4xl font-bold mb-6 capitalize border-b border-gray-200 dark:border-gray-700 pb-3"
+            >
+                  {subject.replace("-", " ")} - {className.replace("-", " ")} Notes
+            </h1>
+            <ul class="space-y-4 list-none pl-0">
+                  {
+                        topicsInCurrentSubject
+                              .filter(entry => entry.slug.startsWith(className))
+                              .map((entry) => (
+                                    <li>
+                                          <a
+                                                href={`/notes/${entry.slug}`}
+                                                class="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all group hover:border-blue-500 dark:hover:border-blue-500"
+                                          >
+                                                <h2 class="text-xl font-semibold text-blue-600 dark:text-blue-400 group-hover:underline">
+                                                      {entry.data.title}
+                                                </h2>
+                                                <p class="text-gray-600 dark:text-gray-400 mt-1">
+                                                      {entry.data.description}
+                                                </p>
+                                          </a>
+                                    </li>
+                              ))
+                  }
+            </ul>
+            <ForceUpdateButton />
+      </div>
+
+      <!-- Mobile Toggle Buttons: Show ONLY the "Menu" button -->
+      <div slot="mobile-toggles">
+            <MobileToggles showMenuToggle={true} />
+      </div>
+</ArticleLayout>

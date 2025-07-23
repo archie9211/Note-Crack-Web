@@ -1,75 +1,77 @@
 ---
 export interface Props {
-      allSubjects: string[];
-      currentSubject: string;
-      topicsInCurrentSubject: { slug: string; data: { title: string } }[];
-      currentTopicSlug: string;
+  allSubjects: string[];
+  currentSubject: string;
+  topicsInCurrentSubject: { slug: string; data: { title: string } }[];
+  currentTopicSlug: string;
 }
 
-const {
-      allSubjects,
-      currentSubject,
-      topicsInCurrentSubject,
-      currentTopicSlug,
-} = Astro.props;
+const { allSubjects, currentSubject, topicsInCurrentSubject, currentTopicSlug } = Astro.props;
+
+// Group topics by class
+const topicsByClass = topicsInCurrentSubject.reduce((acc, topic) => {
+  const className = topic.slug.split('/')[0];
+  if (!acc[className]) {
+    acc[className] = [];
+  }
+  acc[className].push(topic);
+  return acc;
+}, {});
 ---
 
 <nav aria-label="Subjects and Topics">
-      <!-- All Subjects List -->
-      <div class="mb-6">
-            <h3
-                  class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2"
-            >
-                  Subjects
-            </h3>
-            <ul class="space-y-1">
-                  {
-                        allSubjects.map((subject) => (
-                              <li>
-                                    <a
-                                          href={`/${subject}`}
-                                          class:list={[
-                                                "block py-1 px-2 rounded-md capitalize transition-colors",
-                                                subject === currentSubject
-                                                      ? "bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 font-semibold"
-                                                      : "hover:bg-gray-100 dark:hover:bg-gray-800",
-                                          ]}
-                                    >
-                                          {subject.replace("-", " ")}
-                                    </a>
-                              </li>
-                        ))
-                  }
-            </ul>
-      </div>
+  <!-- All Subjects List -->
+  <div class="mb-6">
+    <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2">
+      Subjects
+    </h3>
+    <ul class="space-y-1">
+      {allSubjects.map((subject) => (
+        <li>
+          <a
+            href={`/${subject}`}
+            class:list={[
+              "block py-1 px-2 rounded-md capitalize transition-colors",
+              subject === currentSubject
+                ? "bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 font-semibold"
+                : "hover:bg-gray-100 dark:hover:bg-gray-800",
+            ]}
+          >
+            {subject.replace("-", " ")}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
 
-      <!-- Topics in Current Subject -->
-      <div>
-            <h3
-                  class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2 capitalize"
-            >
-                  {currentSubject.replace("-", " ")} Topics
-            </h3>
-            <ul
-                  class="space-y-1 border-l-2 border-gray-200 dark:border-gray-700"
-            >
-                  {
-                        topicsInCurrentSubject.map((topic) => (
-                              <li>
-                                    <a
-                                          href={`/notes/${currentSubject}/${topic.slug}`}
-                                          class:list={[
-                                                "block py-1 pl-3 border-l-2 -ml-px transition-colors",
-                                                topic.slug === currentTopicSlug
-                                                      ? "border-blue-500 text-blue-600 dark:text-blue-400 font-medium"
-                                                      : "border-transparent hover:border-gray-400 dark:hover:border-gray-500 text-gray-600 dark:text-gray-300",
-                                          ]}
-                                    >
-                                          {topic.data.title}
-                                    </a>
-                              </li>
-                        ))
-                  }
-            </ul>
+  <!-- Topics in Current Subject, grouped by class -->
+  <div>
+    <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2 capitalize">
+      {currentSubject.replace("-", " ")} Topics
+    </h3>
+    {Object.entries(topicsByClass).map(([className, topics]) => (
+      <div class="mb-4">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-2 pl-1 capitalize">
+          <a href={`/${currentSubject}/${className}`}>{className.replace("-", " ")}</a>
+        </h4>
+        <ul class="space-y-1 border-l-2 border-gray-200 dark:border-gray-700">
+          {topics.map((topic) => (
+            <li>
+              <a
+                href={`/notes/${topic.slug}`}
+                class:list={[
+                  "block py-1 pl-3 border-l-2 -ml-px transition-colors",
+                  topic.slug === currentTopicSlug
+                    ? "border-blue-500 text-blue-600 dark:text-blue-400 font-medium"
+                    : "border-transparent hover:border-gray-400 dark:hover:border-gray-500 text-gray-600 dark:text-gray-300",
+                ]}
+              >
+                {topic.data.title}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
+    ))}
+  </div>
 </nav>
