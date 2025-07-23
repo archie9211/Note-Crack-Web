@@ -1,75 +1,122 @@
 ---
+import type { SubjectClasses } from "../lib/navigation";
+
 export interface Props {
-      allSubjects: string[];
+      navTree: SubjectClasses;
       currentSubject: string;
-      topicsInCurrentSubject: { slug: string; data: { title: string } }[];
-      currentTopicSlug: string;
+      currentTopicSlug: string; // The full slug, e.g., 'class-12/topic-slug'
 }
 
-const {
-      allSubjects,
-      currentSubject,
-      topicsInCurrentSubject,
-      currentTopicSlug,
-} = Astro.props;
+const { navTree, currentSubject, currentTopicSlug } = Astro.props;
+
+// Helper function to format names for display
+const formatName = (slug: string) => slug.replace(/-/g, " ");
+
+// Determine the current class from the topic slug
+const currentClass = currentTopicSlug.split("/")[0];
 ---
 
 <nav aria-label="Subjects and Topics">
-      <!-- All Subjects List -->
-      <div class="mb-6">
-            <h3
-                  class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2"
-            >
-                  Subjects
-            </h3>
-            <ul class="space-y-1">
-                  {
-                        allSubjects.map((subject) => (
-                              <li>
-                                    <a
-                                          href={`/${subject}`}
-                                          class:list={[
-                                                "block py-1 px-2 rounded-md capitalize transition-colors",
-                                                subject === currentSubject
-                                                      ? "bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 font-semibold"
-                                                      : "hover:bg-gray-100 dark:hover:bg-gray-800",
-                                          ]}
-                                    >
-                                          {subject.replace("-", " ")}
-                                    </a>
-                              </li>
-                        ))
-                  }
-            </ul>
-      </div>
-
-      <!-- Topics in Current Subject -->
-      <div>
-            <h3
-                  class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2 capitalize"
-            >
-                  {currentSubject.replace("-", " ")} Topics
-            </h3>
-            <ul
-                  class="space-y-1 border-l-2 border-gray-200 dark:border-gray-700"
-            >
-                  {
-                        topicsInCurrentSubject.map((topic) => (
-                              <li>
-                                    <a
-                                          href={`/notes/${currentSubject}/${topic.slug}`}
-                                          class:list={[
-                                                "block py-1 pl-3 border-l-2 -ml-px transition-colors",
-                                                topic.slug === currentTopicSlug
-                                                      ? "border-blue-500 text-blue-600 dark:text-blue-400 font-medium"
-                                                      : "border-transparent hover:border-gray-400 dark:hover:border-gray-500 text-gray-600 dark:text-gray-300",
-                                          ]}
-                                    >
-                                          {topic.data.title}
-                                    </a>
-                              </li>
-                        ))
-                  }
-            </ul>
+      <div class="space-y-4">
+            {
+                  Object.entries(navTree).map(([subject, classes]) => {
+                        const isSubjectActive = subject === currentSubject;
+                        return (
+                              <div>
+                                    <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2 capitalize">
+                                          <a
+                                                href={`/${subject}`}
+                                                class:list={[
+                                                      "transition-colors",
+                                                      isSubjectActive
+                                                            ? "text-blue-600 dark:text-blue-400"
+                                                            : "hover:text-gray-900 dark:hover:text-gray-100",
+                                                ]}
+                                          >
+                                                {formatName(subject)}
+                                          </a>
+                                    </h3>
+                                    <ul class="space-y-1 border-l-2 border-gray-200 dark:border-gray-700">
+                                          {Object.entries(classes).map(
+                                                ([className, topics]) => {
+                                                      const isClassActive =
+                                                            isSubjectActive &&
+                                                            className ===
+                                                                  currentClass;
+                                                      return (
+                                                            <li>
+                                                                  <details
+                                                                        class="group"
+                                                                        open={
+                                                                              isClassActive
+                                                                        }
+                                                                  >
+                                                                        <summary class="list-none -ml-px pl-2 border-l-2 border-transparent hover:border-gray-400 dark:hover:border-gray-500">
+                                                                              <div class="flex items-center justify-between cursor-pointer py-1">
+                                                                                    <span
+                                                                                          class:list={[
+                                                                                                "font-medium text-sm capitalize",
+                                                                                                isClassActive
+                                                                                                      ? "text-gray-900 dark:text-gray-100"
+                                                                                                      : "text-gray-600 dark:text-gray-300",
+                                                                                          ]}
+                                                                                    >
+                                                                                          {formatName(
+                                                                                                className
+                                                                                          )}
+                                                                                    </span>
+                                                                                    <svg
+                                                                                          class="w-4 h-4 text-gray-400 group-open:rotate-90 transition-transform"
+                                                                                          fill="none"
+                                                                                          viewBox="0 0 24 24"
+                                                                                          stroke="currentColor"
+                                                                                    >
+                                                                                          <path
+                                                                                                stroke-linecap="round"
+                                                                                                stroke-linejoin="round"
+                                                                                                stroke-width="2"
+                                                                                                d="M9 5l7 7-7 7"
+                                                                                          />
+                                                                                    </svg>
+                                                                              </div>
+                                                                        </summary>
+                                                                        <ul class="space-y-1 mt-1 pl-4">
+                                                                              {topics.map(
+                                                                                    (
+                                                                                          topic
+                                                                                    ) => {
+                                                                                          const isTopicActive =
+                                                                                                topic.slug ===
+                                                                                                currentTopicSlug;
+                                                                                          return (
+                                                                                                <li>
+                                                                                                      <a
+                                                                                                            href={`/notes/${subject}/${topic.slug}`}
+                                                                                                            class:list={[
+                                                                                                                  "block py-1 text-sm border-l-2 -ml-px pl-3 transition-colors",
+                                                                                                                  isTopicActive
+                                                                                                                        ? "border-blue-500 text-blue-600 dark:text-blue-400 font-medium"
+                                                                                                                        : "border-transparent hover:border-gray-400 dark:hover:border-gray-500 text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200",
+                                                                                                            ]}
+                                                                                                      >
+                                                                                                            {
+                                                                                                                  topic.title
+                                                                                                            }
+                                                                                                      </a>
+                                                                                                </li>
+                                                                                          );
+                                                                                    }
+                                                                              )}
+                                                                        </ul>
+                                                                  </details>
+                                                            </li>
+                                                      );
+                                                }
+                                          )}
+                                    </ul>
+                              </div>
+                        );
+                  })
+            }
       </div>
 </nav>

@@ -1,6 +1,5 @@
 ---
-import { getCollection, getEntry } from "astro:content";
-import { collections } from "../../content/config.mjs";
+import { getEntry, getCollection } from "astro:content";
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import ArticleNav from "../../components/ArticleNav.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
@@ -9,53 +8,47 @@ import PrevNextNav from "../../components/PrevNextNav.astro";
 import ForceUpdateButton from "../../components/ForceUpdateButton.astro";
 import MCQ from "../../components/MCQ.astro";
 import ShowAllAnswers from "../../components/ShowAllAnswers.astro";
+import { buildNavigationTree } from "../../lib/navigation";
 
-export async function getStaticPaths() {
-      const paths = [];
-      const subjects = Object.keys(collections);
-      for (const subject of subjects) {
-            const entries = await getCollection(subject);
-            for (const entry of entries) {
-                  paths.push({ params: { slug: `${subject}/${entry.slug}` } });
-            }
-      }
-      return paths;
-}
+// NO getStaticPaths needed for SSR!
 
 const { slug } = Astro.params;
 if (!slug) return new Response("Not Found", { status: 404 });
 
 const slugParts = slug.split("/");
 const subjectSlug = slugParts[0];
-const topicSlug = slugParts.slice(1).join("/");
+const topicSlugWithClass = slugParts.slice(1).join("/"); // e.g., 'class-12/topic-name'
+const className = slugParts[1];
 
-const entry = await getEntry(subjectSlug, topicSlug);
+const entry = await getEntry(subjectSlug, topicSlugWithClass);
 if (!entry) return new Response("Article not found", { status: 404 });
 
+const { Content, headings } = await entry.render();
+const hasHeadings = headings.length > 0;
 const mcqs = entry.data.mcqs;
 
-const { Content, headings } = await entry.render();
-const allSubjects = Object.keys(collections);
-const hasHeadings = headings.length > 0;
+// --- KEY CHANGES ---
+// 1. Build the full navigation tree for the sidebar
+const navTree = await buildNavigationTree();
 
-// Get all topics in the current subject to find prev/next
-const topicsInCurrentSubject = await getCollection(subjectSlug);
-const currentIndex = topicsInCurrentSubject.findIndex(
-      (topic) => topic.slug === topicSlug
+// 2. Find previous/next topic *within the same class*
+const topicsInCurrentClass = navTree[subjectSlug]?.[className] ?? [];
+const currentIndex = topicsInCurrentClass.findIndex(
+      (topic) => topic.slug === topicSlugWithClass
 );
 
 const prevTopic =
-      currentIndex > 0 ? topicsInCurrentSubject[currentIndex - 1] : undefined;
+      currentIndex > 0 ? topicsInCurrentClass[currentIndex - 1] : undefined;
 const nextTopic =
-      currentIndex < topicsInCurrentSubject.length - 1
-            ? topicsInCurrentSubject[currentIndex + 1]
+      currentIndex < topicsInCurrentClass.length - 1
+            ? topicsInCurrentClass[currentIndex + 1]
             : undefined;
 
+// Props for the navigation component
 const navProps = {
-      allSubjects: allSubjects,
+      navTree: navTree,
       currentSubject: subjectSlug,
-      topicsInCurrentSubject: topicsInCurrentSubject,
-      currentTopicSlug: topicSlug,
+      currentTopicSlug: topicSlugWithClass,
 };
 ---
 
@@ -65,7 +58,7 @@ const navProps = {
             <ArticleNav {...navProps} />
       </div>
 
-      <!-- ** NEW: Content for the slide-out mobile nav drawer ** -->
+      <!-- Content for the slide-out mobile nav drawer -->
       <div slot="mobile-nav-drawer">
             <ArticleNav {...navProps} />
       </div>
@@ -105,11 +98,11 @@ const navProps = {
             <PrevNextNav
                   prev={prevTopic && {
                         url: `/notes/${subjectSlug}/${prevTopic.slug}`,
-                        title: prevTopic.data.title,
+                        title: prevTopic.title,
                   }}
                   next={nextTopic && {
                         url: `/notes/${subjectSlug}/${nextTopic.slug}`,
-                        title: nextTopic.data.title,
+                        title: nextTopic.title,
                   }}
             />
             <ForceUpdateButton />
