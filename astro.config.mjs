@@ -27,7 +27,7 @@ export default defineConfig({
                   strategies: "injectManifest",
                   srcDir: "src", // or 'public', wherever your custom service worker is
                   filename: "sw.js",
-                  registerType: "prompt", // Use 'prompt' instead of 'autoUpdate'
+                  registerType: "autoUpdate",
 
                   injectManifest: {
                         // Only include these patterns – safe, avoids _worker.js
