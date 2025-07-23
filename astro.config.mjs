@@ -6,14 +6,14 @@ import cloudflare from "@astrojs/cloudflare";
 
 import AstroPWA from "@vite-pwa/astro";
 import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
+import rehypeMathjax from "rehype-mathjax/svg";
 
 // https://astro.build/config
 export default defineConfig({
       output: "server",
       markdown: {
             remarkPlugins: [remarkMath],
-            rehypePlugins: [rehypeKatex],
+            rehypePlugins: [rehypeMathjax],
       },
 
       vite: {

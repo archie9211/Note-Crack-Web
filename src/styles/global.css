@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "katex/dist/katex.min.css";
 
 /* This line tells v4 to use a class for dark mode */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -7,19 +6,4 @@
 
 .prose table {
       @apply block w-full overflow-x-auto;
-}
-
-.prose .katex-display {
-      @apply block w-full overflow-x-auto py-4;
-      -webkit-overflow-scrolling: touch; /* Adds momentum scrolling on iOS */
-      scrollbar-width: thin; /* For Firefox */
-}
-
-/*
-================================================================
-  4. DARK MODE COLORS FOR KaTeX (Optional but Recommended)
-================================================================
-*/
-.dark .katex {
-      color: theme("colors.gray.100");
 }
