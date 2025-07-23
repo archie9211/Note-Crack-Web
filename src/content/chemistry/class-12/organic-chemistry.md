@@ -11,3 +11,7 @@ The periodic table is a tabular arrangement of the chemical elements, ordered by
 2.    Alkaline Earth Metals
 3.    Halogens
 4.    Noble Gases
+
+this is inline content $\ce{CO2}$
+
+this is block content: $$\ce{CO2}$$
