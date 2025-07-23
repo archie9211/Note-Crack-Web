@@ -9,8 +9,7 @@ import ForceUpdateButton from "../../components/ForceUpdateButton.astro";
 import MCQ from "../../components/MCQ.astro";
 import ShowAllAnswers from "../../components/ShowAllAnswers.astro";
 import { buildNavigationTree } from "../../lib/navigation";
-
-// NO getStaticPaths needed for SSR!
+import MCQWrapper from "../../components/MCQWrapper.astro";
 
 const { slug } = Astro.params;
 if (!slug) return new Response("Not Found", { status: 404 });
@@ -88,6 +87,8 @@ const navProps = {
                               <h2 class="text-2xl font-bold mb-6">
                                     Test Your Knowledge
                               </h2>
+                              <MCQWrapper client:load />
+
                               {mcqs.map((question, index) => (
                                     <MCQ question={question} index={index} />
                               ))}
