@@ -4,10 +4,7 @@ import { registerSW } from "virtual:pwa-register";
 function initPwaPrompt() {
       console.log("[PWA] Initializing PWA prompt script.");
       const pwaToast = document.querySelector<HTMLDivElement>("#pwa-toast");
-      if (!pwaToast) {
-            console.error("[PWA] Toast element not found. Exiting.");
-            return;
-      }
+      if (!pwaToast) return;
 
       const pwaToastMessage =
             pwaToast.querySelector<HTMLDivElement>("#toast-message");
@@ -16,49 +13,21 @@ function initPwaPrompt() {
       const pwaRefreshBtn =
             pwaToast.querySelector<HTMLButtonElement>("#pwa-refresh");
 
-      if (!pwaToastMessage || !pwaCloseBtn || !pwaRefreshBtn) {
-            console.error(
-                  "[PWA] One or more toast sub-elements not found. Exiting."
-            );
-            return;
-      }
+      if (!pwaToastMessage || !pwaCloseBtn || !pwaRefreshBtn) return;
 
-      let newWorker: ServiceWorker | null = null;
-      let refreshing = false;
+      let updateSW: ((reloadPage?: boolean) => Promise<void>) | undefined;
 
-      // This function sends a message to the waiting service worker to activate itself.
-      const skipWaiting = () => {
-            if (newWorker) {
-                  console.log(
-                        "[PWA] Sending skipWaiting message to new service worker."
-                  );
-                  newWorker.postMessage({ type: "SKIP_WAITING" });
-            }
-      };
-
+      // --- NEW, SIMPLER REFRESH LOGIC ---
       const refreshCallback = () => {
             console.log("[PWA] Refresh button clicked.");
-            if (refreshing) {
-                  console.log("[PWA] Already refreshing, ignoring click.");
-                  return;
+            if (updateSW) {
+                  // Set a flag in sessionStorage so we know an update was triggered
+                  sessionStorage.setItem("pwa_update_triggered", "true");
+
+                  // Tell the new service worker to take over, and then reload the page.
+                  // The `registerSW` library handles the skipWaiting message and reload.
+                  updateSW(true);
             }
-            refreshing = true;
-            console.log("[PWA] Setting refreshing flag to true.");
-
-            // We MUST listen for the controller change BEFORE we ask the worker to skip waiting.
-            navigator.serviceWorker.addEventListener(
-                  "controllerchange",
-                  () => {
-                        console.log(
-                              "[PWA] Controller changed! New service worker is active. Reloading page."
-                        );
-                        window.location.reload();
-                  },
-                  { once: true }
-            );
-
-            // Now, trigger the skipWaiting message.
-            skipWaiting();
       };
 
       const hidePwaToast = () => {
@@ -84,33 +53,17 @@ function initPwaPrompt() {
 
       pwaCloseBtn.addEventListener("click", hidePwaToast);
 
-      registerSW({
-            immediate: true,
-            onOfflineReady() {
-                  console.log("[PWA] Event: onOfflineReady");
-                  showPwaToast(true);
-            },
+      updateSW = registerSW({
             onNeedRefresh() {
                   console.log("[PWA] Event: onNeedRefresh");
                   showPwaToast(false);
             },
-            onRegistered(registration) {
-                  console.log("PWA Service Worker registered.");
-                  if (registration) {
-                        // This is where we capture the new, waiting service worker.
-                        registration.addEventListener("updatefound", () => {
-                              newWorker = registration.installing!;
-                              console.log(
-                                    "[PWA] Update found. New worker is installing."
-                              );
-                        });
-
-                        // Periodic update check
-                        setInterval(() => {
-                              console.log("[PWA] Checking for updates...");
-                              registration.update();
-                        }, 24 * 60 * 60 * 1000); // 24 hours
-                  }
+            onOfflineReady() {
+                  console.log("[PWA] Event: onOfflineReady");
+                  showPwaToast(true);
+            },
+            onRegisteredSW(swScriptUrl) {
+                  console.log("PWA Service Worker registered:", swScriptUrl);
             },
             onRegisterError(error) {
                   console.error(
@@ -119,8 +72,19 @@ function initPwaPrompt() {
                   );
             },
       });
+
+      // --- NEW: CHECK FOR UPDATE FLAG ON PAGE LOAD ---
+      // This provides the user with immediate feedback after the reload.
+      if (sessionStorage.getItem("pwa_update_triggered") === "true") {
+            console.log(
+                  "[PWA] Update was triggered. Hiding any visible toasts and resetting flag."
+            );
+            hidePwaToast();
+            sessionStorage.removeItem("pwa_update_triggered");
+      }
 }
 
+// Ensure the DOM is loaded before we try to find our elements
 if (document.readyState === "complete") {
       initPwaPrompt();
 } else {
