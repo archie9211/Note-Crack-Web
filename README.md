@@ -1,19 +1,19 @@
 # Note Crack ⚡️
 
-A minimalist, fast, and offline-first PWA for student revision notes, built with Astro and deployed on Cloudflare. This project is designed from the ground up to provide a blazing-fast, distraction-free reading experience, making it the perfect tool for last-minute study sessions.
+A minimalist, fast, and offline-first PWA for student revision notes, built with Astro and deployed on the Cloudflare edge. This project is designed from the ground up to provide a blazing-fast, distraction-free reading experience with first-class support for mathematical notation and interactive quizzes, making it the perfect tool for modern study sessions.
 
 ---
 
 ## ✨ Core Features
 
-This isn't just a simple static site. It's a full-featured web application packed with modern tools to enhance the user experience.
+This isn't just a simple static site. It's a full-featured web application packed with modern tools to enhance the learning and reading experience.
 
-- **🚀 Blazing Fast Performance:** Built with [Astro](https://astro.build/) for a static-first, zero-JavaScript-by-default architecture. Pages are incredibly lightweight and load instantly.
+- **🚀 Blazing Fast Performance:** Built with [Astro](https://astro.build/) for an edge-rendered, zero-JavaScript-by-default architecture. Pages are incredibly lightweight and load instantly, served from a Cloudflare data center near you.
 
-- **📱 Progressive Web App (PWA):** Fully installable on both desktop and mobile for an app-like experience.
+- **📱 Progressive Web App (PWA):** Fully installable on both desktop and mobile for a native app-like experience.
 
      - **Complete Offline Support:** A custom service worker aggressively caches all visited notes, static assets, and even the search index, making the app fully functional without an internet connection.
-     - **Smart Update Prompts:** Users are notified with a toast pop-up when new content is available and can reload the app to get the latest version.
+     - **Automatic Background Updates:** When new content is published, the app updates seamlessly in the background. Users get the latest version on their next visit without any disruptive prompts.
 
 - **🔎 Client-Side Fuzzy Search:**
 
@@ -21,19 +21,31 @@ This isn't just a simple static site. It's a full-featured web application packe
      - Powered by [Fuse.js](https://fusejs.io/), a powerful fuzzy-search library.
      - A simple JSON index is generated at build time, keeping the client-side footprint small.
 
+- **✍️ First-Class Math & Science Support:**
+
+     - Beautifully renders complex mathematical and chemical formulas using **MathJax**.
+     - Seamlessly integrated into the Markdown pipeline with `remark-math` and `rehype-mathjax`.
+     - Inline (`$...$`) and block (`$$...$$`) notations are fully supported.
+
+- **🧠 Interactive Quizzes:**
+
+     - Embed multiple-choice questions (MCQs) directly into notes to test understanding.
+     - Provides instant visual feedback on answers and reveals detailed explanations.
+     - Engineered for performance using a single event listener to manage all quizzes on a page, minimizing JavaScript load.
+
 - **📖 Distraction-Free Reading Experience:**
 
      - A clean, three-column layout on desktop: **Navigation | Article | Table of Contents**.
-     - Fully responsive design that refactors into a focused, single-column view on mobile.
+     - Fully responsive design that refactors into a focused, single-column view with slide-out drawers on mobile.
      - **Auto-hiding navigation bars** on scroll to maximize reading space.
      - **Reading Progress Bar** at the top of the page.
      - **Page Load Progress Bar** ([NProgress](https://github.com/rstacruz/nprogress)) for instant feedback on navigation.
-     - Convenient **Next/Previous Article** navigation links.
+     - Convenient **Next/Previous Article** navigation links within the same class/section.
 
-- **✍️ Content as Code:**
+- **🗂️ Dynamic Content Architecture:**
 
      - Notes are written in simple **Markdown** using Astro's type-safe [Content Collections](https://docs.astro.build/en/guides/content-collections/).
-     - Organized by `subject > class > topic` for a clear and scalable information architecture.
+     - Organized by `subject > class > topic` for a clear, scalable, and automatically generated tree-like navigation.
 
 - **🎨 Theming:**
 
@@ -42,19 +54,18 @@ This isn't just a simple static site. It's a full-featured web application packe
 
 - **☁️ Deployment Ready:**
      - Configured for **Server-Side Rendering (SSR)**.
-     - Optimized for deployment on the **Cloudflare Workers** platform.
-- ** CMS - TinaCMS
-     - Currently broken but is planned for in future. We might also add some other CMS if suited.
+     - Optimized for high-performance, low-latency deployment on the **Cloudflare** global network.
 
 ---
 
 ## 🛠 Tech Stack
 
 - **Framework:** [Astro](https://astro.build/)
+- **Deployment:** [Cloudflare Pages/Workers](https://workers.cloudflare.com/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Client-Side Search:** [Fuse.js](https://fusejs.io/)
 - **PWA / Service Worker:** Manual with [Workbox](https://developer.chrome.com/docs/workbox)
-- **Deployment:** [Cloudflare Workers](https://workers.cloudflare.com/)
+- **Math Rendering:** `remark-math` & `rehype-mathjax`
 
 ---
 
@@ -88,15 +99,15 @@ You can clone this repository and run it locally for development or contribution
 
 ## ☁️ Deployment
 
-This project is configured for a **Server-Side Rendering (SSR)** deployment on **Cloudflare Workers**.
+This project is configured for a **Server-Side Rendering (SSR)** deployment on **Cloudflare**.
 
 - The `astro.config.mjs` file is set up with `output: 'server'` and the `@astrojs/cloudflare` adapter.
-- The `wrangler.toml` file (if you choose to use it for direct deployment) should be configured to point to the `dist/_worker.js` entry point.
-- To build the project for production, run:
+- The easiest way to deploy is to link your GitHub repository directly to Cloudflare Pages, which will automatically detect the Astro configuration.
+- To build the project for a manual production deployment, run:
      ```bash
      npm run build
      ```
-     This will generate the `dist/` directory, which can be deployed to Cloudflare.
+     This will generate the `dist/` directory containing the `_worker.js` entry point required by Cloudflare.
 
 ---
 
