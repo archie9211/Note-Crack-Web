@@ -7,6 +7,8 @@ import TableOfContents from "../../components/TableOfContents.astro";
 import MobileToggles from "../../components/MobileToggles.astro";
 import PrevNextNav from "../../components/PrevNextNav.astro";
 import ForceUpdateButton from "../../components/ForceUpdateButton.astro";
+import MCQ from "../../components/MCQ.astro";
+import ShowAllAnswers from "../../components/ShowAllAnswers.astro";
 
 export async function getStaticPaths() {
       const paths = [];
@@ -29,6 +31,8 @@ const topicSlug = slugParts.slice(1).join("/");
 
 const entry = await getEntry(subjectSlug, topicSlug);
 if (!entry) return new Response("Article not found", { status: 404 });
+
+const mcqs = entry.data.mcqs;
 
 const { Content, headings } = await entry.render();
 const allSubjects = Object.keys(collections);
@@ -85,6 +89,19 @@ const navProps = {
                   <hr class="my-8" />
                   <Content />
             </article>
+            {
+                  mcqs && mcqs.length > 0 && (
+                        <section class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+                              <h2 class="text-2xl font-bold mb-6">
+                                    Test Your Knowledge
+                              </h2>
+                              {mcqs.map((question, index) => (
+                                    <MCQ question={question} index={index} />
+                              ))}
+                              <ShowAllAnswers />
+                        </section>
+                  )
+            }
             <PrevNextNav
                   prev={prevTopic && {
                         url: `/notes/${subjectSlug}/${prevTopic.slug}`,

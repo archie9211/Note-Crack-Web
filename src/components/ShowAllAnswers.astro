@@ -1,0 +1,35 @@
+<div class="text-center my-8" client:visible>
+      <button
+            id="show-all-answers-btn"
+            type="button"
+            class="px-6 py-3 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-bold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+      >
+            Reveal All Answers
+      </button>
+</div>
+
+<script>
+      const showAllBtn = document.getElementById("show-all-answers-btn");
+
+      if (showAllBtn) {
+            showAllBtn.addEventListener("click", () => {
+                  // Find all the "Check Answer" buttons on the page that are not already disabled.
+                  const allCheckButtons = document.querySelectorAll(
+                        ".check-answer-btn:not([disabled])"
+                  );
+
+                  console.log(
+                        `Found ${allCheckButtons.length} unanswered questions. Revealing answers...`
+                  );
+
+                  // Programmatically click each one.
+                  allCheckButtons.forEach((button) => {
+                        // Casting to HTMLElement to access the click() method.
+                        (button as HTMLElement).click();
+                  });
+
+                  // Optionally, hide the "Show All Answers" button after it's been clicked.
+                  showAllBtn.style.display = "none";
+            });
+      }
+</script>

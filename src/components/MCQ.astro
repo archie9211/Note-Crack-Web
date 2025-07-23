@@ -1,0 +1,161 @@
+---
+export interface Question {
+      text: string;
+      options: string[];
+      correct: number | number[];
+      explanation: string;
+}
+
+export interface Props {
+      question: Question;
+      index: number;
+}
+
+const { question, index } = Astro.props;
+const isMultipleChoice = Array.isArray(question.correct);
+const inputType = isMultipleChoice ? "checkbox" : "radio";
+
+// --- NEW: Generate a unique ID for this component instance ---
+const uniqueId = `mcq-container-${index}`;
+const inputName = `mcq-group-${index}`;
+---
+
+{/* --- NEW: Add the unique ID to the container --- */}
+<div
+      id={uniqueId}
+      class="mcq-container not-prose border border-gray-200 dark:border-gray-700 rounded-lg p-6 my-8"
+      client:visible
+>
+      <p class="font-semibold text-lg mb-4">{index + 1}. {question.text}</p>
+
+      <ul class="options-list space-y-3 list-none pl-0">
+            {
+                  question.options.map((option, optionIndex) => (
+                        <li>
+                              <label class="option-label flex items-center gap-3 p-3 rounded-md border border-gray-300 dark:border-gray-600 cursor-pointer transition-colors has-[:checked]:bg-blue-50 dark:has-[:checked]:bg-blue-900/50 has-[:checked]:border-blue-400">
+                                    <input
+                                          type={inputType}
+                                          name={inputName}
+                                          value={optionIndex}
+                                          class="accent-blue-600"
+                                    />
+                                    <span>{option}</span>
+                              </label>
+                        </li>
+                  ))
+            }
+      </ul>
+
+      <div class="mt-6 flex flex-col sm:flex-row items-start gap-4">
+            <button
+                  type="button"
+                  class="check-answer-btn px-5 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors disabled:bg-gray-400 dark:disabled:bg-gray-600"
+            >
+                  Check Answer
+            </button>
+            <div
+                  class="explanation-box hidden grow p-4 rounded-md text-sm border"
+            >
+                  {question.explanation}
+            </div>
+      </div>
+</div>
+
+{/* --- NEW: Pass the uniqueId to the script --- */}
+<script define:vars={{ question, uniqueId }}>
+      // This script runs for each MCQ component instance
+
+      // --- NEW: Use the unique ID to find the correct container ---
+      const container = document.getElementById(uniqueId);
+
+      // Guard clause in case the element isn't found
+      if (!container) {
+            console.error(`MCQ container with ID #${uniqueId} not found.`);
+            return;
+      }
+
+      const checkBtn = container.querySelector(".check-answer-btn");
+      const optionsList = container.querySelector(".options-list");
+      const explanationBox = container.querySelector(".explanation-box");
+      const inputs = container.querySelectorAll("input");
+
+      // Guard against missing sub-elements
+      if (!checkBtn || !optionsList || !explanationBox) {
+            console.error(
+                  `Sub-elements missing in MCQ container #${uniqueId}.`
+            );
+            return;
+      }
+
+      const correctAnswers = new Set(
+            Array.isArray(question.correct)
+                  ? question.correct
+                  : [question.correct]
+      );
+
+      checkBtn.addEventListener("click", () => {
+            // ... the rest of your click handler logic is exactly the same and correct ...
+            const selectedInputs = Array.from(
+                  container.querySelectorAll("input:checked")
+            );
+            const selectedIndices = new Set(
+                  selectedInputs.map((input) => parseInt(input.value, 10))
+            );
+
+            let isFullyCorrect =
+                  selectedIndices.size === correctAnswers.size &&
+                  [...selectedIndices].every((index) =>
+                        correctAnswers.has(index)
+                  );
+
+            explanationBox.classList.remove("hidden");
+            if (isFullyCorrect) {
+                  explanationBox.classList.add(
+                        "border-green-400",
+                        "bg-green-50",
+                        "dark:bg-green-900/50",
+                        "text-green-800",
+                        "dark:text-green-200"
+                  );
+            } else {
+                  explanationBox.classList.add(
+                        "border-red-400",
+                        "bg-red-50",
+                        "dark:bg-red-900/50",
+                        "text-red-800",
+                        "dark:text-red-200"
+                  );
+            }
+
+            checkBtn.setAttribute("disabled", "true");
+            inputs.forEach((input) => input.setAttribute("disabled", "true"));
+
+            optionsList.querySelectorAll("li").forEach((li, index) => {
+                  const label = li.querySelector(".option-label");
+                  const isCorrect = correctAnswers.has(index);
+                  const isSelected = selectedIndices.has(index);
+
+                  label.classList.remove(
+                        "has-[:checked]:bg-blue-50",
+                        "dark:has-[:checked]:bg-blue-900/50",
+                        "has-[:checked]:border-blue-400"
+                  );
+
+                  if (isCorrect) {
+                        label.classList.add(
+                              "bg-green-100",
+                              "dark:bg-green-900/50",
+                              "border-green-400"
+                        );
+                  } else if (isSelected && !isCorrect) {
+                        label.classList.add(
+                              "bg-red-100",
+                              "dark:bg-red-900/50",
+                              "border-red-400"
+                        );
+                  } else {
+                        label.classList.add("opacity-70");
+                  }
+            });
+      });
+</script>
