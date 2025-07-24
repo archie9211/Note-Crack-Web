@@ -6,7 +6,7 @@ export interface Props {
 const { showMenuToggle = false, showTocToggle = false } = Astro.props;
 ---
 
-<div class="flex items-center gap-2 justify-end w-full" client:load>
+<div class="flex items-center gap-2 justify-end w-full">
       {
             showMenuToggle && (
                   <button
@@ -57,38 +57,3 @@ const { showMenuToggle = false, showTocToggle = false } = Astro.props;
             )
       }
 </div>
-
-<script>
-      // --- Script for contextual "Menu" toggle (left sidebar content) ---
-      const navToggle = document.getElementById("mobile-nav-toggle");
-      const navDrawer = document.getElementById("mobile-nav-drawer");
-      const navBackdrop = document.getElementById("mobile-nav-backdrop");
-
-      function toggleNavDrawer() {
-            navDrawer?.classList.toggle("-translate-x-full");
-            navBackdrop?.classList.toggle("hidden");
-      }
-
-      if (navToggle && navDrawer && navBackdrop) {
-            navToggle.addEventListener("click", toggleNavDrawer);
-            navBackdrop.addEventListener("click", toggleNavDrawer);
-            navDrawer.querySelectorAll("a").forEach((link) => {
-                  link.addEventListener("click", toggleNavDrawer);
-            });
-      }
-
-      // --- Script for mobile TOC toggle (right sidebar content) ---
-      const tocToggle = document.getElementById("mobile-toc-toggle");
-      const tocDrawer = document.getElementById("mobile-toc-drawer");
-
-      if (tocToggle && tocDrawer) {
-            tocToggle.addEventListener("click", () => {
-                  tocDrawer.classList.toggle("translate-y-full");
-            });
-            tocDrawer.querySelectorAll("a").forEach((link) => {
-                  link.addEventListener("click", () => {
-                        tocDrawer.classList.add("translate-y-full");
-                  });
-            });
-      }
-</script>
