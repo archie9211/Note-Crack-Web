@@ -9,26 +9,26 @@
 </div>
 
 <script>
-      const showAllBtn = document.getElementById("show-all-answers-btn");
+      const showAllBtn = document.getElementById(
+            "show-all-answers-btn"
+      ) as HTMLButtonElement | null;
 
       if (showAllBtn) {
             showAllBtn.addEventListener("click", () => {
-                  // Find all the "Check Answer" buttons on the page that are not already disabled.
-                  const allCheckButtons = document.querySelectorAll(
-                        ".check-answer-btn:not([disabled])"
-                  );
+                  // Find all non-disabled "Check Answer" buttons
+                  const allCheckButtons =
+                        document.querySelectorAll<HTMLButtonElement>(
+                              ".check-answer-btn:not([disabled])"
+                        );
 
                   console.log(
-                        `Found ${allCheckButtons.length} unanswered questions. Revealing answers...`
+                        `Found ${allCheckButtons.length} unanswered questions. Revealing...`
                   );
 
-                  // Programmatically click each one.
-                  allCheckButtons.forEach((button) => {
-                        // Casting to HTMLElement to access the click() method.
-                        (button as HTMLElement).click();
-                  });
+                  // Programmatically click each one
+                  allCheckButtons.forEach((button) => button.click());
 
-                  // Optionally, hide the "Show All Answers" button after it's been clicked.
+                  // Hide the "Show All Answers" button after use
                   showAllBtn.style.display = "none";
             });
       }

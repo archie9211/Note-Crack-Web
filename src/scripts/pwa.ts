@@ -4,14 +4,20 @@ import { registerSW } from "virtual:pwa-register";
 function initPwaPrompt() {
       console.log("[PWA] Initializing PWA script for auto-update.");
       const pwaToast = document.querySelector<HTMLDivElement>("#pwa-toast");
-      if (!pwaToast) return;
+      if (!pwaToast) {
+            console.warn("[PWA] Toast element not found.");
+            return;
+      }
 
       const pwaToastMessage =
             pwaToast.querySelector<HTMLDivElement>("#toast-message");
       const pwaCloseBtn =
             pwaToast.querySelector<HTMLButtonElement>("#pwa-close");
 
-      if (!pwaToastMessage || !pwaCloseBtn) return;
+      if (!pwaToastMessage || !pwaCloseBtn) {
+            console.warn("[PWA] Toast message or close button not found.");
+            return;
+      }
 
       const hidePwaToast = () => {
             pwaToast.classList.remove("pwa-ready");
@@ -21,14 +27,11 @@ function initPwaPrompt() {
             console.log("[PWA] App is ready for offline use.");
             pwaToastMessage.innerHTML = "App ready to work offline.";
             pwaToast.classList.add("pwa-ready");
-            // Automatically hide the toast after a few seconds
             setTimeout(hidePwaToast, 5000);
       };
 
       pwaCloseBtn.addEventListener("click", hidePwaToast);
 
-      // With 'autoUpdate', we only need to handle onOfflineReady.
-      // The onNeedRefresh logic is now handled automatically by the library.
       registerSW({
             onOfflineReady() {
                   console.log("[PWA] Event: onOfflineReady");
@@ -46,7 +49,6 @@ function initPwaPrompt() {
       });
 }
 
-// Ensure the DOM is loaded before we try to find our elements
 if (document.readyState === "complete") {
       initPwaPrompt();
 } else {

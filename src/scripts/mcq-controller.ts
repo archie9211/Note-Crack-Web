@@ -1,102 +1,98 @@
-// This single script, imported once, will manage ALL MCQs on the page.
+// src/scripts/mcq-controller.ts
 
-document.addEventListener("click", (event) => {
-      // We only care about clicks on our specific button
-      const checkBtn = (event.target as HTMLElement).closest(
-            ".check-answer-btn"
-      );
-      if (!checkBtn) return;
+// Type for the embedded question data
+interface Question {
+      correct: number | number[];
+}
 
-      // Find the parent container for the MCQ this button belongs to
-      const container = checkBtn.closest(".mcq-container");
+function handleMCQInteraction(event: MouseEvent) {
+      const target = event.target as HTMLElement;
+      const checkBtn = target.closest<HTMLButtonElement>(".check-answer-btn");
+      if (!checkBtn || checkBtn.disabled) return;
+
+      const container = checkBtn.closest<HTMLElement>(".mcq-container");
       if (!container) return;
 
-      // The button has already been processed, so we stop.
-      if (checkBtn.hasAttribute("disabled")) {
-            return;
-      }
-
-      // Retrieve the question data, which we embedded in the HTML
       const questionDataEl = container.querySelector<HTMLScriptElement>(
             'script[type="application/json"]'
       );
-      if (!questionDataEl) return;
-      const question = JSON.parse(questionDataEl.textContent || "{}");
+      const optionsList =
+            container.querySelector<HTMLUListElement>(".options-list");
+      const explanationBox =
+            container.querySelector<HTMLDivElement>(".explanation-box");
+      const inputs = container.querySelectorAll<HTMLInputElement>("input");
 
-      const correctAnswers = new Set(
-            Array.isArray(question.correct)
-                  ? question.correct
-                  : [question.correct]
-      );
+      if (!questionDataEl?.textContent || !optionsList || !explanationBox)
+            return;
 
-      const optionsList = container.querySelector(".options-list");
-      const explanationBox = container.querySelector(".explanation-box");
-      const inputs = container.querySelectorAll("input");
-
-      if (!optionsList || !explanationBox) return;
-
-      const selectedInputs = Array.from(
-            container.querySelectorAll("input:checked")
-      );
-      const selectedIndices = new Set(
-            selectedInputs.map((input) =>
-                  parseInt((input as HTMLInputElement).value, 10)
-            )
-      );
-
-      let isFullyCorrect =
-            selectedIndices.size === correctAnswers.size &&
-            [...selectedIndices].every((index) => correctAnswers.has(index));
-
-      explanationBox.classList.remove("hidden");
-      if (isFullyCorrect) {
-            explanationBox.classList.add(
-                  "border-green-400",
-                  "bg-green-50",
-                  "dark:bg-green-900/50",
-                  "text-green-800",
-                  "dark:text-green-200"
+      try {
+            const question: Question = JSON.parse(questionDataEl.textContent);
+            const correctAnswers = new Set(
+                  Array.isArray(question.correct)
+                        ? question.correct
+                        : [question.correct]
             );
-      } else {
-            explanationBox.classList.add(
-                  "border-red-400",
-                  "bg-red-50",
-                  "dark:bg-red-900/50",
-                  "text-red-800",
-                  "dark:text-red-200"
+            const selectedInputs = Array.from(
+                  container.querySelectorAll<HTMLInputElement>("input:checked")
             );
+            const selectedIndices = new Set(
+                  selectedInputs.map((input) => parseInt(input.value, 10))
+            );
+
+            const isFullyCorrect =
+                  selectedIndices.size === correctAnswers.size &&
+                  [...selectedIndices].every((index) =>
+                        correctAnswers.has(index)
+                  );
+
+            explanationBox.classList.remove("hidden");
+            explanationBox.classList.add(
+                  isFullyCorrect ? "border-green-400" : "border-red-400",
+                  isFullyCorrect ? "bg-green-50" : "bg-red-50",
+                  isFullyCorrect
+                        ? "dark:bg-green-900/50"
+                        : "dark:bg-red-900/50",
+                  isFullyCorrect ? "text-green-800" : "text-red-800",
+                  isFullyCorrect ? "dark:text-green-200" : "dark:text-red-200"
+            );
+
+            checkBtn.disabled = true;
+            inputs.forEach((input) => (input.disabled = true));
+
+            optionsList.querySelectorAll("li").forEach((li, index) => {
+                  const label =
+                        li.querySelector<HTMLLabelElement>(".option-label");
+                  if (!label) return;
+
+                  const isCorrect = correctAnswers.has(index);
+                  const isSelected = selectedIndices.has(index);
+
+                  label.classList.remove(
+                        "has-[:checked]:bg-blue-50",
+                        "dark:has-[:checked]:bg-blue-900/50",
+                        "has-[:checked]:border-blue-400"
+                  );
+
+                  if (isCorrect) {
+                        label.classList.add(
+                              "bg-green-100",
+                              "dark:bg-green-900/50",
+                              "border-green-400"
+                        );
+                  } else if (isSelected && !isCorrect) {
+                        label.classList.add(
+                              "bg-red-100",
+                              "dark:bg-red-900/50",
+                              "border-red-400"
+                        );
+                  } else {
+                        label.classList.add("opacity-70");
+                  }
+            });
+      } catch (error) {
+            console.error("Failed to parse MCQ question data:", error);
       }
+}
 
-      checkBtn.setAttribute("disabled", "true");
-      inputs.forEach((input) => input.setAttribute("disabled", "true"));
-
-      optionsList.querySelectorAll("li").forEach((li, index) => {
-            const label = li.querySelector(".option-label");
-            if (!label) return;
-
-            const isCorrect = correctAnswers.has(index);
-            const isSelected = selectedIndices.has(index);
-
-            label.classList.remove(
-                  "has-[:checked]:bg-blue-50",
-                  "dark:has-[:checked]:bg-blue-900/50",
-                  "has-[:checked]:border-blue-400"
-            );
-
-            if (isCorrect) {
-                  label.classList.add(
-                        "bg-green-100",
-                        "dark:bg-green-900/50",
-                        "border-green-400"
-                  );
-            } else if (isSelected && !isCorrect) {
-                  label.classList.add(
-                        "bg-red-100",
-                        "dark:bg-red-900/50",
-                        "border-red-400"
-                  );
-            } else {
-                  label.classList.add("opacity-70");
-            }
-      });
-});
+// Attach a single listener to the document for efficiency
+document.addEventListener("click", handleMCQInteraction);
