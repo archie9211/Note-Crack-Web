@@ -22,7 +22,7 @@ registerRoute(
             ignoreForceNetwork({ request }),
       new StaleWhileRevalidate({
             cacheName: pagesCacheName,
-            plugins: [new ExpirationPlugin({ maxEntries: 30 })],
+            plugins: [],
       })
 );
 
@@ -35,7 +35,7 @@ registerRoute(
             cacheName: staticAssetsCacheName,
             plugins: [
                   new ExpirationPlugin({
-                        maxEntries: 60,
+                        maxEntries: 100,
                         maxAgeSeconds: 30 * 24 * 60 * 60,
                   }),
             ],
