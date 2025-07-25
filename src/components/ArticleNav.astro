@@ -8,7 +8,7 @@ export interface Props {
 }
 
 const { navTree, currentSubject, currentTopicSlug } = Astro.props;
-
+console.log("nageen", currentSubject);
 // Helper function to format names for display
 const formatName = (slug: string) => slug.replace(/-/g, " ");
 
@@ -23,7 +23,7 @@ const currentClass = currentTopicSlug.split("/")[0];
                         const isSubjectActive = subject === currentSubject;
                         return (
                               <div>
-                                    <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2 capitalize">
+                                    <h3 class="text-sm font-semibold tracking-wider text-gray-500 dark:text-gray-400 mb-2 capitalize">
                                           <a
                                                 href={`/${subject}`}
                                                 class:list={[

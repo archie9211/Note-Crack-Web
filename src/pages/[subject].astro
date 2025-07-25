@@ -1,28 +1,56 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
+import { collections } from "../content/config.mjs";
 import ArticleLayout from "../layouts/ArticleLayout.astro";
 import ArticleNav from "../components/ArticleNav.astro";
 import MobileToggles from "../components/MobileToggles.astro";
 import ForceUpdateButton from "../components/ForceUpdateButton.astro";
 import { buildNavigationTree } from "../lib/navigation";
 
-// NO getStaticPaths needed for SSR!
+// This page now handles ALL top-level collections.
+// NO getStaticPaths is needed because this is a server-rendered "catch-all".
 
 const { subject } = Astro.params;
-if (!subject) return new Response("Not Found", { status: 404 });
 
-// We still build the full tree for the sidebar navigation
+// 1. --- VALIDATION ---
+// Check if the requested subject is a valid collection. If not, show a 404.
+if (!subject || !collections.hasOwnProperty(subject)) {
+      return new Response("Collection not found", { status: 404 });
+}
+
+// 2. --- DETERMINE PAGE TYPE ---
+// We check if this is a notes page or an MCQ page based on the name.
+const isMcqPage = subject.endsWith("-mcqs");
+
+// 3. --- DYNAMICALLY SET PAGE TITLE ---
+const formatName = (slug: string) => slug.replace(/-/g, " ");
+const pageTitle = isMcqPage
+      ? `${formatName(subject.replace("-mcqs", ""))} MCQs`
+      : `${formatName(subject)} Notes`;
+
+// 4. --- BUILD NAVIGATION & FETCH CONTENT ---
 const navTree = await buildNavigationTree();
+type CollectionName = keyof typeof collections;
+type NoteEntry = CollectionEntry<CollectionName>;
+const entries: NoteEntry[] = await getCollection(subject as any);
+const topicsByClass: { [className: string]: any[] } = {};
 
-const topicsByClass = navTree[subject] ?? {};
+for (const entry of entries) {
+      const [className] = entry.slug.split("/");
+      if (!topicsByClass[className]) {
+            topicsByClass[className] = [];
+      }
+      topicsByClass[className].push(entry);
+}
 
+// 5. --- CONFIGURE NAVIGATION PROPS ---
+// The currentSubject is always the full name from the URL, which now works
+// because our navTree builder includes all subjects.
 const navProps = {
       navTree: navTree,
       currentSubject: subject,
-      currentTopicSlug: "", // No active topic on the subject page
+      currentTopicSlug: "",
 };
-
-const formatName = (slug: string) => slug.replace(/-/g, " ");
 ---
 
 <ArticleLayout>
@@ -42,11 +70,29 @@ const formatName = (slug: string) => slug.replace(/-/g, " ");
                   class="border-b border-gray-200 dark:border-gray-700 pb-3 mb-6"
             >
                   <h1 class="text-3xl lg:text-4xl font-bold capitalize">
-                        {formatName(subject)} Notes
+                        {pageTitle}
                   </h1>
             </div>
 
             <div class="space-y-10">
+                  {
+                        Object.keys(topicsByClass).length === 0 &&
+                              navProps.currentSubject.endsWith("mcqs") && (
+                                    <p class="text-gray-500">
+                                          No MCQs has been added for this
+                                          subject yet.
+                                    </p>
+                              )
+                  }
+                  {
+                        Object.keys(topicsByClass).length === 0 &&
+                              !navProps.currentSubject.endsWith("mcqs") && (
+                                    <p class="text-gray-500">
+                                          No content has been added for this
+                                          section yet.
+                                    </p>
+                              )
+                  }
                   {
                         Object.entries(topicsByClass).map(
                               ([className, topics]) => (
@@ -63,10 +109,18 @@ const formatName = (slug: string) => slug.replace(/-/g, " ");
                                                             >
                                                                   <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400 group-hover:underline">
                                                                         {
-                                                                              entry.title
+                                                                              entry
+                                                                                    .data
+                                                                                    .title
                                                                         }
                                                                   </h3>
-                                                                  {/* Description might not be in the navTree, so this is optional */}
+                                                                  <p class="text-gray-600 dark:text-gray-400 mt-1">
+                                                                        {
+                                                                              entry
+                                                                                    .data
+                                                                                    .description
+                                                                        }
+                                                                  </p>
                                                             </a>
                                                       </li>
                                                 ))}

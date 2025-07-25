@@ -72,9 +72,7 @@ function initializeCustomSearch() {
                         throw new Error("Failed to fetch search index");
                   const searchData: SearchNote[] = await response.json();
 
-                  const FuseModule = await import(
-                        "https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.mjs"
-                  );
+                  const FuseModule = await import("fuse.js");
                   fuse = new FuseModule.default(searchData, {
                         keys: [
                               { name: "title", weight: 0.7 },

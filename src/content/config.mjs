@@ -7,23 +7,16 @@ const mcqSchema = z.object({
       explanation: z.string(),
 });
 
-// Schema for a standard content page (a note)
+// This schema can be used for both regular notes and MCQ-only pages.
 const notesSchema = z.object({
       title: z.string(),
       description: z.string(),
-      // MCQs can be optionally included within a note
       mcqs: z.array(mcqSchema).optional(),
 });
 
-// A new, dedicated schema for a page that IS a collection of MCQs
-const mcqCollectionSchema = z.object({
-      title: z.string(), // The title of the quiz, e.g., "Chapter 1 Quiz"
-      description: z.string(), // A short description of the quiz
-      mcqs: z.array(mcqSchema), // It MUST have MCQs
-});
-
-// Define a collection for each subject
+// Define a collection for each subject AND each subject's MCQs.
 export const collections = {
+      // --- Regular Note Collections ---
       biology: defineCollection({
             type: "content",
             schema: notesSchema,
@@ -32,10 +25,26 @@ export const collections = {
             type: "content",
             schema: notesSchema,
       }),
-      // This now uses the correct, dedicated schema.
-      // Use this for content that is *only* a quiz.
-      biologyMcqs: defineCollection({
+      physics: defineCollection({
+            // Example
             type: "content",
-            schema: mcqCollectionSchema,
+            schema: notesSchema,
+      }),
+
+      // --- MCQ-Specific Collections ---
+      // Your content files would live in:
+      // src/content/biology-mcqs/class-12/chapter-1-quiz.md
+      "biology-mcqs": defineCollection({
+            type: "content",
+            schema: notesSchema,
+      }),
+      "chemistry-mcqs": defineCollection({
+            type: "content",
+            schema: notesSchema,
+      }),
+      "physics-mcqs": defineCollection({
+            // Example
+            type: "content",
+            schema: notesSchema,
       }),
 };
