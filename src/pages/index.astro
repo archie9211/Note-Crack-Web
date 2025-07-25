@@ -1,5 +1,25 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { collections } from "../content/config.mjs";
+
+// Get the list of subjects dynamically, filtering out any utility collections.
+const subjects = Object.keys(collections).filter(
+      (key) => !key.endsWith("Mcqs")
+);
+
+// Helper function to pick a representative icon for each subject
+const getIconForSubject = (subject: string) => {
+      switch (subject.toLowerCase()) {
+            case "chemistry":
+                  return `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 10.5_l-2.45-4.3_l-2.45 4.3_h4.9ZM9 4.5_l-2.25 6_h4.5_l2.25 6_h-11.25_l2.25 -6_h-4.5_l-2.25 6" /></svg>`;
+            case "biology":
+                  return `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6_s-2.75 -3.75 -6 -3.75_c-2.485 0 -4.5 2.015 -4.5 4.5_c0 2.224 1.233 4.143 3 5.018_v3.732_a1.5 1.5 0 0 0 1.5 1.5_h6_a1.5 1.5 0 0 0 1.5 -1.5_v-3.732_c1.767 -0.875 3 -2.794 3 -5.018_c0 -2.485 -2.015 -4.5 -4.5 -4.5_s-6 3.75 -6 3.75Z" /></svg>`;
+            case "physics":
+                  return `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9_a8.25 8.25 0 0 1 16.5 0_v3.75_c0 .927 -0.274 1.802 -0.771 2.553_l-0.783 1.268_a4.5 4.5 0 0 1 -7.992 0_l-0.783 -1.268_a4.5 4.5 0 0 1 -0.771 -2.553_V9Z_M15 12_a3 3 0 0 1 -6 0_m0 0" /></svg>`;
+            default:
+                  return `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042_A8.967 8.967 0 0 0 6 3.75_c-1.052 0 -2.062.18 -3 .512_v14.25_a8.987 8.987 0 0 1 6-3.75_m0 0_c2.25 0 4.106 1.04 5.25 2.688_m0 0_V3.75_c-1.125-0.298-2.29-0.457-3.468-0.457_a8.967 8.967 0 0 0-4.782 1.487_M12 6.042_m0 12.33_a8.967 8.967 0 0 1-5.25 -2.688" /></svg>`;
+      }
+};
 ---
 
 <BaseLayout>
@@ -7,8 +27,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div
             class="prose prose-neutral dark:prose-invert max-w-5xl mx-auto px-4 py-8"
       >
-            <!-- Hero Section -->
-            <section class="text-center py-20 lg:py-32">
+            <!-- ================== HERO SECTION (Updated) ================== -->
+            <section class="text-center py-16 lg:py-24">
                   <h1
                         class="text-4xl lg:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white"
                   >
@@ -22,41 +42,60 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                         clarity, speed, and focus — right when you need it most.
                   </p>
                   <div class="mt-8 flex justify-center">
+                        <!-- This button now links directly to the new Subjects section below -->
                         <a
-                              href="#features"
+                              href="#subjects"
                               class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-colors no-underline"
                         >
-                              See How It Works
+                              Explore Subjects
                         </a>
                   </div>
             </section>
 
-            <!-- The rest of your home page content follows... -->
-            <!-- About Section -->
-            <section
-                  class="py-16 bg-gray-50 dark:bg-gray-800/50 rounded-xl not-prose px-6"
-            >
-                  <div class="max-w-4xl mx-auto text-center">
+            <!-- ================== NEW SUBJECTS SECTION ================== -->
+            <section id="subjects" class="py-16 not-prose">
+                  <div class="max-w-4xl mx-auto text-center mb-12">
                         <h2
                               class="text-3xl font-bold text-gray-900 dark:text-white"
                         >
-                              Built for the Final Hour
+                              Choose Your Subject
                         </h2>
-                        <p
-                              class="mt-4 max-w-3xl mx-auto text-gray-700 dark:text-gray-300"
-                        >
-                              We've all been there: exams are looming, your
-                              notes are a mess, and panic is setting in.
-                              NoteCrack was built to be the friend you wish you
-                              had at 2 AM — delivering clear, reliable, and
-                              super-fast notes without any distractions. No
-                              sign-ups, no fees, no nonsense. Just pure, focused
-                              revision.
+                        <p class="mt-4 text-gray-600 dark:text-gray-300">
+                              Select a subject to start revising right away.
                         </p>
+                  </div>
+
+                  <!-- Grid for subject cards -->
+                  <div
+                        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                  >
+                        {
+                              subjects.map((subject) => (
+                                    <a
+                                          href={`/${subject}`}
+                                          class="group block text-center p-6 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-xl hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 transform hover:-translate-y-1 no-underline"
+                                    >
+                                          <div class="inline-flex items-center justify-center w-16 h-16 mb-4 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-300 rounded-full group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-colors">
+                                                <Fragment
+                                                      set:html={getIconForSubject(
+                                                            subject
+                                                      )}
+                                                />
+                                          </div>
+                                          <h3 class="text-xl font-bold text-gray-900 dark:text-white capitalize mb-1">
+                                                {subject.replace("-", " ")}
+                                          </h3>
+                                          <p class="text-blue-600 dark:text-blue-400 font-semibold group-hover:underline">
+                                                View Notes →
+                                          </p>
+                                    </a>
+                              ))
+                        }
                   </div>
             </section>
 
-            <!-- How It Helps / Features Section -->
+            <!-- The rest of your home page content follows... -->
+            <!-- Features Section -->
             <section id="features" class="py-20 lg:py-24 not-prose">
                   <div class="max-w-5xl mx-auto px-6">
                         <div class="text-center mb-12">
@@ -74,10 +113,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                         <div
                               class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
                         >
-                              {/* All your feature blocks here... */}
+                              <!-- Feature: Focus on What Matters -->
                               <div class="flex items-start space-x-4">
                                     <div
-                                          class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center"
+                                          class="flex-shrink-0 w-12 h-12 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center"
                                     >
                                           <svg
                                                 class="w-6 h-6"
@@ -108,9 +147,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                                           </p>
                                     </div>
                               </div>
+
+                              <!-- Feature: Zero Distractions -->
                               <div class="flex items-start space-x-4">
                                     <div
-                                          class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center"
+                                          class="flex-shrink-0 w-12 h-12 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center"
                                     >
                                           <svg
                                                 class="w-6 h-6"
@@ -142,9 +183,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                                           </p>
                                     </div>
                               </div>
+
+                              <!-- Feature: Find Notes Instantly -->
                               <div class="flex items-start space-x-4">
                                     <div
-                                          class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center"
+                                          class="flex-shrink-0 w-12 h-12 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center"
                                     >
                                           <svg
                                                 class="w-6 h-6"
@@ -155,7 +198,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                                                       stroke-linecap="round"
                                                       stroke-linejoin="round"
                                                       stroke-width="2"
-                                                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9m-9 9a9 9 0 00-9-9"
+                                                      d="M21 21l-4.35-4.35M11 19_a8 8 0 100-16_8 8 0 000 16z"
                                                 ></path></svg
                                           >
                                     </div>
@@ -169,15 +212,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                                                 class="mt-1 text-gray-600 dark:text-gray-400"
                                           >
                                                 No more frantic searching
-                                                through PDFs. Navigate directly
-                                                to the subject and topic you
-                                                need to revise from the header.
+                                                through PDFs. Our powerful,
+                                                built-in search gets you to the
+                                                right topic in seconds.
                                           </p>
                                     </div>
                               </div>
+
+                              <!-- Feature: Revise Anywhere -->
                               <div class="flex items-start space-x-4">
                                     <div
-                                          class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center"
+                                          class="flex-shrink-0 w-12 h-12 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center"
                                     >
                                           <svg
                                                 class="w-6 h-6"
@@ -202,10 +247,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                                                 class="mt-1 text-gray-600 dark:text-gray-400"
                                           >
                                                 Stuck on a bus or waiting in
-                                                line? Our site works perfectly
-                                                on your phone, so you can
-                                                squeeze in a quick revision
-                                                session anytime.
+                                                line? Our site is a fully
+                                                offline-capable PWA, so you can
+                                                study anytime, anywhere.
                                           </p>
                                     </div>
                               </div>
@@ -242,8 +286,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                         Ready to Crack Your Notes?
                   </h2>
                   <p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
-                        You've got this. Pick a subject from the menu above and
-                        dive in.
+                        You've got this. Pick a subject from the menu above or
+                        jump back up and get started.
                   </p>
             </section>
       </div>
