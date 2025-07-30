@@ -4,6 +4,9 @@ import ReadingProgressBar from "../components/ReadingProgressBar.astro";
 ---
 
 <BaseLayout>
+      <Fragment slot="head">
+            <slot name="head" />
+      </Fragment>
       <ReadingProgressBar />
 
       <div class="max-w-8xl mx-auto w-full relative px-4 sm:px-6 lg:px-8">

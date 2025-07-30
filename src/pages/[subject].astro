@@ -28,6 +28,15 @@ const pageTitle = isMcqPage
       ? `${formatName(subject.replace("-mcqs", ""))} MCQs`
       : `${formatName(subject)} Notes`;
 
+const h1Title = isMcqPage
+      ? `${formatName(subject.replace("-mcqs", ""))} MCQs`
+      : `${formatName(subject)} Notes`;
+const fullTitle = `${h1Title} | Note Crack`;
+const description = isMcqPage
+      ? `Browse and practice all MCQs for ${formatName(subject.replace("-mcqs", ""))}. Test your knowledge and prepare for your exams.`
+      : `Find all revision notes for ${formatName(subject)}, organized by class. Start your focused study session now.`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+
 // 4. --- BUILD NAVIGATION & FETCH CONTENT ---
 const navTree = await buildNavigationTree();
 type CollectionName = keyof typeof collections;
@@ -54,6 +63,15 @@ const navProps = {
 ---
 
 <ArticleLayout>
+      <Fragment slot="head">
+            <title>{fullTitle}</title>
+            <meta name="description" content={description} />
+            <link rel="canonical" href={canonicalUrl} />
+            <meta property="og:title" content={fullTitle} />
+            <meta property="og:description" content={description} />
+            <meta property="twitter:title" content={fullTitle} />
+            <meta property="twitter:description" content={description} />
+      </Fragment>
       <!-- Left Sidebar (Desktop) -->
       <div slot="left-sidebar">
             <ArticleNav {...navProps} />

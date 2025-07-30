@@ -2,6 +2,35 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { collections } from "../content/config.mjs";
 
+// -- SEO --
+const title = "Note Crack: Simplified Revision Notes & MCQs for Students";
+const description =
+      "High-quality, concise revision notes and MCQs for biology, chemistry, and physics. Built for speed, offline access, and focused learning to help you ace your exams.";
+const canonicalUrl = Astro.site
+      ? new URL(Astro.url.pathname, Astro.site).href
+      : "/";
+// Assumes you have a `social-card.png` in your /public/ directory
+const socialImageUrl = Astro.site
+      ? new URL("/social-card.png", Astro.site).href
+      : "";
+
+// Structured data for search engines
+const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Note Crack",
+      url: canonicalUrl,
+      description: description,
+      publisher: {
+            "@type": "Organization",
+            name: "Note Crack",
+            logo: {
+                  "@type": "ImageObject",
+                  url: Astro.site ? new URL("/logo.webp", Astro.site).href : "",
+            },
+      },
+};
+
 const allCollectionKeys = Object.keys(collections);
 const noteSubjects = allCollectionKeys.filter((key) => !key.endsWith("-mcqs"));
 const mcqSubjects = allCollectionKeys.filter((key) => key.endsWith("-mcqs"));
@@ -28,6 +57,31 @@ const getMcqIconForSubject = (subject: string) => {
 ---
 
 <BaseLayout>
+      <Fragment slot="head">
+            <title>{title}</title>
+            <meta name="description" content={description} />
+            <link rel="canonical" href={canonicalUrl} />
+
+            <!-- Open Graph / Facebook -->
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content={canonicalUrl} />
+            <meta property="og:title" content={title} />
+            <meta property="og:description" content={description} />
+            <meta property="og:image" content={socialImageUrl} />
+
+            <!-- Twitter -->
+            <meta property="twitter:card" content="summary_large_image" />
+            <meta property="twitter:url" content={canonicalUrl} />
+            <meta property="twitter:title" content={title} />
+            <meta property="twitter:description" content={description} />
+            <meta property="twitter:image" content={socialImageUrl} />
+
+            <!-- Structured Data -->
+            <script
+                  type="application/ld+json"
+                  set:html={JSON.stringify(structuredData)}
+            />
+      </Fragment>
       <div
             class="prose prose-neutral dark:prose-invert max-w-5xl mx-auto px-4 py-8"
       >

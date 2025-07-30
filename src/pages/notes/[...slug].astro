@@ -13,6 +13,8 @@ import MCQWrapper from "../../components/MCQWrapper.astro";
 import Pagination from "../../components/Pagination.astro";
 import type { Mcq } from "../../content/schema";
 
+const formatName = (slug: string) => slug.replace(/-/g, " ");
+
 const { slug } = Astro.params;
 if (!slug) return new Response("Not Found", { status: 404 });
 
@@ -25,13 +27,17 @@ const entry = await getEntry(subjectSlug, topicSlugWithClass);
 if (!entry) return new Response("Article not found", { status: 404 });
 
 const { Content, headings } = await entry.render();
-const pageDescription = entry.data.description;
 
 const hasHeadings = headings.length > 0;
 
 // --- UPDATED: TYPE-SAFE MCQ HANDLING ---
 // Use our imported Mcq type and provide a default empty array for safety.
 const allMcqs: Mcq[] = entry.data.mcqs || [];
+// SEO
+const pageTitle = `${entry.data.title} | ${formatName(className)} | ${formatName(subjectSlug.replace("-mcqs", ""))}`;
+const fullTitle = `${pageTitle} | Note Crack`;
+const pageDescription = entry.data.description;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 
 // =================================================================
 // --- PAGINATION LOGIC ---
@@ -51,7 +57,6 @@ const end = start + pageSize;
 
 const paginatedMcqs = allMcqs.slice(start, end);
 
-// --- EXISTING NAVIGATION LOGIC (UNCHANGED) ---
 const navTree = await buildNavigationTree();
 const topicsInCurrentClass = navTree[subjectSlug]?.[className] ?? [];
 const currentIndex = topicsInCurrentClass.findIndex(
@@ -84,7 +89,13 @@ const navProps = {
             <MobileToggles showMenuToggle={true} showTocToggle={hasHeadings} />
       </div>
       <Fragment slot="head">
+            <title>{fullTitle}</title>
             <meta name="description" content={pageDescription} />
+            <link rel="canonical" href={canonicalUrl} />
+            <meta property="og:title" content={fullTitle} />
+            <meta property="og:description" content={pageDescription} />
+            <meta property="twitter:title" content={fullTitle} />
+            <meta property="twitter:description" content={pageDescription} />
       </Fragment>
 
       <!-- Main Content Area -->
