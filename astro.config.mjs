@@ -10,6 +10,7 @@ import rehypeMathjax from "rehype-mathjax/svg";
 
 // https://astro.build/config
 export default defineConfig({
+      site: "https://notecrack.archie9211.com/",
       output: "server",
       markdown: {
             remarkPlugins: [remarkMath],
