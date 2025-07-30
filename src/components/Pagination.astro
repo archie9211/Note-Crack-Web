@@ -1,0 +1,123 @@
+---
+export interface Props {
+      currentPage: number;
+      totalPages: number;
+      baseUrl: string; // The base path of the current page, e.g., /notes/biology/some-topic
+}
+
+const { currentPage, totalPages, baseUrl } = Astro.props;
+
+// Helper to generate the list of pages to display (e.g., 1, ..., 4, 5, 6, ..., 10)
+const getPages = () => {
+      const pages = new Set<number | string>();
+      pages.add(1); // Always show the first page
+
+      // Add pages around the current page
+      for (let i = -1; i <= 1; i++) {
+            const p = currentPage + i;
+            if (p > 1 && p < totalPages) {
+                  pages.add(p);
+            }
+      }
+
+      pages.add(totalPages); // Always show the last page
+
+      // Add ellipses for gaps
+      const result: (number | string)[] = [];
+      let lastPage = 0;
+      for (const page of Array.from(pages).sort(
+            (a, b) => (a as number) - (b as number)
+      )) {
+            if (lastPage !== 0 && page > lastPage + 1) {
+                  result.push("...");
+            }
+            result.push(page);
+            lastPage = page as number;
+      }
+
+      return result;
+};
+
+const pages = getPages();
+---
+
+<nav
+      class="flex items-center justify-between text-sm font-medium mt-12 pt-8 border-t border-gray-200 dark:border-gray-800"
+      aria-label="Pagination"
+>
+      <!-- Previous Button -->
+      <a
+            href={currentPage > 1 ? `${baseUrl}?page=${currentPage - 1}` : "#"}
+            class:list={[
+                  "inline-flex items-center gap-2 px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors",
+                  currentPage <= 1 && "opacity-50 pointer-events-none",
+            ]}
+            aria-disabled={currentPage <= 1}
+      >
+            <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 19l-7-7 7-7"></path></svg
+            >
+            <span>Previous</span>
+      </a>
+
+      <!-- Page Numbers -->
+      <div class="hidden md:flex items-center gap-2">
+            {
+                  pages.map((page) =>
+                        page === "..." ? (
+                              <span class="px-4 py-2 text-gray-500">...</span>
+                        ) : (
+                              <a
+                                    href={`${baseUrl}?page=${page}`}
+                                    class:list={[
+                                          "px-4 py-2 rounded-md transition-colors",
+                                          page === currentPage
+                                                ? "bg-blue-600 text-white pointer-events-none"
+                                                : "hover:bg-gray-100 dark:hover:bg-gray-800",
+                                    ]}
+                                    aria-current={
+                                          page === currentPage
+                                                ? "page"
+                                                : undefined
+                                    }
+                              >
+                                    {page}
+                              </a>
+                        )
+                  )
+            }
+      </div>
+
+      <!-- Next Button -->
+      <a
+            href={currentPage < totalPages
+                  ? `${baseUrl}?page=${currentPage + 1}`
+                  : "#"}
+            class:list={[
+                  "inline-flex items-center gap-2 px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors",
+                  currentPage >= totalPages && "opacity-50 pointer-events-none",
+            ]}
+            aria-disabled={currentPage >= totalPages}
+      >
+            <span>Next</span>
+            <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"></path></svg
+            >
+      </a>
+</nav>

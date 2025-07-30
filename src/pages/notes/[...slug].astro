@@ -1,5 +1,5 @@
 ---
-import { getEntry, getCollection } from "astro:content";
+import { getEntry } from "astro:content";
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import ArticleNav from "../../components/ArticleNav.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
@@ -10,13 +10,15 @@ import MCQ from "../../components/MCQ.astro";
 import ShowAllAnswers from "../../components/ShowAllAnswers.astro";
 import { buildNavigationTree } from "../../lib/navigation";
 import MCQWrapper from "../../components/MCQWrapper.astro";
+import Pagination from "../../components/Pagination.astro";
+import type { Mcq } from "../../content/schema";
 
 const { slug } = Astro.params;
 if (!slug) return new Response("Not Found", { status: 404 });
 
 const slugParts = slug.split("/");
 const subjectSlug = slugParts[0];
-const topicSlugWithClass = slugParts.slice(1).join("/"); // e.g., 'class-12/topic-name'
+const topicSlugWithClass = slugParts.slice(1).join("/");
 const className = slugParts[1];
 
 const entry = await getEntry(subjectSlug, topicSlugWithClass);
@@ -24,26 +26,41 @@ if (!entry) return new Response("Article not found", { status: 404 });
 
 const { Content, headings } = await entry.render();
 const hasHeadings = headings.length > 0;
-const mcqs = entry.data.mcqs;
 
-// --- KEY CHANGES ---
-// 1. Build the full navigation tree for the sidebar
+// --- UPDATED: TYPE-SAFE MCQ HANDLING ---
+// Use our imported Mcq type and provide a default empty array for safety.
+const allMcqs: Mcq[] = entry.data.mcqs || [];
+
+// =================================================================
+// --- PAGINATION LOGIC ---
+// =================================================================
+const pageSize = 20;
+const totalMcqs = allMcqs.length;
+const totalPages = Math.ceil(totalMcqs / pageSize);
+
+const pageParam = Astro.url.searchParams.get("page");
+const currentPage = Math.max(
+      1,
+      Math.min(totalPages || 1, parseInt(pageParam || "1", 10))
+);
+
+const start = (currentPage - 1) * pageSize;
+const end = start + pageSize;
+
+const paginatedMcqs = allMcqs.slice(start, end);
+
+// --- EXISTING NAVIGATION LOGIC (UNCHANGED) ---
 const navTree = await buildNavigationTree();
-
-// 2. Find previous/next topic *within the same class*
 const topicsInCurrentClass = navTree[subjectSlug]?.[className] ?? [];
 const currentIndex = topicsInCurrentClass.findIndex(
       (topic) => topic.slug === topicSlugWithClass
 );
-
 const prevTopic =
       currentIndex > 0 ? topicsInCurrentClass[currentIndex - 1] : undefined;
 const nextTopic =
       currentIndex < topicsInCurrentClass.length - 1
             ? topicsInCurrentClass[currentIndex + 1]
             : undefined;
-
-// Props for the navigation component
 const navProps = {
       navTree: navTree,
       currentSubject: subjectSlug,
@@ -52,18 +69,22 @@ const navProps = {
 ---
 
 <ArticleLayout>
-      <!-- Left Sidebar (Desktop) -->
-      <div slot="left-sidebar">
-            <ArticleNav {...navProps} />
+      <!-- Sidebars and Mobile Toggles (Unchanged) -->
+      <div slot="left-sidebar"><ArticleNav {...navProps} /></div>
+      <div slot="mobile-nav-drawer"><ArticleNav {...navProps} /></div>
+      <div slot="right-sidebar">
+            {hasHeadings && <TableOfContents headings={headings} />}
       </div>
-
-      <!-- Content for the slide-out mobile nav drawer -->
-      <div slot="mobile-nav-drawer">
-            <ArticleNav {...navProps} />
+      <div slot="mobile-toc">
+            {hasHeadings && <TableOfContents headings={headings} />}
+      </div>
+      <div slot="mobile-toggles">
+            <MobileToggles showMenuToggle={true} showTocToggle={hasHeadings} />
       </div>
 
       <!-- Main Content Area -->
       <div slot="main-content">
+            <!-- Article Content (Unchanged) -->
             <article class="prose prose-neutral dark:prose-invert max-w-none">
                   <div class="mb-8 text-center">
                         <p
@@ -81,21 +102,48 @@ const navProps = {
                   <hr class="my-8" />
                   <Content />
             </article>
+
+            <!-- --- UPDATED MCQ SECTION --- -->
             {
-                  mcqs && mcqs.length > 0 && (
+                  totalMcqs > 0 && (
                         <section class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
-                              <h2 class="text-2xl font-bold mb-6">
-                                    Test Your Knowledge
-                              </h2>
+                              <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-6">
+                                    <h2 class="text-2xl font-bold">
+                                          Test Your Knowledge
+                                    </h2>
+                                    {totalPages > 1 && (
+                                          <p class="text-sm text-gray-500 dark:text-gray-400 mt-2 sm:mt-0">
+                                                Showing questions {start + 1} -{" "}
+                                                {Math.min(end, totalMcqs)} of{" "}
+                                                {totalMcqs}
+                                          </p>
+                                    )}
+                              </div>
+
                               <MCQWrapper />
 
-                              {mcqs.map((question, index) => (
-                                    <MCQ question={question} index={index} />
+                              {/* Map over the paginated array instead of the full array */}
+                              {paginatedMcqs.map((question, index) => (
+                                    <MCQ
+                                          question={question}
+                                          index={start + index}
+                                    />
                               ))}
-                              <ShowAllAnswers />
+
+                              {/* Conditionally render these components */}
+                              {paginatedMcqs.length > 0 && <ShowAllAnswers />}
+                              {totalPages > 1 && (
+                                    <Pagination
+                                          currentPage={currentPage}
+                                          totalPages={totalPages}
+                                          baseUrl={Astro.url.pathname}
+                                    />
+                              )}
                         </section>
                   )
             }
+
+            <!-- Prev/Next Navigation (Unchanged) -->
             <PrevNextNav
                   prev={prevTopic && {
                         url: `/notes/${subjectSlug}/${prevTopic.slug}`,
@@ -107,20 +155,5 @@ const navProps = {
                   }}
             />
             <ForceUpdateButton />
-      </div>
-
-      <!-- Right Sidebar (Desktop) -->
-      <div slot="right-sidebar">
-            {hasHeadings && <TableOfContents headings={headings} />}
-      </div>
-
-      <!-- Mobile Table of Contents (Drawer) -->
-      <div slot="mobile-toc">
-            {hasHeadings && <TableOfContents headings={headings} />}
-      </div>
-
-      <!-- Mobile Toggle Buttons: Show BOTH buttons -->
-      <div slot="mobile-toggles">
-            <MobileToggles showMenuToggle={true} showTocToggle={hasHeadings} />
       </div>
 </ArticleLayout>
