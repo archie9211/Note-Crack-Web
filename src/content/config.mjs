@@ -17,6 +17,10 @@ export const collections = {
             type: "content",
             schema: notesSchema,
       }),
+      miscellaneous: defineCollection({
+            type: "content",
+            schema: notesSchema,
+      }),
 
       // --- MCQ-Specific Collections ---
       "biology-mcqs": defineCollection({
