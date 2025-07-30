@@ -20,6 +20,9 @@ export default defineConfig({
       vite: {
             plugins: [tailwindcss()],
       },
+      build: {
+            inlineStylesheets: "auto", // or "always"
+      },
       adapter: cloudflare(),
       integrations: [
             AstroPWA({

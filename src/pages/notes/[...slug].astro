@@ -25,6 +25,8 @@ const entry = await getEntry(subjectSlug, topicSlugWithClass);
 if (!entry) return new Response("Article not found", { status: 404 });
 
 const { Content, headings } = await entry.render();
+const pageDescription = entry.data.description;
+
 const hasHeadings = headings.length > 0;
 
 // --- UPDATED: TYPE-SAFE MCQ HANDLING ---
@@ -81,6 +83,9 @@ const navProps = {
       <div slot="mobile-toggles">
             <MobileToggles showMenuToggle={true} showTocToggle={hasHeadings} />
       </div>
+      <Fragment slot="head">
+            <meta name="description" content={pageDescription} />
+      </Fragment>
 
       <!-- Main Content Area -->
       <div slot="main-content">
