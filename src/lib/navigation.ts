@@ -57,21 +57,23 @@ export async function buildNavigationTree(): Promise<SubjectClasses> {
             // Sort topics within each class based on numeric prefix
             for (const className in navTree[subject]) {
                   navTree[subject][className].sort((a, b) => {
-                        const aMatch = a.slug
-                              .split("/")
-                              .pop()
-                              ?.match(/^(\d+)-/);
-                        const bMatch = b.slug
-                              .split("/")
-                              .pop()
-                              ?.match(/^(\d+)-/);
-                        const aNum = aMatch
-                              ? parseInt(aMatch[1], 10)
-                              : Infinity;
-                        const bNum = bMatch
-                              ? parseInt(bMatch[1], 10)
-                              : Infinity;
-                        return aNum - bNum;
+                        const aFilename = a.slug.split("/").pop() || "";
+                        const bFilename = b.slug.split("/").pop() || "";
+                        const aMatch = aFilename.match(/^(\d+)-/);
+                        const bMatch = bFilename.match(/^(\d+)-/);
+
+                        // If both have numeric prefixes, sort by number
+                        if (aMatch && bMatch) {
+                              return (
+                                    parseInt(aMatch[1], 10) -
+                                    parseInt(bMatch[1], 10)
+                              );
+                        }
+                        // If only one has a numeric prefix, put numbered ones first
+                        if (aMatch) return -1;
+                        if (bMatch) return 1;
+                        // If neither has a numeric prefix, sort alphabetically
+                        return aFilename.localeCompare(bFilename);
                   });
             }
 
