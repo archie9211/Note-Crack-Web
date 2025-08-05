@@ -54,6 +54,27 @@ export async function buildNavigationTree(): Promise<SubjectClasses> {
                   });
             }
 
+            // Sort topics within each class based on numeric prefix
+            for (const className in navTree[subject]) {
+                  navTree[subject][className].sort((a, b) => {
+                        const aMatch = a.slug
+                              .split("/")
+                              .pop()
+                              ?.match(/^(\d+)-/);
+                        const bMatch = b.slug
+                              .split("/")
+                              .pop()
+                              ?.match(/^(\d+)-/);
+                        const aNum = aMatch
+                              ? parseInt(aMatch[1], 10)
+                              : Infinity;
+                        const bNum = bMatch
+                              ? parseInt(bMatch[1], 10)
+                              : Infinity;
+                        return aNum - bNum;
+                  });
+            }
+
             const sortedClasses = Object.keys(navTree[subject]).sort();
             const sortedNavTreeForSubject: ClassTopics = {}; // Added type for clarity
             for (const className of sortedClasses) {
