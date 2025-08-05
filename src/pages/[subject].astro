@@ -52,6 +52,25 @@ for (const entry of entries) {
       topicsByClass[className].push(entry);
 }
 
+// Sort topics within each class based on numeric prefix
+for (const className in topicsByClass) {
+      topicsByClass[className].sort((a, b) => {
+            const aFilename = a.slug.split("/").pop() || "";
+            const bFilename = b.slug.split("/").pop() || "";
+            const aMatch = aFilename.match(/^(\d+)-/);
+            const bMatch = bFilename.match(/^(\d+)-/);
+            // If both have numeric prefixes, sort by number
+            if (aMatch && bMatch) {
+                  return parseInt(aMatch[1], 10) - parseInt(bMatch[1], 10);
+            }
+            // If only one has a numeric prefix, put numbered ones first
+            if (aMatch) return -1;
+            if (bMatch) return 1;
+            // If neither has a numeric prefix, sort alphabetically
+            return aFilename.localeCompare(bFilename);
+      });
+}
+
 // 5. --- CONFIGURE NAVIGATION PROPS ---
 // The currentSubject is always the full name from the URL, which now works
 // because our navTree builder includes all subjects.
