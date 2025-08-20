@@ -116,21 +116,52 @@ const navProps = {
                   type="application/ld+json"
                   set:html={JSON.stringify({
                         "@context": "https://schema.org",
-                        "@type": totalMcqs > 0 ? "Quiz" : "Article",
-                        headline: fullTitle,
+                        "@type": totalMcqs > 0 ? "LearningResource" : "Article",
+                        name: fullTitle,
                         description: pageDescription,
                         dateModified:
                               entry.data.dateModified ||
                               new Date().toISOString(),
-                        articleSection: formatName(className),
-                        keywords:
-                              entry.data.keywords ||
-                              `${formatName(subjectSlug)}, ${formatName(className)}, revision notes`,
-                        ...(totalMcqs > 0 && {
-                              learningResourceType: "Quiz",
-                              interactionType: "choiceInteraction",
-                              numberOfQuestions: totalMcqs,
-                        }),
+                        about: {
+                              "@type": "Thing",
+                              name: formatName(
+                                    subjectSlug.replace("-mcqs", "")
+                              ),
+                              description: `${formatName(className)} level ${formatName(subjectSlug.replace("-mcqs", ""))}`,
+                        },
+                        ...(totalMcqs > 0
+                              ? {
+                                      learningResourceType: "Quiz",
+                                      educationalUse: [
+                                            "Assessment",
+                                            "Self-Assessment",
+                                      ],
+                                      teaches: formatName(
+                                            subjectSlug.replace("-mcqs", "")
+                                      ),
+                                      assesses: entry.data.title,
+                                      educationalLevel: formatName(className),
+                                      educationalAlignment: {
+                                            "@type": "AlignmentObject",
+                                            alignmentType: "teaches",
+                                            educationalFramework:
+                                                  "General Education",
+                                            targetName: formatName(
+                                                  subjectSlug.replace(
+                                                        "-mcqs",
+                                                        ""
+                                                  )
+                                            ),
+                                            targetUrl: `${Astro.site}/${subjectSlug}`,
+                                      },
+                                }
+                              : {
+                                      articleBody: entry.data.description,
+                                      keywords:
+                                            entry.data.keywords ||
+                                            `${formatName(subjectSlug)}, ${formatName(className)}, revision notes`,
+                                      articleSection: formatName(className),
+                                }),
                         isPartOf: {
                               "@type": "WebSite",
                               name: "Note Crack",

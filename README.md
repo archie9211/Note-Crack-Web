@@ -11,6 +11,7 @@ This isn't just a simple static site. It's a full-featured web application packe
 - **🚀 Blazing Fast Performance:** Built with [Astro](https://astro.build/) for an edge-rendered, zero-JavaScript-by-default architecture. Pages are incredibly lightweight and load instantly, served from a Cloudflare data center near you.
 
 - **� Advanced SEO Optimization:**
+
      - Dynamic meta tags and structured data for better search engine visibility
      - Schema.org markup for articles and quizzes
      - Breadcrumb navigation for improved crawling
