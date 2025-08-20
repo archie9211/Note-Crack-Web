@@ -10,7 +10,14 @@ This isn't just a simple static site. It's a full-featured web application packe
 
 - **🚀 Blazing Fast Performance:** Built with [Astro](https://astro.build/) for an edge-rendered, zero-JavaScript-by-default architecture. Pages are incredibly lightweight and load instantly, served from a Cloudflare data center near you.
 
-- **📱 Progressive Web App (PWA):** Fully installable on both desktop and mobile for a native app-like experience.
+- **� Advanced SEO Optimization:**
+     - Dynamic meta tags and structured data for better search engine visibility
+     - Schema.org markup for articles and quizzes
+     - Breadcrumb navigation for improved crawling
+     - Content-specific keywords and meta descriptions
+     - Enhanced MCQ discoverability for exam-specific searches
+
+- **�📱 Progressive Web App (PWA):** Fully installable on both desktop and mobile for a native app-like experience.
 
      - **Complete Offline Support:** A custom service worker aggressively caches all visited notes, static assets, and even the search index, making the app fully functional without an internet connection.
      - **Automatic Background Updates:** When new content is published, the app updates seamlessly in the background. Users get the latest version on their next visit without any disruptive prompts.
@@ -32,6 +39,8 @@ This isn't just a simple static site. It's a full-featured web application packe
      - Embed multiple-choice questions (MCQs) directly into notes to test understanding.
      - Provides instant visual feedback on answers and reveals detailed explanations.
      - Engineered for performance using a single event listener to manage all quizzes on a page, minimizing JavaScript load.
+     - Dedicated MCQ collections with enhanced SEO for better visibility in exam-related searches.
+     - Structured data markup for quiz content improving search engine understanding.
 
 - **📖 Distraction-Free Reading Experience:**
 
@@ -46,6 +55,8 @@ This isn't just a simple static site. It's a full-featured web application packe
 
      - Notes are written in simple **Markdown** using Astro's type-safe [Content Collections](https://docs.astro.build/en/guides/content-collections/).
      - Organized by `subject > class > topic` for a clear, scalable, and automatically generated tree-like navigation.
+     - Enhanced metadata support for SEO, including keywords, descriptions, and subject categorization.
+     - Separate collections for notes and MCQs with shared schema for consistency.
 
 - **🎨 Theming:**
 
@@ -66,6 +77,8 @@ This isn't just a simple static site. It's a full-featured web application packe
 - **Client-Side Search:** [Fuse.js](https://fusejs.io/)
 - **PWA / Service Worker:** Manual with [Workbox](https://developer.chrome.com/docs/workbox)
 - **Math Rendering:** `remark-math` & `rehype-mathjax`
+- **SEO:** Schema.org structured data, OpenGraph, Twitter Cards
+- **Content Structure:** Type-safe collections with custom frontmatter schema
 
 ---
 
