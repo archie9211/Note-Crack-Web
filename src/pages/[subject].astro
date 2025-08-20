@@ -86,10 +86,51 @@ const navProps = {
             <title>{fullTitle}</title>
             <meta name="description" content={description} />
             <link rel="canonical" href={canonicalUrl} />
+            <!-- Enhanced SEO tags for MCQ/Notes pages -->
+            <meta
+                  name="keywords"
+                  content={isMcqPage
+                        ? `${formatName(subject.replace("-mcqs", ""))} MCQs, practice questions, exam preparation, TGT exam, online quiz, multiple choice questions, ${formatName(subject.replace("-mcqs", ""))} questions and answers`
+                        : `${formatName(subject)} notes, study material, revision guide, TGT exam preparation, ${formatName(subject)} summary, quick notes`}
+            />
             <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={description} />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content={canonicalUrl} />
             <meta property="twitter:title" content={fullTitle} />
             <meta property="twitter:description" content={description} />
+            <meta property="twitter:card" content="summary" />
+            <!-- Structured data for subject page -->
+            <script
+                  type="application/ld+json"
+                  set:html={JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": isMcqPage ? "Quiz" : "Collection",
+                        name: fullTitle,
+                        description: description,
+                        url: canonicalUrl,
+                        ...(isMcqPage && {
+                              educationalAlignment: {
+                                    "@type": "AlignmentObject",
+                                    alignmentType: "educationalSubject",
+                                    targetName: formatName(
+                                          subject.replace("-mcqs", "")
+                                    ),
+                              },
+                              learningResourceType: "Quiz",
+                              interactionType: "choiceInteraction",
+                        }),
+                        mainEntityOfPage: {
+                              "@type": "WebPage",
+                              "@id": canonicalUrl,
+                        },
+                        isPartOf: {
+                              "@type": "WebSite",
+                              name: "Note Crack",
+                              "@id": Astro.site,
+                        },
+                  })}
+            />
       </Fragment>
       <!-- Left Sidebar (Desktop) -->
       <div slot="left-sidebar">

@@ -1,5 +1,5 @@
 ---
-import { getEntry } from "astro:content";
+import { getEntry, type CollectionEntry } from "astro:content";
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import ArticleNav from "../../components/ArticleNav.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
@@ -12,6 +12,7 @@ import { buildNavigationTree } from "../../lib/navigation";
 import MCQWrapper from "../../components/MCQWrapper.astro";
 import Pagination from "../../components/Pagination.astro";
 import type { Mcq } from "../../content/schema";
+import { collections } from "../../content/config.mjs";
 
 const formatName = (slug: string) => slug.replace(/-/g, " ");
 
@@ -23,7 +24,11 @@ const subjectSlug = slugParts[0];
 const topicSlugWithClass = slugParts.slice(1).join("/");
 const className = slugParts[1];
 
-const entry = await getEntry(subjectSlug, topicSlugWithClass);
+type ContentCollection = keyof typeof collections;
+const entry = await getEntry(
+      subjectSlug as ContentCollection,
+      topicSlugWithClass
+);
 if (!entry) return new Response("Article not found", { status: 404 });
 
 const { Content, headings } = await entry.render();
@@ -92,10 +97,79 @@ const navProps = {
             <title>{fullTitle}</title>
             <meta name="description" content={pageDescription} />
             <link rel="canonical" href={canonicalUrl} />
+            <!-- Enhanced SEO keywords for both notes and MCQs -->
+            <meta
+                  name="keywords"
+                  content={`${entry.data.keywords || ""}, ${fullTitle}, ${formatName(subjectSlug)}, ${formatName(className)}, ${totalMcqs > 0 ? "practice MCQs, multiple choice questions, " : ""}revision notes, study material, exam preparation, TGT exam`}
+            />
+            <!-- OpenGraph tags -->
             <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={pageDescription} />
+            <meta property="og:type" content="article" />
+            <meta property="og:url" content={canonicalUrl} />
+            <!-- Twitter tags -->
             <meta property="twitter:title" content={fullTitle} />
             <meta property="twitter:description" content={pageDescription} />
+            <meta property="twitter:card" content="summary" />
+            <!-- Structured data for article/quiz -->
+            <script
+                  type="application/ld+json"
+                  set:html={JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": totalMcqs > 0 ? "Quiz" : "Article",
+                        headline: fullTitle,
+                        description: pageDescription,
+                        dateModified:
+                              entry.data.dateModified ||
+                              new Date().toISOString(),
+                        articleSection: formatName(className),
+                        keywords:
+                              entry.data.keywords ||
+                              `${formatName(subjectSlug)}, ${formatName(className)}, revision notes`,
+                        ...(totalMcqs > 0 && {
+                              learningResourceType: "Quiz",
+                              interactionType: "choiceInteraction",
+                              numberOfQuestions: totalMcqs,
+                        }),
+                        isPartOf: {
+                              "@type": "WebSite",
+                              name: "Note Crack",
+                              "@id": Astro.site,
+                        },
+                        mainEntityOfPage: {
+                              "@type": "WebPage",
+                              "@id": canonicalUrl,
+                        },
+                  })}
+            />
+            <!-- Breadcrumb structured data -->
+            <script
+                  type="application/ld+json"
+                  set:html={JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "BreadcrumbList",
+                        itemListElement: [
+                              {
+                                    "@type": "ListItem",
+                                    position: 1,
+                                    name: formatName(subjectSlug),
+                                    item: `${Astro.site}/${subjectSlug}`,
+                              },
+                              {
+                                    "@type": "ListItem",
+                                    position: 2,
+                                    name: formatName(className),
+                                    item: `${Astro.site}/${subjectSlug}#${className}`,
+                              },
+                              {
+                                    "@type": "ListItem",
+                                    position: 3,
+                                    name: fullTitle,
+                                    item: canonicalUrl,
+                              },
+                        ],
+                  })}
+            />
       </Fragment>
 
       <!-- Main Content Area -->

@@ -12,7 +12,11 @@ export const mcqSchema = z.object({
 export const notesSchema = z.object({
       title: z.string(),
       description: z.string(),
+      keywords: z.string().optional(), // Added for SEO
+      subject: z.string().optional(), // Added for SEO and categorization
+      class: z.string().optional(), // Added for SEO and categorization
       mcqs: z.array(mcqSchema).optional(),
+      dateModified: z.string().optional(), // Added for SEO
 });
 
 // We can infer the TypeScript type directly from the Zod schema
