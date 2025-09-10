@@ -39,4 +39,8 @@ export const collections = {
             type: "content",
             schema: notesSchema,
       }),
+      "pharmacy-mcqs": defineCollection({
+            type: "content",
+            schema: notesSchema,
+      }),
 };
