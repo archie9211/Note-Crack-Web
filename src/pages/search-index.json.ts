@@ -8,11 +8,14 @@ export const prerender = true;
 
 export const GET: APIRoute = async ({}) => {
       const allNotes = [];
-      const subjects = Object.keys(collections);
+      // Create a typed array of collection names
+      const subjects: (keyof typeof collections)[] = Object.keys(
+            collections
+      ) as (keyof typeof collections)[];
 
       for (const subject of subjects) {
-            // We cast to `any` here as a simple way to iterate over dynamic collection names.
-            const entries = await getCollection(subject as any);
+            // No longer need to cast to `any`
+            const entries = await getCollection(subject);
             for (const entry of entries) {
                   allNotes.push({
                         title: entry.data.title,
