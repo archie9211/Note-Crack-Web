@@ -8,7 +8,6 @@ import AstroPWA from "@vite-pwa/astro";
 import remarkMath from "remark-math";
 import rehypeMathjax from "rehype-mathjax/svg";
 import remarkGfm from "remark-gfm";
-import rehypePrism from "rehype-prism";
 
 // https://astro.build/config
 export default defineConfig({
