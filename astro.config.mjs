@@ -7,14 +7,46 @@ import cloudflare from "@astrojs/cloudflare";
 import AstroPWA from "@vite-pwa/astro";
 import remarkMath from "remark-math";
 import rehypeMathjax from "rehype-mathjax/svg";
+import remarkGfm from "remark-gfm";
+import rehypePrism from "rehype-prism";
 
 // https://astro.build/config
 export default defineConfig({
       site: "https://notecrack.archie9211.com/",
       output: "server",
       markdown: {
-            remarkPlugins: [remarkMath],
-            rehypePlugins: [rehypeMathjax],
+            syntaxHighlight: "shiki",
+            shikiConfig: {
+                  theme: "github-dark",
+                  wrap: true,
+            },
+            remarkPlugins: [
+                  [
+                        remarkMath,
+                        {
+                              inlineMath: [["$", "$"]],
+                              displayMath: [["$$", "$$"]],
+                        },
+                  ],
+                  remarkGfm,
+            ],
+            rehypePlugins: [
+                  [
+                        rehypeMathjax,
+                        {
+                              output: "svg",
+                              chtml: {
+                                    displayAlign: "left",
+                                    displayIndent: "0",
+                              },
+                              svg: {
+                                    displayAlign: "left",
+                                    displayIndent: "0",
+                                    fontCache: "local",
+                              },
+                        },
+                  ],
+            ],
       },
 
       vite: {
